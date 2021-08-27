@@ -1,0 +1,36 @@
+{
+  "name": "hr-nyc-atx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "babel": "^6.23.0",
+    "babel-install": "^2.1.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
+  },
+  "scripts": {
+    "test": "test",
+    "start": "nodemon ./Server/index.js",
+    "build-dev": "webpack --mode development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CATYNX-blue-ocean/HR-NYC-ATX.git"
+  },
+  "author": "hack reactor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CATYNX-blue-ocean/HR-NYC-ATX/issues"
+  },
+  "homepage": "https://github.com/CATYNX-blue-ocean/HR-NYC-ATX#readme"
+}
