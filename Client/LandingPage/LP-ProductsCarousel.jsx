@@ -20,7 +20,6 @@ let sec = {
   ]
 };
 
-
 class ProductsCarousel extends React.Component {
   constructor(props) {
     super(props);
