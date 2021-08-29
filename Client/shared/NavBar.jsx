@@ -11,6 +11,7 @@ class NavBar extends React.Component {
     return (
       <nav className="nav-bar">
         <div className="logo">
+          logo
         </div>
         <div className="search-bar">
           <input type="text"></input>
