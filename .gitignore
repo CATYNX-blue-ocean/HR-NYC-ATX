@@ -1,3 +1,4 @@
 node_modules
 config.js
 dist/bundle.js
+Client/LandingPage/dummyData.js
