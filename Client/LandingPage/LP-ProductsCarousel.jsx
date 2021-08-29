@@ -1,7 +1,9 @@
 import React from 'react';
 import Carousel from 'react-elastic-carousel';
 
-let sec = {
+import ItemCardProducts from './LP-ItemCardProducts.jsx';
+
+let items = {
   teams: [
     { name: 'Alabama', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Alabama_Crimson_Tide_logo.svg/1200px-Alabama_Crimson_Tide_logo.svg.png' },
     { name: 'Arkansas', photo: 'https://media.tegna-media.com/assets/KFSM/images/087fb015-76c2-4b5c-9222-a163e0a92afa/087fb015-76c2-4b5c-9222-a163e0a92afa_750x422.png' },
@@ -29,7 +31,10 @@ class ProductsCarousel extends React.Component {
   render() {
     return (
       <div className="landing-page-products-carousel">
-
+        <Carousel itemsToShow={3} pagination={false}>
+          {items.teams.map((item) => <ItemCardProducts key={item.name}
+            photo={item.photo} />)}
+        </Carousel>
       </div>
     );
   }
