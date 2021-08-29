@@ -1,5 +1,6 @@
 import React from 'react';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import { Link } from 'react-router-dom';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -20,10 +21,11 @@ class NavBar extends React.Component {
           <input className="landing-page-location-input-textbox" type="text" placeholder="New York City"></input>
         </div>
         <div className="landing-page-login-link-div">
-          <a>Sign in</a>
+          <Link to="/sign-in">Sign in</Link>
         </div>
         <div className="landing-page-cart-link-div">
-          <ShoppingCartOutlinedIcon />
+          <Link to="/cart"><ShoppingCartOutlinedIcon /></Link>
+
         </div>
       </nav>
     );

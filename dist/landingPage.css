@@ -24,7 +24,7 @@
 }
 
 .landing-page-search-bar-div {
-  dislay: block;
+  display: block;
   margin: auto;
   border: solid 1px;
   border-color: black;
@@ -33,6 +33,7 @@
 .landing-page-search-bar-textbox {
   margin: 0;
   height: 20px;
+  width: 400px;
   padding: 1px 2px 1px 10px;
   font-size: 14px;
   background-image: url('static/search.png');
