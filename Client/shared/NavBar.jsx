@@ -9,18 +9,17 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <nav className="landing-page-nav-bar">
-        <div className="landing-page-logo">
-
+      <nav className="nav-bar">
+        <div className="logo">
         </div>
-        <div className="landing-page-search-bar">
+        <div className="search-bar">
           <input type="text"></input>
         </div>
-        <div className="landing-page-location-input">
+        <div className="location-input">
           <input type="text"></input>
         </div>
-        <div className="landing-page-login-link"></div>
-        <div className="landing-page-cart-link"></div>
+        <div className="login-link"></div>
+        <div className="cart-link"></div>
       </nav>
     );
   }
