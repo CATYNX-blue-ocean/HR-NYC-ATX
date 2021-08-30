@@ -24,25 +24,26 @@ function App() {
         <Router>
           <NavBar />
 
-          <Route exact path="">
-            <LandingPage />
-          </Route>
 
-          <Route path="/sign-in">
+          <Route exact path="/sign-in">
             {/* <SignIn /> */}
             <h2>Hello Sign in</h2>
           </Route>
 
-          <Route path="/search">
+          <Route exact path="/search">
             <h2>Hello Search</h2>
           </Route>
 
-          <Route path="/cart">
+          <Route exact path="/cart">
             <h2>Hello Shopping Cart</h2>
           </Route>
 
-          <Route path="/checkout">
+          <Route exact path="/checkout">
             <h2>Hello Checkout</h2>
+          </Route>
+
+          <Route exact path="/">
+            <LandingPage />
           </Route>
         </Router>
       </div>
