@@ -13,9 +13,8 @@ let mongoSchema = mongoose.Schema({
 
   // TODO: our schema here
 });
-
-
-
+const getSellerInfo = () => {}
+db.Sellers.findOne({sellerName: *seller name variable*});
 
 
 module.exports = {
