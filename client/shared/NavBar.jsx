@@ -20,7 +20,9 @@ const NavBar = () => {
               Odds 'n' Ends
             </Link>
           </Typography>
-          <div className={classes.search}>
+          <div className={classes.search}
+            style={{width: '50%'}}
+          >
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -33,7 +35,9 @@ const NavBar = () => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <div className={classes.search}>
+          <div className={classes.search}
+            style={{width: '15%'}}
+          >
             <div className={classes.searchIcon}>
               <LocationOnIcon />
             </div>
@@ -47,14 +51,16 @@ const NavBar = () => {
             />
           </div>
           <div className={classes.grow} />
-          <div style={{marginRight: '10px'}}>
+          <div
+            style={{marginRight: '5%'}}
+          >
             <Typography variant="h6" noWrap>
               <Link to="/sign-in" style={{ textDecoration: 'none' }}>
                 Sign in
               </Link>
             </Typography>
           </div>
-          <IconButton aria-label="show new notifications" color="inherit">
+          <IconButton style={{marginRight: '5%'}} aria-label="show new notifications" color="inherit">
             <Badge badgeContent={1} color="secondary">
               <Link to="/cart"><ShoppingCartOutlinedIcon /></Link>
             </Badge>
