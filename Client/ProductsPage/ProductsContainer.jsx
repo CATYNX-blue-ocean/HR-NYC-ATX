@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import NavBar from '../shared/NavBar.jsx';
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import { Container, AppBar, Typography, Grow, Grid, InputBase } from '@material-ui/core';
 import ProductsCard from './ProductsCard.jsx';
@@ -41,9 +41,10 @@ const ProductsContainer = ({ }) => {
 
   return (
     <Container maxwidth='lg'>
-      {/* *****getting error message: Uncaught Error: Invariant failed: You should not use <Link> outside a <Router>
-			when I add NavBar component here***** */}
-      {/* <NavBar/> */}
+      {/* wrap NavBar component in Router to get rid of this error message: Uncaught Error: Invariant failed: You should not use <Link> outside a <Router> */}
+      <Router>
+        <NavBar/>
+      </Router>
       <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justifyContent='space-between' alignItems='stretch' spacing={3}>
@@ -140,3 +141,5 @@ const products = [{
   description: 'This is a product. This is the most product-y product to ever product.',
   price: '420.69'
 }];
+
+//ReactDOM.render(<ProductsContainer/>, document.getElementById('app'));

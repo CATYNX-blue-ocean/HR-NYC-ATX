@@ -10,6 +10,7 @@ import {
 import useStore from './zustandStore';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
+import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
 
@@ -48,6 +49,8 @@ const App = () => {
           </Route>
         </Router>
       </div>
+      {/* added products container down here to test rendering */}
+      {/* <ProductsContainer/> */}
     </>
   );
 
