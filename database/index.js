@@ -63,9 +63,18 @@ const orderSchema = mongoose.Schema({
   paymentInfo: String,
 });
 
+const categoriesSchema = mongoose.Schema({
+  type: String,
+  category: String,
+  image: String,
+  description: String,
+});
+
+
 const Sellers = mongoose.model('Sellers', sellerSchema);
 const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
+const Categories = mongoose.model('Categories', categoriesSchema);
 
 // const getSellerLogin = async (name) =>  {
 //   return await db.Sellers.findOne({sellerName: name });
