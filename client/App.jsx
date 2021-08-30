@@ -28,8 +28,12 @@ const App = () => {
 
 
           <Route exact path="/sign-in">
-            {/* <SignIn /> */}
+            <SignIn />
             <h2>Hello Sign in</h2>
+          </Route>
+
+          <Route path="/sign-up">
+            <SignUp />
           </Route>
 
           <Route exact path="/search">
