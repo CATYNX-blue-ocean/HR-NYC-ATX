@@ -7,9 +7,10 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import useStore from './zustandStore'
+import useStore from './zustandStore';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
+import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
 
 function App() {
   // example of consuming state
@@ -47,6 +48,8 @@ function App() {
           </Route>
         </Router>
       </div>
+      {/* added products container down here to test rendering */}
+      {/* <ProductsContainer/> */}
     </>
   );
 
