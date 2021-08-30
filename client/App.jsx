@@ -1,12 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import useStore from './zustandStore';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
@@ -16,20 +11,24 @@ import SignUp from './shared/SignUp.jsx';
 
 const App = () => {
   // example of consuming state
-  const myVariable = useStore(state => state.exampleStateField);
+  const myVariable = useStore((state) => state.exampleStateField);
   console.log(myVariable);
-  const exampleChangeFn = useStore(state => state.exampleChangeStateFn);
+  const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
 
   return (
     <>
-      <button onClick={exampleChangeFn}>change state</button> {/* example of changing state  */}
+      <button onClick={exampleChangeFn}>change state</button>{' '}
+      {/* example of changing state  */}
       <div className="landing-page-main-div">
         <Router>
           <NavBar />
 
-
           <Route exact path="/sign-in">
             <SignIn />
+          </Route>
+
+          <Route path="/sign-up">
+            <SignUp />
           </Route>
 
           <Route exact path="/search">
@@ -53,7 +52,6 @@ const App = () => {
       {/* <ProductsContainer/> */}
     </>
   );
-
 };
 
 export default App;
