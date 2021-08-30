@@ -7,11 +7,13 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import useStore from './zustandStore'
+import useStore from './zustandStore';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
+import SignIn from './shared/SignInModal.jsx';
+import SignUp from './shared/SignUp.jsx';
 
-function App() {
+const App = () => {
   // example of consuming state
   const myVariable = useStore(state => state.exampleStateField);
   console.log(myVariable);
@@ -50,6 +52,6 @@ function App() {
     </>
   );
 
-}
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));
