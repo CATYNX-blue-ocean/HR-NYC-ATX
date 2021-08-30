@@ -11,8 +11,10 @@ import useStore from './zustandStore';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
+import SignIn from './shared/SignInModal.jsx';
+import SignUp from './shared/SignUp.jsx';
 
-function App() {
+const App = () => {
   // example of consuming state
   const myVariable = useStore(state => state.exampleStateField);
   console.log(myVariable);
@@ -27,8 +29,7 @@ function App() {
 
 
           <Route exact path="/sign-in">
-            {/* <SignIn /> */}
-            <h2>Hello Sign in</h2>
+            <SignIn />
           </Route>
 
           <Route exact path="/search">
@@ -53,6 +54,7 @@ function App() {
     </>
   );
 
-}
+};
 
-ReactDOM.render(<App />, document.getElementById('app'));
+export default App;
+//ReactDOM.render(<App />, document.getElementById('app'));
