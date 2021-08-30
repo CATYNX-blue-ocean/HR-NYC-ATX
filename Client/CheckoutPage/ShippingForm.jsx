@@ -19,7 +19,7 @@ const ShippingChoice = () => {
   };
 
   return (
-    <div>
+    <div style={{ padding: '15px', paddingTop: '5px' }}>
       <h3>Shipping Form</h3>
 
       {formToggle ? (
