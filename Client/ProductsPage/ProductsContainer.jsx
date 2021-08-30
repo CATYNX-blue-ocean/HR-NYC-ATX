@@ -11,7 +11,7 @@ import useStyles from './styles';
 const ProductsContainer = ({ }) => {
   const classes = useStyles();
 
-  //const [products, fetchAllProducts] = useState();
+  const [products, fetchAllProducts] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(9);
 
