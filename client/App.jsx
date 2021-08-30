@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
+import Checkout from './CheckoutPage/CheckoutPage.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +20,7 @@ class App extends React.Component {
             <NavBar />
 
             <Route exact path="">
-              <LandingPage />
+              {/* <LandingPage /> */}
             </Route>
 
             <Route path="/sign-in">
@@ -41,19 +37,17 @@ class App extends React.Component {
             </Route>
 
             <Route path="/checkout">
-              <h2>Hello Checkout</h2>
+              <Checkout />
             </Route>
           </Router>
         </div>
       </>
     );
   }
-
 }
 
-{ /* <h1>Hello World</h1> */ }
-
-
-
+{
+  /* <h1>Hello World</h1> */
+}
 
 ReactDOM.render(<App />, document.getElementById('app'));
