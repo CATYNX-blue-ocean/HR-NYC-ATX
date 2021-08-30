@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const axios = require('axios');
 var cors = require('cors');
-const database = require('../database/database.js');
+const database = require('../database/index.js');
 const path = require('path'); // need this for the react router enabling code line 17
 
 const app = express();

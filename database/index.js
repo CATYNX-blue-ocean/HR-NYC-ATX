@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
-//mongoose.connect('TO_BE_FILLED');
+const dbInfo = require('../config.js');
+mongoose.connect(`mongodb://${dbInfo.dbInfo}`);
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error to Mongo:'));
+db.once('open', function() {
+  console.log('Connected to MongoDB!');
+});
 
 const productListing = mongoose.Schema({
   productID: Number, //OR Obj_id
@@ -61,6 +67,15 @@ const Sellers = mongoose.model('Sellers', sellerSchema);
 const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
 
+const getSellerLogin = async (name) =>  {
+  return await db.Sellers.findOne({sellerName: name });
+}
+
+const getServiceCategory = async (category) =>  {
+  return await db.Sellers.find({services: {} });
+}
+
 module.exports = {
-  Sellers, Buyers, Orders
+  getSellerLogin,
+  getServiceCategory,
 };
