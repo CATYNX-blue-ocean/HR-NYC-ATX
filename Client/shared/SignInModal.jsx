@@ -10,7 +10,8 @@ import {
 } from 'react-router-dom';
 
 const SignIn = () => {
-  const [show, setShow] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const history = useHistory();
 
   let close = (event) => {
@@ -20,10 +21,10 @@ const SignIn = () => {
   return (
     <div>
       <Modal
-        open={show}
+        open={true}
         onClose={close}
       >
-        <Grid container spacing={1} style={{backgroundColor: '#fff'}}>
+        <Grid container spacing={1} style={{backgroundColor: '#fff'}} direction="column" alignItems="center">
           <Grid item xs={12}>
             <h3>
               Sign In
@@ -33,10 +34,10 @@ const SignIn = () => {
             </p>
           </Grid>
           <Grid item xs={12}>
-            <form>
-              <TextField id='sign-in-email' label='email' />
-              <TextField id='sign-in-password' label='password' />
-            </form>
+            <TextField id='sign-in-email' type='email' label='email' onChange={(event) => { setEmail(event.target.value); }}/>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField id='sign-in-password' type='password' label='password' onChange={(event) => { setPassword(event.target.value); }}/>
           </Grid>
           <Grid item xs={12}>
             <Button variant='contained'>Sign In</Button>

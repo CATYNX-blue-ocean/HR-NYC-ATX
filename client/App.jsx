@@ -9,6 +9,8 @@ import {
 } from 'react-router-dom';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
+import SignIn from './shared/SignInModal.jsx';
+import SignUp from './shared/SignUp.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,8 +30,12 @@ class App extends React.Component {
             </Route>
 
             <Route path="/sign-in">
-              {/* <SignIn /> */}
+              <SignIn />
               <h2>Hello Sign in</h2>
+            </Route>
+
+            <Route path="/sign-up">
+              <SignUp />
             </Route>
 
             <Route path="/search">
