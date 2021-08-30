@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const dbInfo = require('../config.js');
-
 mongoose.connect(`mongodb://${dbInfo.dbInfo}`);
 
 const db = mongoose.connection;
@@ -68,6 +67,15 @@ const Sellers = mongoose.model('Sellers', sellerSchema);
 const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
 
-module.exports = {
-  Sellers, Buyers, Orders
-};
+// const getSellerLogin = async (name) =>  {
+//   return await db.Sellers.findOne({sellerName: name });
+// }
+
+// const getServiceCategory = async (category) =>  {
+//   return await db.Sellers.find({services: {} });
+// }
+
+// module.exports = {
+//   getSellerLogin,
+//   getServiceCategory,
+// };
