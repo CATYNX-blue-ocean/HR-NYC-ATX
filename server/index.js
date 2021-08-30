@@ -21,6 +21,9 @@ app.get('/*', function (req, res) {
 app.get('/products', function (req, res) {
   // must add query after data is created
 });
+app.get('/services', function (req, res) {
+  // must add query after data is created
+});
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
