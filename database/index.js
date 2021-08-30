@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
-//mongoose.connect('TO_BE_FILLED');
+const dbInfo = require('../config.js');
+
+mongoose.connect(`mongodb://${dbInfo.dbInfo}`);
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error to Mongo:'));
+db.once('open', function() {
+  console.log('Connected to MongoDB!');
+});
 
 const productListing = mongoose.Schema({
   productID: Number, //OR Obj_id
