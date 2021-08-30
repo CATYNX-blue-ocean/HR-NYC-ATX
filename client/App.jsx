@@ -32,6 +32,10 @@ const App = () => {
             <SignIn />
           </Route>
 
+          <Route path="/sign-up">
+            <SignUp />
+          </Route>
+
           <Route exact path="/search">
             <h2>Hello Search</h2>
           </Route>

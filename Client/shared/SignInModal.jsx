@@ -26,9 +26,9 @@ const SignIn = () => {
       >
         <Grid container spacing={1} style={{backgroundColor: '#fff'}} direction="column" alignItems="center">
           <Grid item xs={12}>
-            <h3>
+            <h2>
               Sign In
-            </h3>
+            </h2>
             <p>
               Please sign in in order to post a product or a service. <br /> You are one step away from joining your community.
             </p>
