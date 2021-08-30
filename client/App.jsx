@@ -29,7 +29,6 @@ const App = () => {
 
           <Route exact path="/sign-in">
             <SignIn />
-            <h2>Hello Sign in</h2>
           </Route>
 
           <Route path="/sign-up">
@@ -58,4 +57,5 @@ const App = () => {
 
 };
 
-ReactDOM.render(<App />, document.getElementById('app'));
+export default App;
+//ReactDOM.render(<App />, document.getElementById('app'));
