@@ -7,53 +7,49 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import useStore from './zustandStore'
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+function App() {
+  // example of consuming state
+  const myVariable = useStore(state => state.exampleStateField);
+  console.log(myVariable);
+  const exampleChangeFn = useStore(state => state.exampleChangeStateFn);
 
-  render() {
-    return (
-      <>
-        <div className="landing-page-main-div">
-          <Router>
-            <NavBar />
+  return (
+    <>
+      <button onClick={exampleChangeFn}>change state</button> {/* example of changing state  */}
+      <div className="landing-page-main-div">
+        <Router>
+          <NavBar />
 
-            <Route exact path="">
-              <LandingPage />
-            </Route>
 
-            <Route path="/sign-in">
-              {/* <SignIn /> */}
-              <h2>Hello Sign in</h2>
-            </Route>
+          <Route exact path="/sign-in">
+            {/* <SignIn /> */}
+            <h2>Hello Sign in</h2>
+          </Route>
 
-            <Route path="/search">
-              <h2>Hello Search</h2>
-            </Route>
+          <Route exact path="/search">
+            <h2>Hello Search</h2>
+          </Route>
 
-            <Route path="/cart">
-              <h2>Hello Shopping Cart</h2>
-            </Route>
+          <Route exact path="/cart">
+            <h2>Hello Shopping Cart</h2>
+          </Route>
 
-            <Route path="/checkout">
-              <h2>Hello Checkout</h2>
-            </Route>
-          </Router>
-        </div>
-      </>
-    );
-  }
+          <Route exact path="/checkout">
+            <h2>Hello Checkout</h2>
+          </Route>
+
+          <Route exact path="/">
+            <LandingPage />
+          </Route>
+        </Router>
+      </div>
+    </>
+  );
 
 }
-
-{ /* <h1>Hello World</h1> */ }
-
-
-
 
 ReactDOM.render(<App />, document.getElementById('app'));
