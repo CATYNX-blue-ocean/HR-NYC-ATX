@@ -7,25 +7,19 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import create from 'zustand';
+import useStore from './zustandStore'
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
 
 function App() {
-
-  const useStore = (create(set => ({
-    exampleStateField: 'exampleStateValue',
-    exampleChangeStateFn: () => set(state => ({exampleStateField: state.exampleStateField + 'changed'}))
-  })))
-
   // example of consuming state
-  function someFnComponent() {
-    const myVariable = useStore(state => state.exampleStateField);
-    return <h3>{myVariable}</h3>
-  }
+  const myVariable = useStore(state => state.exampleStateField);
+  console.log(myVariable);
+  const exampleChangeFn = useStore(state => state.exampleChangeStateFn);
 
   return (
     <>
+      <button onClick={exampleChangeFn}>change state</button> {/* example of changing state  */}
       <div className="landing-page-main-div">
         <Router>
           <NavBar />
