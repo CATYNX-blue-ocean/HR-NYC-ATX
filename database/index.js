@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dbInfo = require('../config.js');
+const dbInfo = require('../config');
 mongoose.connect(`mongodb://${dbInfo.dbInfo}`);
 
 const db = mongoose.connection;
@@ -75,7 +75,17 @@ const getServiceCategory = async (category) =>  {
   return await db.Sellers.find({services: {} });
 }
 
+const getBuyerLogin = async ( buyerEmail ) => {
+  return await db.buyerSchema.find({ buyerEmail })
+};
+
+const saveBuyer = ( buyerInfo ) => {
+
+};
+
 module.exports = {
   getSellerLogin,
   getServiceCategory,
+  getBuyerLogin,
+  saveBuyer
 };

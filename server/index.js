@@ -19,6 +19,16 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
+//post for buyer account sign up
+app.post('/buyersignup', ( req, res ) => {
+  console.log(req.body);
+
+});
+//post for seller account sign up
+app.post('/sellersignup', (req, res)=>{
+
+});
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
