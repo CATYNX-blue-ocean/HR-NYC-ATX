@@ -46,6 +46,10 @@ const App = () => {
                 <h2>Hello Shopping Cart</h2>
               </Route>
 
+              <Route exact path="/product/?id=2">
+                <Overview product={exampleData.exampleData}/>
+              </Route>
+
               <Route exact path="/checkout">
                 <h2>Hello Checkout</h2>
               </Route>
@@ -59,9 +63,9 @@ const App = () => {
       </div>
       {/* added products container down here to test rendering */}
       {/* <ProductsContainer/> */}
-      <div>
+      {/* <div>
         <Overview product={exampleData.exampleData}/>
-      </div>
+      </div> */}
     </>
   );
 };

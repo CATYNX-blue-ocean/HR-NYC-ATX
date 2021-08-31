@@ -76,15 +76,11 @@ const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
 
+const getSellerLogin = async ( email ) =>  {
+  return await Sellers.findOne({ sellerEmail: email });
+}
 
 module.exports = db;
-
-// const getSellerLogin = async (name) =>  {
-//   return await db.Sellers.findOne({sellerName: name });
-// }
-// const getSellerLogin = async ( email ) =>  {
-//   return await db.Sellers.findOne({ sellerEmail: email });
-// };
 
 const getServiceCategory = async (category) =>  {
   var allSellers = await Sellers.find();
@@ -138,15 +134,22 @@ const saveNewSeller = ( sellerInfo ) => {
 
 };
 
+const catFind = async (name) => {
+  return await Categories.find({});
+};
+
+
 
 module.exports = {
-  // getSellerLogin,
+
+  getSellerLogin,
   getServiceCategory,
   getBuyerLogin,
   saveNewBuyer,
   checkForBuyer,
   checkForSeller,
-  saveNewSeller
+  saveNewSeller,
+  catFind
 };
 
 //buyer = 'undefined undefined';
@@ -154,4 +157,11 @@ module.exports = {
 //orders = empty;
 //repos =
 //seller = 'Joe String'
+
+
+
+
+
+
+
 
