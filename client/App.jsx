@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { Container } from '@material-ui/core';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,46 +11,42 @@ import {
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const App = function () {
 
-  render() {
-    return (
-      <>
-        <div className="landing-page-main-div">
-          <Router>
-            <NavBar />
+  return (
+    <Container>
+      <div className="landing-page-main-div">
+        <Router>
+          <NavBar />
 
-            <Route exact path="">
-              <LandingPage />
-            </Route>
+          <Route exact path="">
+            <LandingPage />
+          </Route>
 
-            <Route path="/sign-in">
-              {/* <SignIn /> */}
-              <h2>Hello Sign in</h2>
-            </Route>
+          <Route path="/sign-in">
+            {/* <SignIn /> */}
+            <h2>Hello Sign in</h2>
+          </Route>
 
-            <Route path="/search">
-              <h2>Hello Search</h2>
-            </Route>
+          <Route path="/search">
+            <h2>Hello Search</h2>
+          </Route>
 
-            <Route path="/cart">
-              <h2>Hello Shopping Cart</h2>
-            </Route>
+          <Route path="/cart">
+            <h2>Hello Shopping Cart</h2>
+          </Route>
 
-            <Route path="/checkout">
-              <h2>Hello Checkout</h2>
-            </Route>
-          </Router>
-        </div>
-      </>
-    );
-  }
+          <Route path="/checkout">
+            <h2>Hello Checkout</h2>
+          </Route>
+        </Router>
+      </div>
+    </Container>
 
-}
+  );
+
+
+};
 
 { /* <h1>Hello World</h1> */ }
 
