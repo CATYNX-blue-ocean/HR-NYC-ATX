@@ -8,6 +8,7 @@ import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
+import { Grid } from '@material-ui/core';
 
 const App = () => {
   // example of consuming state
@@ -21,30 +22,36 @@ const App = () => {
       {/* example of changing state  */}
       <div className="landing-page-main-div">
         <Router>
-          <NavBar />
-          <Route exact path="/sign-in">
-            <SignIn />
-          </Route>
+          <Grid container direction="column" justifyContent="center" alignItems="center">
+            <Grid item width="1">
+              <NavBar />
+            </Grid>
+            <Grid item width="1">
+              <Route exact path="/sign-in">
+                <SignIn />
+              </Route>
 
-          <Route path="/sign-up">
-            <SignUp />
-          </Route>
+              <Route path="/sign-up">
+                <SignUp />
+              </Route>
 
-          <Route exact path="/search">
-            <h2>Hello Search</h2>
-          </Route>
+              <Route exact path="/search">
+                <h2>Hello Search</h2>
+              </Route>
 
-          <Route exact path="/cart">
-            <h2>Hello Shopping Cart</h2>
-          </Route>
+              <Route exact path="/cart">
+                <h2>Hello Shopping Cart</h2>
+              </Route>
 
-          <Route exact path="/checkout">
-            <h2>Hello Checkout</h2>
-          </Route>
+              <Route exact path="/checkout">
+                <h2>Hello Checkout</h2>
+              </Route>
 
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
+              <Route exact path="/">
+                <LandingPage />
+              </Route>
+            </Grid>
+          </Grid>
         </Router>
       </div>
       {/* added products container down here to test rendering */}
