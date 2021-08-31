@@ -59,7 +59,7 @@ const SignIn = () => {
         open={true}
         onClose={close}
       >
-        <Grid container spacing={1} style={{backgroundColor: '#fff'}} direction="column" alignItems="center">
+        <Grid id='sign-in-modal' container spacing={1} style={{backgroundColor: '#fff'}} direction="column" alignItems="center">
           <Grid item xs={12}>
             <h2>
               Sign In
