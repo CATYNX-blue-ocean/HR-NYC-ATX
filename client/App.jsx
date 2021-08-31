@@ -1,56 +1,58 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import { Container } from '@material-ui/core';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import useStore from './zustandStore';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
+import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
+import SignIn from './shared/SignInModal.jsx';
+import SignUp from './shared/SignUp.jsx';
 
-const App = function () {
+const App = () => {
+  // example of consuming state
+  const myVariable = useStore((state) => state.exampleStateField);
+  console.log(myVariable);
+  const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
 
   return (
-    <Container>
+    <>
+      <button onClick={exampleChangeFn}>change state</button>{' '}
+      {/* example of changing state  */}
       <div className="landing-page-main-div">
         <Router>
           <NavBar />
-
-          <Route exact path="">
-            <LandingPage />
+          <Route exact path="/sign-in">
+            <SignIn />
           </Route>
 
-          <Route path="/sign-in">
-            {/* <SignIn /> */}
-            <h2>Hello Sign in</h2>
+          <Route path="/sign-up">
+            <SignUp />
           </Route>
 
-          <Route path="/search">
+          <Route exact path="/search">
             <h2>Hello Search</h2>
           </Route>
 
-          <Route path="/cart">
+          <Route exact path="/cart">
             <h2>Hello Shopping Cart</h2>
           </Route>
 
-          <Route path="/checkout">
+          <Route exact path="/checkout">
             <h2>Hello Checkout</h2>
+          </Route>
+
+          <Route exact path="/">
+            <LandingPage />
           </Route>
         </Router>
       </div>
-    </Container>
-
+      {/* added products container down here to test rendering */}
+      {/* <ProductsContainer/> */}
+    </>
   );
-
-
 };
 
-{ /* <h1>Hello World</h1> */ }
-
-
-
+export default App;
 
 ReactDOM.render(<App />, document.getElementById('app'));
