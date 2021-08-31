@@ -67,7 +67,7 @@ const Sellers = mongoose.model('Sellers', sellerSchema);
 const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
 
-const getSellerLogin = async ( email ) =>  {
+const getSellerLogin = async ( email ) => {
   return await db.Sellers.findOne({ sellerEmail: email });
 }
 
@@ -102,7 +102,7 @@ const saveNewBuyer = ( buyerInfo ) => {
 };
 
 const saveNewSeller = ( sellerInfo ) => {
-  console.log(sellerInfo);
+  //console.log(sellerInfo);
   const newSeller = new Sellers( {
       sellerName: sellerInfo.sellerName,
       sellerEmail: sellerInfo.sellerEmail,
@@ -115,9 +115,7 @@ const saveNewSeller = ( sellerInfo ) => {
       products: sellerInfo.products,
       services: sellerInfo.services,
     } );
-
       newSeller.save();
-
 };
 
 

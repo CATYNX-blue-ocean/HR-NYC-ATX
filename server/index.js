@@ -21,7 +21,7 @@ app.get('/*', function (req, res) {
 
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
-  console.log(req.body)
+  console.log(req.body);
   const seller = req.body.sellerEmail;
   database.getSellerLogin( seller )
     .then( (sellerInfo) => {
@@ -34,8 +34,9 @@ app.get('/sellersignin', (req, res)=> {
       }
     } )
     .catch((err)=> {
-
-    })
+      res.Status = 400;
+      res.send('Error in sign in. Contact Admin.');
+    });
 
 });
 
@@ -47,9 +48,10 @@ app.get('/buyersignin', (req, res)=> {
 //post for buyer account sign up
 app.post('/buyersignup', ( req, res ) => {
   const newBuyer = req.body;
-
-  database.checkForBuyer( newBuyer.email )
+  console.log(newBuyer);
+  database.checkForBuyer( newBuyer.buyerEmail )
     .then( ( doTheyExist ) => {
+      console.log( doTheyExist )
       if (doTheyExist === true) {
         res.Status = 201;
         res.send('Account Exists. Please log in.');
@@ -68,10 +70,10 @@ app.post('/buyersignup', ( req, res ) => {
 //post for seller account sign up
 app.post('/sellersignup', (req, res)=>{
   const newSeller = req.body;
-  console.log(newSeller);
   database.checkForSeller( newSeller.sellerEmail )
     .then( (doTheyExist) => {
       if (doTheyExist) {
+        console.log(doTheyExist);
         res.Status = 201;
         res.send('Account already exists.');
       } else {
@@ -80,7 +82,7 @@ app.post('/sellersignup', (req, res)=>{
         res.send('Account Created. Please log in.');
       }
     })
-    .catch( () => {
+    .catch( (err) => {
       res.status = 401;
       res.send('There was an error with your request, Please try again or contact an administrator.');
     });
