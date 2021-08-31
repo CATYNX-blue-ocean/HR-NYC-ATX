@@ -5,15 +5,12 @@ import TextField from '@material-ui/core/TextField';
 import Backdrop from '@material-ui/core/Backdrop';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
-<<<<<<< HEAD
-=======
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import validator from 'validator';
 import axios from 'axios';
->>>>>>> 4953e804cff034a2e930cb259c32b336a9988ddd
 import {
   Link,
   useHistory
@@ -22,28 +19,16 @@ import {
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-<<<<<<< HEAD
-=======
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [isSeller, setIsSeller] = useState(false);
   const [loginError, setLoginError] = useState(false);
->>>>>>> 4953e804cff034a2e930cb259c32b336a9988ddd
   const history = useHistory();
 
   let close = (event) => {
     history.goBack();
   };
 
-<<<<<<< HEAD
-  return (
-    <div>
-      <Modal
-        open={true}
-        onClose={close}
-      >
-        <Grid container spacing={1} style={{backgroundColor: '#fff'}} direction="column" alignItems="center">
-=======
   let onSignInSubmit = () => {
     if (isSeller) {
       axios.get(`/sellersignin?sellerEmail=${email}`)
@@ -62,7 +47,7 @@ const SignIn = () => {
       };
       axios.get(`/buyersignin?buyerEmail=${email}`)
         .then((res) => {
-          if (res.data === 'User Not Found.' || 'There was an error with your request, Please try again or contact an administrator.') {
+          if (res.data === 'Invalid login' || 'There was an error with your request, Please try again or contact an administrator.') {
             setLoginError(true);
           } else {
             setLoginError(false);
@@ -118,7 +103,6 @@ const SignIn = () => {
           direction="column"
           alignItems="center"
         >
->>>>>>> 4953e804cff034a2e930cb259c32b336a9988ddd
           <Grid item xs={12}>
             <h2>
               Sign In
@@ -128,12 +112,6 @@ const SignIn = () => {
             </p>
           </Grid>
           <Grid item xs={12}>
-<<<<<<< HEAD
-            <TextField id='sign-in-email' type='email' label='email' onChange={(event) => { setEmail(event.target.value); }}/>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField id='sign-in-password' type='password' label='password' onChange={(event) => { setPassword(event.target.value); }}/>
-=======
             <TextField
               required id='sign-in-email'
               type='email' label='email'
@@ -149,7 +127,6 @@ const SignIn = () => {
               onChange={(event) => { handleSetPassword(event); }}
               error={passwordError}
             />
->>>>>>> 4953e804cff034a2e930cb259c32b336a9988ddd
           </Grid>
           <Grid item xs={12}>
             <FormControl>
