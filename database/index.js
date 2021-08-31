@@ -101,12 +101,11 @@ const getServiceList = async (cb) => {
 }
 
 const getServiceCategory = (category) =>  {
-  return Sellers.find().populate({
-    path: 'services',
-    match: {serviceCategory: category}
-  });
+  return Sellers.find({"services.serviceCategory": category})
 };
 //getServiceCategory('Greg Stiedemann I')
+// products and services not returning because data wasnot loaded to match schema
+//not properly filtering for category
 
 const getBuyerLogin = async (buyerEmail) => {
   return await db.buyerSchema.find({ buyerEmail })
