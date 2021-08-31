@@ -36,7 +36,7 @@ const sellerSchema = mongoose.Schema({
   sellerEmail: String,
   sellerAddress: String,
   location: [String], //['latitude', 'longitude']
-  sellerPhone: Number,
+  sellerPhone: String,
   password: String, // hashed
   createdAt: Date,
   orders: [Number],
@@ -67,8 +67,8 @@ const Sellers = mongoose.model('Sellers', sellerSchema);
 const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
 
-const getSellerLogin = async (name) =>  {
-  return await db.Sellers.findOne({sellerName: name });
+const getSellerLogin = async ( email ) =>  {
+  return await db.Sellers.findOne({ sellerEmail: email });
 }
 
 const getServiceCategory = async (category) =>  {
