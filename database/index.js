@@ -76,15 +76,11 @@ const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
 
+const getSellerLogin = async ( email ) =>  {
+  return await Sellers.findOne({ sellerEmail: email });
+}
 
 module.exports = db;
-
-// const getSellerLogin = async (name) =>  {
-//   return await db.Sellers.findOne({sellerName: name });
-// }
-// const getSellerLogin = async ( email ) =>  {
-//   return await db.Sellers.findOne({ sellerEmail: email });
-// };
 
 const getServiceCategory = async (category) =>  {
   var allSellers = await Sellers.find();
