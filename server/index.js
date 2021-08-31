@@ -23,7 +23,7 @@ app.get('/*', function (req, res) {
 app.post('/buyersignup', ( req, res ) => {
   const newBuyer = req.body;
 
-  database.checkForBuyer( newBuyer.buyerEmail )
+  database.checkForBuyer( newBuyer.email )
     .then( ( doTheyExist ) => {
       if (doTheyExist === true) {
         res.Status = 201;
@@ -42,7 +42,22 @@ app.post('/buyersignup', ( req, res ) => {
 
 //post for seller account sign up
 app.post('/sellersignup', (req, res)=>{
+  const newSeller = req.body;
+  console.log(newSeller);
+  database.checkForSeller( newSeller.sellerEmail )
+    .then( (doTheyExist) => {
+      if (doTheyExist) {
+        res.Status = 201;
+        res.send('Account already exists.');
+      } else {
+        database.saveNewSeller( newSeller );
+        res.Status = 201;
+        res.send('Account Created. Please log in.');
+      }
+    })
+    .catch( () => {
 
+    });
 });
 
 app.listen(PORT, () => {

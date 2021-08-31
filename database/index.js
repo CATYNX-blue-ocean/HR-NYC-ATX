@@ -84,8 +84,11 @@ const checkForBuyer = ( buyerEmail ) => {
   return Buyers.exists({ buyerEmail })
 };
 
-const saveNewBuyer = ( buyerInfo, callback ) => {
-  console.log(buyerInfo);
+const checkForSeller = ( sellerEmail ) => {
+  return Sellers.exists({ sellerEmail })
+};
+
+const saveNewBuyer = ( buyerInfo ) => {
   const newUser = new Buyers( {
       buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
       password: buyerInfo.password,
@@ -99,10 +102,33 @@ const saveNewBuyer = ( buyerInfo, callback ) => {
 };
 
 
+
+const saveNewSeller = ( sellerInfo ) => {
+  console.log(sellerInfo);
+  const newSeller = new Sellers( {
+      sellerName: sellerInfo.sellerName,
+      sellerEmail: sellerInfo.sellerEmail,
+      sellerAddress: sellerInfo.sellerAddress,
+      location: sellerInfo.location,
+      sellerPhone: sellerInfo.sellerPhone,
+      password: sellerInfo.password,
+      createdAt: sellerInfo.createdAt,
+      orders: sellerInfo.orders,
+      products: sellerInfo.products,
+      services: sellerInfo.services,
+    } );
+
+      newSeller.save();
+
+};
+
+
 module.exports = {
   getSellerLogin,
   getServiceCategory,
   getBuyerLogin,
   saveNewBuyer,
-  checkForBuyer
+  checkForBuyer,
+  checkForSeller,
+  saveNewSeller
 };
