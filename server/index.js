@@ -117,6 +117,21 @@ app.post('/sellersignup', (req, res)=>{
     });
 });
 
+app.get('/SellersInCategory', (req, res)=>{
+  const queryCategory = req.query.category;
+  console.log(queryCategory);
+  database.getServiceCategory( queryCategory )
+    .then( (doTheyExist) => {
+      console.log(doTheyExist);
+      res.Status = 200;
+      res.send(doTheyExist);
+    })
+    .catch( () => {
+      res.status = 401;
+      res.send('There was an error with your request, Please try again or contact an administrator.');
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
