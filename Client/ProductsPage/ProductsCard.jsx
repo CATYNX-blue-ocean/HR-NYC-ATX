@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useStyles from './styles.js';
 import { Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, Typography, IconButton, Modal, Backdrop, Fade, CircularProgress } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
+import useDataStore from './tempZustand.js';
 
 // const product = {
 //   name: 'Product Name',
@@ -13,6 +14,9 @@ import Rating from '@material-ui/lab/Rating';
 
 const ProductsCard = ({ product }) => {
   const classes = useStyles();
+
+  const setCurrentProduct = useDataStore((state) => state.setCurrentProduct);
+  const currentProduct = useDataStore((state) => state.currentProduct);
 
   let reviewAverage = () => {
     const reviewsData = {results: [{rating: 2}, {rating: 5}, {rating: 4}, {rating: 4}, {rating: 2}]};
@@ -36,15 +40,18 @@ const ProductsCard = ({ product }) => {
   return (
     <Card
       data-myattr={product.id}
+      value={product.id}
+      id={product.id}
+      name={product.id}
       onClick={(e) => {
-        //changeProduct(e.currentTarget.getAttribute('data-myattr'));
-
+        console.log(e.target.parentElement.id);
+        setCurrentProduct(e.target.parentElement.id);
       }}
       className={classes.root}>
-      {product.photo ? (
+      {product.productImage ? (
         <CardMedia
           className={classes.media}
-          image={product.photo}/>
+          image={product.productImage[0]}/>
       ) : (
         <CircularProgress/>
       )}
@@ -56,10 +63,10 @@ const ProductsCard = ({ product }) => {
           {product.category.toUpperCase()}
         </Typography> */}
         <Typography variant="h6" color="textSecondary" component="p" style={{fontWeight: 'bold', color: 'black'}}>
-          {product.name}
+          {product.productName}
         </Typography>
         <Typography variant="caption" color="textSecondary" component="p">
-          {product.description}
+          {product.productDescription.length > 105 ? product.productDescription.slice(0, 105) + '...' : product.productDescription}
         </Typography>
         <Typography align='right' variant="caption" color="textSecondary" component="p" style={{fontWeight: 'bold', color: 'black'}}>
 				&nbsp;{'$' + product.price.split('.')[0]}

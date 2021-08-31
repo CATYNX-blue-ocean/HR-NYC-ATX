@@ -48,7 +48,7 @@ const ServicesContainer = ({ }) => {
       <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justifyContent='space-between' alignItems='stretch' spacing={3}>
-            {services.map((service, i) => (
+            {currentPosts.map((service, i) => (
               <Grid item key={i} xs={4} >
                 <ServicesCard service={service}/>
               </Grid>
