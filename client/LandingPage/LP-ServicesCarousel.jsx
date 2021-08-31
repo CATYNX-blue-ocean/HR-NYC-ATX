@@ -29,7 +29,7 @@ const ServicesCarousel = function () {
     <div className="landing-page-services-carousel">
       <Carousel itemsToShow={3} pagination={false}>
         {items.teams.map((item) => <ItemCardProducts key={item.name}
-          photo={item.photo} />)}
+          photo={item.photo} name={item.name} />)}
       </Carousel>
     </div>
 

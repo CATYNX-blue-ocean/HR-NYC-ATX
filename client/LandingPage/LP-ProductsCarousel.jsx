@@ -22,13 +22,13 @@ let items = {
   ]
 };
 
-const ProductsCarousel = function () {
+const ProductsCarousel = function (props) {
 
   return (
     <div className="landing-page-products-carousel">
       <Carousel itemsToShow={3} pagination={false}>
         {items.teams.map((item) => <ItemCardProducts key={item.name}
-          photo={item.photo} />)}
+          photo={item.photo} name={item.name} />)}
       </Carousel>
     </div>
   );
