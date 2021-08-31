@@ -6,6 +6,10 @@ import Button from '@material-ui/core/Button';
 <<<<<<< HEAD
 =======
 import Card from '@material-ui/core/Card';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import validator from 'validator';
 >>>>>>> ccc8d45aead5cfb3c3c61029324e16ab0e2ffdb6
 import { useHistory } from 'react-router-dom';
@@ -187,12 +191,24 @@ const SignUp = () => {
             </h2>
           </Grid>
           <Grid item xs={12}>
+<<<<<<< HEAD
             <TextField id='sign-up-email' type='email' label='email' onChange={(event) => { setEmail(event.target.value); }}/>
+=======
+            <TextField
+              required
+              id='sign-up-email'
+              type='email'
+              label='Email'
+              onChange={(event) => { handleSetEmail(event); }}
+              error={emailError}
+            />
+>>>>>>> 4953e804cff034a2e930cb259c32b336a9988ddd
           </Grid>
           <Grid item xs={12}>
             <TextField id='sign-up-password' type='password' label='password' onChange={(event) => { setPassword(event.target.value); }}/>
           </Grid>
           <Grid item xs={6}>
+<<<<<<< HEAD
             <TextField id='sign-up-firstName' label='First Name' onChange={(event) => { setFirstName(event.target.value); }}/>
 
             <TextField id='sign-up-lastName' label='Last Name' onChange={(event) => { setLastName(event.target.value); }}/>
@@ -202,18 +218,74 @@ const SignUp = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField id='sign-up-zipCode' label='Zip Code' onChange={(event) => { setZipCode(event.target.value); }}/>
+=======
+            <TextField
+              required
+              id='sign-up-firstName'
+              label='First Name'
+              onChange={(event) => { handleFirstNameChange(event); }}
+              error={firstNameError}
+            />
+            <TextField
+              required
+              id='sign-up-lastName'
+              label='Last Name'
+              onChange={(event) => { handleLastNameChange(event); }}
+              error={lastNameError}
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextField select id='sign-up-seller-toggle' defaultValue='buyer' onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}>
-              <option value='buyer'>Buyer</option>
-              <option value='seller'>Seller</option>
-            </TextField>
+            <TextField
+              required
+              type='tel'
+              id='sign-up-phoneNumber'
+              label='Phone Number'
+              onChange={(event) => { handleSetPhoneNumber(event); }}
+              error={phoneError}
+            />
           </Grid>
           <Grid item xs={12}>
-            {signInError ? <p style={{color: 'red'}}>There was an error creating your account. Please check the account details and try again!</p> : accountExists ? <p style={{color: 'red'}}>The email you used is associated with an account. Please sign in!</p> : accountCreated ? <p>Account created. Please sign in!</p> : null}
+            <TextField
+              required
+              id='sign-up-zipCode'
+              label='Zip Code'
+              onChange={(event) => { handleZipCodeChange(event); }}
+              error={zipCodeError}
+            />
+>>>>>>> 4953e804cff034a2e930cb259c32b336a9988ddd
           </Grid>
           <Grid item xs={12}>
-            <Button variant='contained' onClick={() => { onSignUpSubmit(); }}>Sign Up</Button>
+            <FormControl>
+              <InputLabel style={{paddingBottom: 10 + 'px'}}>Buyer or Seller?</InputLabel>
+              <Select
+                id='sign-up-seller-toggle'
+                defaultValue='buyer'
+                style={{width: 125 + 'px'}}
+                onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}
+              >
+                <MenuItem value='buyer'>Buyer</MenuItem>
+                <MenuItem value='seller'>Seller</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            {
+              signInError ?
+                <p style={{color: 'red'}}>There was an error creating your account. Please check the account details and try again!</p> :
+                accountExists ?
+                  <p style={{color: 'red'}}>The email you used is associated with an account. Please sign in!</p> :
+                  accountCreated ?
+                    <p>Account created. Please sign in!</p> :
+                    null
+            }
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              variant='contained'
+              onClick={() => { onSignUpSubmit(); }}
+            >
+              Sign Up
+            </Button>
           </Grid>
         </Grid>
       </Card>
