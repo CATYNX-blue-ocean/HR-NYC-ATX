@@ -102,6 +102,53 @@ app.post('/sellersignup', (req, res)=>{
     });
 });
 
+
+// user search for products
+app.get('/product/search', (req, res) => {
+  let keyword = req.query.keyword;
+  database.searchForProducts(keyword, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(404);
+    }
+    if (!result.length) {
+      res.json('No matching products for your location.');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+
+app.get('/SellersInCategory', (req, res)=>{
+  const queryCategory = req.query.category;
+  console.log(queryCategory);
+  database.getServiceCategory( queryCategory )
+    .then( (doTheyExist) => {
+      console.log(doTheyExist);
+      res.Status = 200;
+      res.send(doTheyExist);
+    })
+    .catch( () => {
+      res.status = 401;
+      res.send('There was an error with your request, Please try again or contact an administrator.');
+    });
+
+});
+// user search for services
+app.get('/service/search', (req, res) => {
+  let keyword = req.query.keyword;
+  database.searchForProducts(keyword, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(404);
+    }
+    if (!result.length) {
+      res.json('No matching products for your location.');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
