@@ -22,7 +22,6 @@ const App = () => {
       <div className="landing-page-main-div">
         <Router>
           <NavBar />
-
           <Route exact path="/sign-in">
             <SignIn />
           </Route>
