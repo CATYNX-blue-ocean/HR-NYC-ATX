@@ -14,7 +14,7 @@ const Images = ({ images}) => {
   return (
     <div>
       <div className="main-image">
-        <img src={currentImg} />
+        <img src={currentImg} style={{margin: '10px'}}/>
       </div>
       <div className='thumb-images'>
         {thumbs.map((thumb, i) => {
