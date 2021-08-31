@@ -8,6 +8,8 @@ import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
+import Overview from './ProductDetails/PD-Overview.jsx';
+import exampleData from './ProductDetails/dummies';
 
 const App = () => {
   // example of consuming state
@@ -19,7 +21,7 @@ const App = () => {
     <>
       <button onClick={exampleChangeFn}>change state</button>{' '}
       {/* example of changing state  */}
-      <div className="landing-page-main-div">
+      {/* <div className="landing-page-main-div">
         <Router>
           <NavBar />
           <Route exact path="/sign-in">
@@ -46,9 +48,12 @@ const App = () => {
             <LandingPage />
           </Route>
         </Router>
-      </div>
+      </div> */}
       {/* added products container down here to test rendering */}
       {/* <ProductsContainer/> */}
+      <div>
+        <Overview product={exampleData.exampleData}/>
+      </div>
     </>
   );
 };

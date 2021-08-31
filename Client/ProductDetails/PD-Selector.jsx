@@ -9,7 +9,7 @@ const Selector = ({ inventory }) => {
         {Object.keys(stockObj).map((size, i) => {
           return (
             <option key={i}>{size}</option>
-          )
+          );
         })}
       </select>
     </div>
