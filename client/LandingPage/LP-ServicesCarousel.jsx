@@ -5,6 +5,7 @@ import ItemCardProducts from './LP-ItemCardProducts.jsx';
 
 let items = {
   teams: [
+    { name: 'South Carolina', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/South_Carolina_Gamecocks_logo.svg/1200px-South_Carolina_Gamecocks_logo.svg.png' },
     { name: 'Alabama', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Alabama_Crimson_Tide_logo.svg/1200px-Alabama_Crimson_Tide_logo.svg.png' },
     { name: 'Arkansas', photo: 'https://media.tegna-media.com/assets/KFSM/images/087fb015-76c2-4b5c-9222-a163e0a92afa/087fb015-76c2-4b5c-9222-a163e0a92afa_750x422.png' },
     { name: 'Texas A&M', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Texas_A%26M_University_logo.svg/1200px-Texas_A%26M_University_logo.svg.png' },
@@ -13,7 +14,6 @@ let items = {
     { name: 'Ole Miss', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Ole_Miss_Rebels_logo.svg/1200px-Ole_Miss_Rebels_logo.svg.png' },
     { name: 'Auburn', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Auburn_Tigers_logo.svg/1200px-Auburn_Tigers_logo.svg.png' },
     { name: 'Florida', photo: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/74/Florida_Gators_football_logo.svg/1200px-Florida_Gators_football_logo.svg.png' },
-    { name: 'South Carolina', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/South_Carolina_Gamecocks_logo.svg/1200px-South_Carolina_Gamecocks_logo.svg.png' },
     { name: 'Missouri', photo: 'https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/Missouri_Tigers_logo.svg/1200px-Missouri_Tigers_logo.svg.png' },
     { name: 'Georgia', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Georgia_Athletics_logo.svg/1200px-Georgia_Athletics_logo.svg.png' },
     { name: 'Vanderbilt', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Vanderbilt_Commodores_logo.svg/1200px-Vanderbilt_Commodores_logo.svg.png' },
@@ -23,22 +23,18 @@ let items = {
 };
 
 
-class ServicesCarousel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const ServicesCarousel = function () {
 
-  render() {
-    return (
-      <div className="landing-page-services-carousel">
-        <Carousel itemsToShow={3} pagination={false}>
-          {items.teams.map((item) => <ItemCardProducts key={item.name}
-            photo={item.photo} />)}
-        </Carousel>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="landing-page-services-carousel">
+      <Carousel itemsToShow={3} pagination={false}>
+        {items.teams.map((item) => <ItemCardProducts key={item.name}
+          photo={item.photo} name={item.name} />)}
+      </Carousel>
+    </div>
+
+  );
+
+};
 
 export default ServicesCarousel;
