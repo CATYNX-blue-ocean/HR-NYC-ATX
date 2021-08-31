@@ -77,7 +77,7 @@ const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
 
 const getSellerLogin = async ( email ) =>  {
-  return await db.Sellers.findOne({ sellerEmail: email });
+  return await Sellers.findOne({ sellerEmail: email });
 }
 
 const getServiceCategory = async (category) =>  {
