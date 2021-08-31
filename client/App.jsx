@@ -8,7 +8,10 @@ import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
+import Overview from './ProductDetails/PD-Overview.jsx';
+import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
+
 
 const App = () => {
   // example of consuming state
@@ -56,6 +59,9 @@ const App = () => {
       </div>
       {/* added products container down here to test rendering */}
       {/* <ProductsContainer/> */}
+      <div>
+        <Overview product={exampleData.exampleData}/>
+      </div>
     </>
   );
 };
