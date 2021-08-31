@@ -2,19 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-class ItemCardProducts extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const ItemCardProducts = function () {
 
-  render() {
-    return (
-      <div className="landing-page-item-card">
+  return (
+    <div className="landing-page-item-card">
 
-      </div>
+    </div>
 
-    );
-  }
-}
+  );
+};
 
 export default ItemCardProducts;
