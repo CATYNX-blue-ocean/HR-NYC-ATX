@@ -14,6 +14,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/../dist'));
 
+//landing page
+app.get('/landing', function (req, res) {
+
+  database.catFind()
+    .then ((data)=> { res.json(data); })
+    .catch ((err)=> { res.sendStatus(500); });
+});
+
+
+
 // Need this so that react router works
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));

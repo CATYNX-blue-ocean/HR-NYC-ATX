@@ -84,7 +84,17 @@ const Categories = mongoose.model('Categories', categoriesSchema);
 //   return await db.Sellers.find({services: {} });
 // }
 
-// module.exports = {
-//   getSellerLogin,
-//   getServiceCategory,
-// };
+const catFind = async (name) => {
+  return await Categories.find({});
+};
+
+module.exports = {
+// getSellerLogin: getSellerLogin,
+//   getServiceCategory:getServiceCategory,
+  catFind: catFind
+};
+
+
+
+
+
