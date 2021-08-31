@@ -15,6 +15,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/../dist'));
 
+//landing page
+app.get('/landing', function (req, res) {
+
+  database.catFind()
+    .then ((data)=> { res.json(data); })
+    .catch ((err)=> { res.sendStatus(500); });
+});
+
+
+
 // Need this so that react router works
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
@@ -35,19 +45,19 @@ app.get('/checkout', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 app.get('/products', function (req, res) {
-  db.collection('productListings').find({}).toArray(function(err, result) {
+  database.getProductList( function (err, response) {
     if (err) {
-      throw err;
+      console.log(err);
     }
-    res.send(result);
+    res.send(response);
   });
 });
 app.get('/services', function (req, res) {
-  db.collection('serviceListings').find({}).toArray(function(err, result) {
+  database.getServiceList( function (err, response) {
     if (err) {
-      throw err;
+      console.log(err);
     }
-    res.send(result);
+    res.send(response);
   });
 });
 //get to make sure seller has an account while logging in

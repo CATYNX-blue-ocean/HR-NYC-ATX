@@ -4,7 +4,7 @@ mongoose.connect(`mongodb://${dbInfo.dbInfo}`);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error to Mongo:'));
-db.once('open', function() {
+db.once('open', function () {
   console.log('Connected to MongoDB!');
 });
 
@@ -75,6 +75,7 @@ const Sellers = mongoose.model('Sellers', sellerSchema);
 const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
+const Services = mongoose.model('Services', serviceListing);
 
 const getSellerLogin = async( email ) =>  {
   return await Sellers.findOne({ sellerEmail: email });
@@ -82,59 +83,80 @@ const getSellerLogin = async( email ) =>  {
 
 module.exports = db;
 
+const getProductList = async (cb) => {
+  await db.collection('productListings').find({}).toArray(function(err, result) {
+    if (err) {
+      return err;
+    }
+    cb(null,result);
+  });
+}
+const getServiceList = async (cb) => {
+  await db.collection('serviceListings').find({}).toArray(function (err, result) {
+    if (err) {
+      return err;
+    }
+    cb(null, result);
+  });
+}
+
 const getServiceCategory = (category) =>  {
   return Sellers.find().populate({
     path: 'services',
     match: {serviceCategory: category}
   });
-}
-
+};
 //getServiceCategory('Greg Stiedemann I')
 
-const getBuyerLogin = async ( buyerEmail ) => {
+const getBuyerLogin = async (buyerEmail) => {
   return await db.buyerSchema.find({ buyerEmail })
 };
 
 
-const checkForBuyer = ( buyerEmail ) => {
+const checkForBuyer = (buyerEmail) => {
   return Buyers.exists({ buyerEmail })
 };
 
-const checkForSeller = ( sellerEmail ) => {
+const checkForSeller = (sellerEmail) => {
   return Sellers.exists({ sellerEmail })
 };
 
-const saveNewBuyer = ( buyerInfo ) => {
-  const newUser = new Buyers( {
-      buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
-      password: buyerInfo.password,
-      buyerEmail: buyerInfo.buyerEmail,
-      buyerPhone: buyerInfo.buyerPhone,
-      buyerAddress: buyerInfo.buyerAddress,
-      orders: []
-    } );
-      newUser.save();
+const saveNewBuyer = (buyerInfo) => {
+  const newUser = new Buyers({
+    buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
+    password: buyerInfo.password,
+    buyerEmail: buyerInfo.buyerEmail,
+    buyerPhone: buyerInfo.buyerPhone,
+    buyerAddress: buyerInfo.buyerAddress,
+    orders: []
+  });
+  newUser.save();
 
 };
 
-const saveNewSeller = ( sellerInfo ) => {
+const saveNewSeller = (sellerInfo) => {
   console.log(sellerInfo);
-  const newSeller = new Sellers( {
-      sellerName: sellerInfo.sellerName,
-      sellerEmail: sellerInfo.sellerEmail,
-      sellerAddress: sellerInfo.sellerAddress,
-      location: sellerInfo.location,
-      sellerPhone: sellerInfo.sellerPhone,
-      password: sellerInfo.password,
-      createdAt: sellerInfo.createdAt,
-      orders: sellerInfo.orders,
-      products: sellerInfo.products,
-      services: sellerInfo.services,
-    } );
+  const newSeller = new Sellers({
+    sellerName: sellerInfo.sellerName,
+    sellerEmail: sellerInfo.sellerEmail,
+    sellerAddress: sellerInfo.sellerAddress,
+    location: sellerInfo.location,
+    sellerPhone: sellerInfo.sellerPhone,
+    password: sellerInfo.password,
+    createdAt: sellerInfo.createdAt,
+    orders: sellerInfo.orders,
+    products: sellerInfo.products,
+    services: sellerInfo.services,
+  });
 
-      newSeller.save();
+  newSeller.save();
 
 };
+
+const catFind = async (name) => {
+  return await Categories.find({});
+};
+
 
 
 module.exports = {
@@ -144,7 +166,10 @@ module.exports = {
   saveNewBuyer,
   checkForBuyer,
   checkForSeller,
-  saveNewSeller
+  saveNewSeller,
+  getServiceList,
+  getProductList,
+  catFind
 };
 
 //buyer = 'undefined undefined';
@@ -152,4 +177,3 @@ module.exports = {
 //orders = empty;
 //repos =
 //seller = 'Joe String'
-
