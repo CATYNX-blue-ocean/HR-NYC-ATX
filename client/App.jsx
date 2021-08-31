@@ -8,21 +8,26 @@ import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
+import Overview from './ProductDetails/PD-Overview.jsx';
+import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
 
 const App = () => {
   // example of consuming state
   const myVariable = useStore((state) => state.exampleStateField);
-  console.log(myVariable);
   const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
-
   return (
     <>
       <button onClick={exampleChangeFn}>change state</button>{' '}
       {/* example of changing state  */}
       <div className="landing-page-main-div">
         <Router>
-          <Grid container direction="column" justifyContent="center" alignItems="center">
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
             <Grid item width="1">
               <NavBar />
             </Grid>
@@ -43,6 +48,10 @@ const App = () => {
                 <h2>Hello Shopping Cart</h2>
               </Route>
 
+              <Route exact path="/product/?id=2">
+                <Overview product={exampleData.exampleData} />
+              </Route>
+
               <Route exact path="/checkout">
                 <h2>Hello Checkout</h2>
               </Route>
@@ -56,9 +65,13 @@ const App = () => {
       </div>
       {/* added products container down here to test rendering */}
       {/* <ProductsContainer/> */}
+      {/* <div>
+        <Overview product={exampleData.exampleData}/>
+      </div> */}
     </>
   );
 };
 
 
 export default App;
+//ReactDOM.render(<App />, document.getElementById('app'));
