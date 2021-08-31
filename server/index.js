@@ -29,15 +29,13 @@ app.get('/products', function (req, res) {
 });
 app.get('/services', function (req, res) {
 
-<<<<<<< HEAD
 });
 app.get('/user', function (req, res) {
   // must add query after data is created
 });
-=======
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
-  console.log(req.body)
+  console.log(req.body);
   const seller = req.body.sellerEmail;
   database.getSellerLogin( seller )
     .then( (sellerInfo) => {
@@ -102,7 +100,6 @@ app.post('/sellersignup', (req, res)=>{
     });
 });
 
->>>>>>> 16beaf85ab04b54eb87457350742397a1e3eebed
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
