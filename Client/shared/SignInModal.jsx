@@ -18,6 +18,8 @@ const SignIn = () => {
     history.goBack();
   };
 
+  // ^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$
+
   return (
     <div>
       <Modal
@@ -34,10 +36,10 @@ const SignIn = () => {
             </p>
           </Grid>
           <Grid item xs={12}>
-            <TextField id='sign-in-email' type='email' label='email' onChange={(event) => { setEmail(event.target.value); }}/>
+            <TextField required id='sign-in-email' type='email' label='email' onChange={(event) => { setEmail(event.target.value); }}/>
           </Grid>
           <Grid item xs={12}>
-            <TextField id='sign-in-password' type='password' label='password' onChange={(event) => { setPassword(event.target.value); }}/>
+            <TextField required id='sign-in-password' type='password' label='password' onChange={(event) => { setPassword(event.target.value); }}/>
           </Grid>
           <Grid item xs={12}>
             <Button variant='contained'>Sign In</Button>
