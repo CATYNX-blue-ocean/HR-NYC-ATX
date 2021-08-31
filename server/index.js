@@ -49,7 +49,7 @@ app.get('/sellersignin', (req, res)=> {
     } )
     .catch((err)=> {
 
-    })
+    });
 
 });
 
