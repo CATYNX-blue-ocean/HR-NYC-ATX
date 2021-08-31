@@ -22,7 +22,6 @@ const App = () => {
       <div className="landing-page-main-div">
         <Router>
           <NavBar />
-
           <Route exact path="/sign-in">
             <SignIn />
           </Route>
@@ -55,4 +54,5 @@ const App = () => {
 };
 
 export default App;
-//ReactDOM.render(<App />, document.getElementById('app'));
+
+ReactDOM.render(<App />, document.getElementById('app'));
