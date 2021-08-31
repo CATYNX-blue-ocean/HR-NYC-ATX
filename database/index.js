@@ -77,9 +77,13 @@ const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
 const Services = mongoose.model('Services', serviceListing);
 
-const getSellerLogin = async( email ) =>  {
-  return await Sellers.findOne({ sellerEmail: email });
-}
+const getSellerLogin = async ( email ) => {
+  return await Sellers.findOne({ sellerEmail: email })
+};
+
+const getAllCategories = () => {
+  return Categories.find({});
+};
 
 module.exports = db;
 
@@ -88,9 +92,10 @@ const getProductList = async (cb) => {
     if (err) {
       return err;
     }
-    cb(null,result);
+    cb(null, result);
   });
-}
+};
+
 const getServiceList = async (cb) => {
   await db.collection('serviceListings').find({}).toArray(function (err, result) {
     if (err) {
@@ -98,22 +103,22 @@ const getServiceList = async (cb) => {
     }
     cb(null, result);
   });
-}
+};
 
-const getServiceCategory = (category) =>  { //get all sellers that have a service in that category
-  return Sellers.find({"services.serviceCategory": category})
+const getServiceCategory = (category) => { //get all sellers that have a service in that category
+  return Sellers.find({"services.serviceCategory": category});
 };
 
 const getBuyerLogin = async (buyerEmail) => {
-  return await db.buyerSchema.find({ buyerEmail })
+  return await db.buyerSchema.find({ buyerEmail });
 };
 
 const checkForBuyer = (buyerEmail) => {
-  return Buyers.exists({ buyerEmail })
+  return Buyers.exists({ buyerEmail });
 };
 
 const checkForSeller = (sellerEmail) => {
-  return Sellers.exists({ sellerEmail })
+  return Sellers.exists({ sellerEmail });
 };
 
 const saveNewBuyer = (buyerInfo) => {
@@ -131,7 +136,7 @@ const saveNewBuyer = (buyerInfo) => {
 
 const saveNewSeller = (sellerInfo) => {
   console.log(sellerInfo);
-  const newSeller = new Sellers({
+  const newOrder = new Sellers({
     sellerName: sellerInfo.sellerName,
     sellerEmail: sellerInfo.sellerEmail,
     sellerAddress: sellerInfo.sellerAddress,
@@ -150,50 +155,86 @@ const saveNewSeller = (sellerInfo) => {
 
 
 const searchForProducts = (key, CB) => {
-  Sellers.find(
-    {'products.productName': { $regex : '^' + key, $options: 'i'}}, //{'$regex': keyword, "$options": "i"}
-    (err, data) => {
-      if (err) {
-        console.log('ERR IN DB ', err)
-        CB(err);
+//====V1======FIND MATCHING SELLERS=======
+  // Sellers.find(
+  //   {'products.productName': { $regex : '^' + key, $options: 'i'}}, //{'$regex': keyword, "$options": "i"}
+  //   (err, data) => {
+  //     if (err) {
+  //       console.log('ERR IN DB ', err)
+  //       CB(err);
+  //     }
+  //     console.log('SUCCESS IN DB ', data);
+  //     CB(null, data);
+  //   }
+  // );
+//====V2======FIND MATCHING SELLERS WITH ALL PRODUCTS====
+  Sellers.find({'products.productName': { $regex : key, $options: 'i'}})
+    .populate({path: 'products'})
+    .exec(
+      (err, data) => {
+        if (err) {
+          console.log('ERR IN DB ', err)
+          CB(err);
+        }
+        console.log('SUCCESS IN DB ', data);
+        CB(null, data);
       }
-      console.log('SUCCESS IN DB ', data);
-      CB(null, data);
-    }
-  );
+    );
+//====V3=======TRY ONLY MATCHING PRODUCT INFO ========
+
 };
 
+
 const searchForServices = (key, CB) => {
-  Sellers.find(
-    {'services.serviceName': { $regex : '^' + key, $options: 'i' }, //{'$regex': keyword, "$options": "i"}
-    (err, data) => {
-      if (err) {
-        console.log('ERR IN DB ', err)
-        CB(err);
+  Sellers.find({'services.serviceCategory': { $regex : key, $options: 'i'}})
+    .populate({path: 'services'})
+    .exec(
+      (err, data) => {
+        if (err) {
+          console.log('ERR IN DB ', err)
+          CB(err);
+        }
+        console.log('SUCCESS IN DB ', data);
+        CB(null, data);
       }
-      console.log('SUCCESS IN DB ', data);
-      CB(null, data);
-    }
-  );
+    );
 };
 
 const catFind = async (name) => {
   return await Categories.find({});
 };
 
+<<<<<<< HEAD
+=======
+const saveNewOrder = (orderInfo) => {
+  const newOrder = new Orders({
+    orderID: orderInfo.orderId,
+    sellerName: orderInfo.sellerName,
+    buyerName: orderInfo.buyerName,
+    productID: orderInfo.productID,
+    shippingAddress: orderInfo.shippingAddress,
+    paymentInfo: orderInfo.paymentInfo
+  });
+  return newOrder.save();
+
+};
+
+>>>>>>> ccc8d45aead5cfb3c3c61029324e16ab0e2ffdb6
 module.exports = {
   getSellerLogin,
   getServiceCategory,
+  getAllCategories,
   getBuyerLogin,
   saveNewBuyer,
   checkForBuyer,
   checkForSeller,
   saveNewSeller,
   searchForProducts,
-  searchForServices,
+  //searchForServices,
   getServiceList,
   getProductList,
-  catFind
+  catFind,
+  saveNewOrder
 };
 
 //buyer = 'undefined undefined';

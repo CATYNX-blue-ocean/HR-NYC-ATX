@@ -15,7 +15,14 @@ const ProductsCard = ({ product }) => {
   const classes = useStyles();
 
   let reviewAverage = () => {
+<<<<<<< HEAD
     const reviewsData = {results: [{rating: 2}, {rating: 5}, {rating: 4}, {rating: 4}, {rating: 2}]};
+=======
+    let reviewsData = product.ratings || [1, 2, 3, 4, 5, 4, 3, 2];
+    if (reviewsData.length === 0) {
+      reviewsData = [1, 2, 3, 4, 5, 4, 3, 2];
+    }
+>>>>>>> ccc8d45aead5cfb3c3c61029324e16ab0e2ffdb6
     let sum = 0;
     reviewsData.results.forEach(result => {
       sum += result.rating;

@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import useStyles from './styles.js';
-import { Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, Typography, IconButton, Modal, Backdrop, Fade, CircularProgress } from '@material-ui/core';
+import { Backdrop, Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, CircularProgress, Grid, Fade, IconButton, Modal, Paper, TextField, Typography} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
 import EmailIcon from '@material-ui/icons/Email';
+import EmailModal from './EmailModal.jsx';
 
+<<<<<<< HEAD
+=======
+//need function to connect service photos to category photos
+
+>>>>>>> ccc8d45aead5cfb3c3c61029324e16ab0e2ffdb6
 const ServicesCard = ({ service }) => {
   const classes = useStyles();
 
   let reviewAverage = () => {
+<<<<<<< HEAD
     const reviewsData = {results: [{rating: 2}, {rating: 5}, {rating: 4}, {rating: 4}, {rating: 2}]};
+=======
+    let reviewsData = service.ratings || [1, 2, 3, 4, 5, 5, 5, 5];
+    if (reviewsData.length === 0) {
+      reviewsData = [1, 2, 3, 4, 5, 4, 3, 2];
+    }
+>>>>>>> ccc8d45aead5cfb3c3c61029324e16ab0e2ffdb6
     let sum = 0;
     reviewsData.results.forEach(result => {
       sum += result.rating;
@@ -42,15 +55,23 @@ const ServicesCard = ({ service }) => {
       ) : (
         <CircularProgress/>
       )}
+<<<<<<< HEAD
       <CardContent style={{width: '50%', display: 'inline-block', top: '-10%', position: 'relative'}}>
         {/* <Typography variant="caption" color="textSecondary" component="p">
           {product.category.toUpperCase()}
         </Typography> */}
+=======
+      <CardContent style={{width: '50%', display: 'inline-block', top: '-5%', position: 'relative'}}>
+>>>>>>> ccc8d45aead5cfb3c3c61029324e16ab0e2ffdb6
         <Typography variant="h6" color="textSecondary" component="p" style={{fontWeight: 'bold', color: 'black'}}>
           {service.name}
         </Typography>
         <Typography variant="body1" color="textSecondary" component="p">
+<<<<<<< HEAD
           {service.description}
+=======
+          {service.serviceDescription.length > 45 ? service.serviceDescription.slice(0, 45) + '...' : service.serviceDescription}
+>>>>>>> ccc8d45aead5cfb3c3c61029324e16ab0e2ffdb6
         </Typography>
       </CardContent>
       <>
@@ -59,7 +80,7 @@ const ServicesCard = ({ service }) => {
         </Typography>
         <Rating style={{color: '#5E2EBA', top: '1%', paddingRight: '5%'}} name="read-only" value={reviewAverage()} readOnly precision={0.25}/>
         <Typography variant="body1" color="textSecondary" component="p" style={{textAlign: 'right', fontWeight: 'bold', color: 'black', display: 'inline', position: 'relative', top: '0%'}}>
-          {reviewAverage()}
+          {reviewAverage().toString().length === 1 ? reviewAverage() + '.0' : reviewAverage()}
         </Typography>
       </>
       <br/>
@@ -83,6 +104,7 @@ const ServicesCard = ({ service }) => {
 				Time Available
       </Typography>
       <Button
+        onClick={handleOpen}
         variant="contained"
         style={{color: '#5E2EBA', backgroundColor: '#DED1F7'}}
         className={classes.button}
@@ -90,6 +112,7 @@ const ServicesCard = ({ service }) => {
       >
         Email Me
       </Button>
+      {open ? <EmailModal open={open} handleClose={handleClose}/> : null}
     </Card>
   );
 };

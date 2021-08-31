@@ -24,6 +24,10 @@ let items = {
 
 const FeatureCarousel = function () {
 
+<<<<<<< HEAD:Client/LandingPage/LP-FeatureCarousel.jsx
+=======
+
+>>>>>>> ccc8d45aead5cfb3c3c61029324e16ab0e2ffdb6:client/LandingPage/LP-FeatureCarousel.jsx
   return (
     <div className="landing-page-feature-carousel">
       <Carousel itemsToShow={1} pagination={false} transitionMs={1500} showArrows={false}
