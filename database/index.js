@@ -134,15 +134,25 @@ const saveNewSeller = ( sellerInfo ) => {
 
 };
 
+const catFind = async (name) => {
+  return await Categories.find({});
+};
+
+
 
 module.exports = {
+<<<<<<< HEAD
+  // getSellerLogin,
+=======
   //getSellerLogin,
+>>>>>>> dev
   getServiceCategory,
   getBuyerLogin,
   saveNewBuyer,
   checkForBuyer,
   checkForSeller,
-  saveNewSeller
+  saveNewSeller,
+  catFind
 };
 
 //buyer = 'undefined undefined';
@@ -150,4 +160,11 @@ module.exports = {
 //orders = empty;
 //repos =
 //seller = 'Joe String'
+
+
+
+
+
+
+
 
