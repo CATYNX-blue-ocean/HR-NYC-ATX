@@ -8,11 +8,15 @@ import useStore from '../zustandStore.js';
 
 const ProductsCarousel = function (props) {
 
+  const handleTestClick = function () {
+    console.log('Me clickey');
+  };
+
   return (
     <div className="landing-page-products-carousel">
       <Carousel itemsToShow={3} pagination={false}>
         {exampleData.exampleData.productListings.map((item) => <ItemCardProducts key={item.id}
-          photo={item.productImage[0]} name={item.productName} onClick={() => { console.log('Me clickey'); }} />)}
+          photo={item.productImage[0]} name={item.productName} onClick={() => { handleTestClick(); }} />)}
       </Carousel>
     </div>
   );

@@ -12,11 +12,15 @@ import useDataStore from '../zustandStore.js';
 
 const ServicesCarousel = function () {
 
+  const handleTestClick = function () {
+    console.log('Me clickey');
+  };
+
   return (
     <div className="landing-page-services-carousel">
       <Carousel itemsToShow={3} pagination={false}>
         {exampleData.exampleData.productListings.map((item) => <ItemCardProducts key={item.id}
-          photo={item.productImage} name={item.productName} onClick={() => { console.log('Me clickey'); }} />)}
+          photo={item.productImage} name={item.productName} onClick={() => { handleTestClick(); }} />)}
       </Carousel>
     </div>
 
