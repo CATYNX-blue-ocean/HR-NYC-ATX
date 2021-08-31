@@ -63,17 +63,29 @@ const orderSchema = mongoose.Schema({
   paymentInfo: String,
 });
 
+const categoriesSchema = mongoose.Schema({
+  type: String,
+  category: String,
+  image: String,
+  description: String,
+});
+
+
 const Sellers = mongoose.model('Sellers', sellerSchema);
 const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
+const Categories = mongoose.model('Categories', categoriesSchema);
 
 const getSellerLogin = async ( email ) =>  {
   return await db.Sellers.findOne({ sellerEmail: email });
 }
 
 const getServiceCategory = async (category) =>  {
-  return await db.Sellers.find({services: {} });
+  var allSellers = await Sellers.find();
+  console.log('test two ', allSellers);
+  return allSellers;
 }
+//getServiceCategory ('Plumbing'); //consult with Justin in the morning Error: 'Method "collection.find()" accepts at most two arguments'
 
 const getBuyerLogin = async ( buyerEmail ) => {
   return await db.buyerSchema.find({ buyerEmail })
@@ -130,3 +142,10 @@ module.exports = {
   checkForSeller,
   saveNewSeller
 };
+
+//buyer = 'undefined undefined';
+//category = 'Plumbing'; //type service
+//orders = empty;
+//repos =
+//seller = 'Joe String'
+

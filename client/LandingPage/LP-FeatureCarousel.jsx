@@ -1,19 +1,15 @@
 import React from 'react';
 
 
-class FeatureCarousel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const FeatureCarousel = function () {
 
-  render() {
-    return (
-      <div className="landing-page-feature-carousel">
+  return (
+    <div className="landing-page-feature-carousel">
 
-      </div>
-    );
-  }
-}
+    </div>
+  );
+
+
+};
 
 export default FeatureCarousel;
