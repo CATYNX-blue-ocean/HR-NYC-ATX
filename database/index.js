@@ -9,7 +9,7 @@ db.once('open', function () {
 });
 
 const productListing = mongoose.Schema({
-  productID: Number, //OR Obj_id
+  id: Number, //OR Obj_id
   productName: String,
   productCategory: String,
   productDescription: String,
@@ -20,7 +20,7 @@ const productListing = mongoose.Schema({
 });
 
 const serviceListing = mongoose.Schema({
-  serviceID: Number, //OR Obj_id
+  id: Number, //OR Obj_id
   serviceName: String,
   serviceCategory: String,
   //categoryImage: String, //CAN BE PUT IN FRONTEND
@@ -40,8 +40,8 @@ const sellerSchema = mongoose.Schema({
   password: String, // hashed
   createdAt: Date,
   orders: [Number],
-  products: productListing,
-  services: serviceListing,
+  products: [productListing],
+  services: [serviceListing],
 });
 
 const buyerSchema = mongoose.Schema({
@@ -100,12 +100,9 @@ const getServiceList = async (cb) => {
   });
 }
 
-const getServiceCategory = (category) =>  {
+const getServiceCategory = (category) =>  { //get all sellers that have a service in that category
   return Sellers.find({"services.serviceCategory": category})
 };
-//getServiceCategory('Greg Stiedemann I')
-// products and services not returning because data wasnot loaded to match schema
-//not properly filtering for category
 
 const getBuyerLogin = async (buyerEmail) => {
   return await db.buyerSchema.find({ buyerEmail })
