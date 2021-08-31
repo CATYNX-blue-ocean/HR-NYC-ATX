@@ -140,7 +140,7 @@ const saveNewSeller = ( sellerInfo ) => {
 
 
 module.exports = {
-  getSellerLogin,
+  //getSellerLogin,
   getServiceCategory,
   getBuyerLogin,
   saveNewBuyer,
