@@ -49,7 +49,7 @@ const buyerSchema = mongoose.Schema({
   buyerName: String,
   password: String, // hashed
   buyerEmail: String,
-  buyerPhone: Number,
+  buyerPhone: String,
   buyerAddress: String,
   orders: [Number]
 });
@@ -80,7 +80,12 @@ const getBuyerLogin = async ( buyerEmail ) => {
 };
 
 
+const checkForBuyer = ( buyerEmail ) => {
+  return Buyers.exists({ buyerEmail })
+};
+
 const saveNewBuyer = ( buyerInfo, callback ) => {
+  console.log(buyerInfo);
   const newUser = new Buyers( {
       buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
       password: buyerInfo.password,
@@ -98,5 +103,6 @@ module.exports = {
   getSellerLogin,
   getServiceCategory,
   getBuyerLogin,
-  saveNewBuyer
+  saveNewBuyer,
+  checkForBuyer
 };

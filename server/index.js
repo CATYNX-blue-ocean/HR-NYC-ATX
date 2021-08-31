@@ -23,12 +23,20 @@ app.get('/*', function (req, res) {
 app.post('/buyersignup', ( req, res ) => {
   const newBuyer = req.body;
 
-  database.getBuyerLogin( newBuyer.buyerEmail )
-    .then( (person) => {
-      console.log(person);
+  database.checkForBuyer( newBuyer.buyerEmail )
+    .then( ( doTheyExist ) => {
+      if (doTheyExist === true) {
+        res.Status = 201;
+        res.send('Account Exists. Please log in.');
+      } else {
+        database.saveNewBuyer( newBuyer );
+        res.Status = 201;
+        res.send('Account Created. Please log in.');
+      }
     })
     .catch( (err) =>{
-      console.log('no person found.');
+      res.status = 401;
+      res.send('There was an error with your request, Please try again.');
     });
 });
 
