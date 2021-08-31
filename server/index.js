@@ -4,6 +4,7 @@ const axios = require('axios');
 var cors = require('cors');
 const database = require('../database/index.js');
 const path = require('path'); // need this for the react router enabling code line 17
+const db = require('../database/index.js');
 
 const app = express();
 const PORT = 3000;
@@ -15,14 +16,19 @@ app.use(morgan('dev'));
 app.use(express.static(__dirname + '/../dist'));
 
 // Need this so that react router works
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-});
+// app.get('/*', function (req, res) {
+//   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+// });
 app.get('/products', function (req, res) {
-  // must add query after data is created
+  db.collection('productListings').find({}).toArray(function(err, result) {
+    if (err) {
+      throw err;
+    }
+    res.send(result);
+  });
 });
 app.get('/services', function (req, res) {
-  // must add query after data is created
+
 });
 app.get('/user', function (req, res) {
   // must add query after data is created
