@@ -19,6 +19,8 @@
 
 5) In order to combine on development branch:
 
+ a) Checkout local development branch
+  `git checkout dev`
  a) Pull updates from development
   `git pull origin dev`
  b) Merge to identify conflicts
@@ -30,4 +32,3 @@
   `git push origin <branchname: branchname>`
  e)Pull request end of feature development (Architect or PM code  review before approval)
   (be sure to select the correct branchname that is getting merged into DEV, not MAIN)
-  
