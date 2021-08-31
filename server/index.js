@@ -28,10 +28,12 @@ app.get('/products', function (req, res) {
   });
 });
 app.get('/services', function (req, res) {
-
-});
-app.get('/user', function (req, res) {
-  // must add query after data is created
+  db.collection('serviceListings').find({}).toArray(function(err, result) {
+    if (err) {
+      throw err;
+    }
+    res.send(result);
+  });
 });
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
