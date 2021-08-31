@@ -101,8 +101,6 @@ const saveNewBuyer = ( buyerInfo ) => {
 
 };
 
-
-
 const saveNewSeller = ( sellerInfo ) => {
   console.log(sellerInfo);
   const newSeller = new Sellers( {

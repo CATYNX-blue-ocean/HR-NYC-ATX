@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const axios = require('axios');
 var cors = require('cors');
 const database = require('../database/index.js');
+const routes = require('./routes');
 const path = require('path'); // need this for the react router enabling code line 17
 
 const app = express();
@@ -20,45 +21,10 @@ app.get('/*', function (req, res) {
 });
 
 //post for buyer account sign up
-app.post('/buyersignup', ( req, res ) => {
-  const newBuyer = req.body;
-
-  database.checkForBuyer( newBuyer.email )
-    .then( ( doTheyExist ) => {
-      if (doTheyExist === true) {
-        res.Status = 201;
-        res.send('Account Exists. Please log in.');
-      } else {
-        database.saveNewBuyer( newBuyer );
-        res.Status = 201;
-        res.send('Account Created. Please log in.');
-      }
-    })
-    .catch( (err) =>{
-      res.status = 401;
-      res.send('There was an error with your request, Please try again.');
-    });
-});
+app.post('/buyersignup', routes.buyerSignup );
 
 //post for seller account sign up
-app.post('/sellersignup', (req, res)=>{
-  const newSeller = req.body;
-  console.log(newSeller);
-  database.checkForSeller( newSeller.sellerEmail )
-    .then( (doTheyExist) => {
-      if (doTheyExist) {
-        res.Status = 201;
-        res.send('Account already exists.');
-      } else {
-        database.saveNewSeller( newSeller );
-        res.Status = 201;
-        res.send('Account Created. Please log in.');
-      }
-    })
-    .catch( () => {
-
-    });
-});
+app.post('/sellersignup', routes.sellerSignUp );
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
