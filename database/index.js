@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dbInfo = require('../config.js');
+const dbInfo = require('../config');
 mongoose.connect(`mongodb://${dbInfo.dbInfo}`);
 
 const db = mongoose.connection;
@@ -36,7 +36,7 @@ const sellerSchema = mongoose.Schema({
   sellerEmail: String,
   sellerAddress: String,
   location: [String], //['latitude', 'longitude']
-  sellerPhone: Number,
+  sellerPhone: String,
   password: String, // hashed
   createdAt: Date,
   orders: [Number],
@@ -49,7 +49,7 @@ const buyerSchema = mongoose.Schema({
   buyerName: String,
   password: String, // hashed
   buyerEmail: String,
-  buyerPhone: Number,
+  buyerPhone: String,
   buyerAddress: String,
   orders: [Number]
 });
@@ -76,9 +76,8 @@ const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
 
-const getSellerLogin = async (name) =>  {
-  var oneSeller = await Sellers.findOne({sellerName: name});
-  return oneSeller;
+const getSellerLogin = async ( email ) =>  {
+  return await db.Sellers.findOne({ sellerEmail: email });
 }
 
 const getServiceCategory = async (category) =>  {
@@ -88,9 +87,60 @@ const getServiceCategory = async (category) =>  {
 }
 //getServiceCategory ('Plumbing'); //consult with Justin in the morning Error: 'Method "collection.find()" accepts at most two arguments'
 
+const getBuyerLogin = async ( buyerEmail ) => {
+  return await db.buyerSchema.find({ buyerEmail })
+};
+
+
+const checkForBuyer = ( buyerEmail ) => {
+  return Buyers.exists({ buyerEmail })
+};
+
+const checkForSeller = ( sellerEmail ) => {
+  return Sellers.exists({ sellerEmail })
+};
+
+const saveNewBuyer = ( buyerInfo ) => {
+  const newUser = new Buyers( {
+      buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
+      password: buyerInfo.password,
+      buyerEmail: buyerInfo.buyerEmail,
+      buyerPhone: buyerInfo.buyerPhone,
+      buyerAddress: buyerInfo.buyerAddress,
+      orders: []
+    } );
+      newUser.save();
+
+};
+
+const saveNewSeller = ( sellerInfo ) => {
+  console.log(sellerInfo);
+  const newSeller = new Sellers( {
+      sellerName: sellerInfo.sellerName,
+      sellerEmail: sellerInfo.sellerEmail,
+      sellerAddress: sellerInfo.sellerAddress,
+      location: sellerInfo.location,
+      sellerPhone: sellerInfo.sellerPhone,
+      password: sellerInfo.password,
+      createdAt: sellerInfo.createdAt,
+      orders: sellerInfo.orders,
+      products: sellerInfo.products,
+      services: sellerInfo.services,
+    } );
+
+      newSeller.save();
+
+};
+
+
 module.exports = {
   getSellerLogin,
   getServiceCategory,
+  getBuyerLogin,
+  saveNewBuyer,
+  checkForBuyer,
+  checkForSeller,
+  saveNewSeller
 };
 
 //buyer = 'undefined undefined';
@@ -98,3 +148,4 @@ module.exports = {
 //orders = empty;
 //repos =
 //seller = 'Joe String'
+
