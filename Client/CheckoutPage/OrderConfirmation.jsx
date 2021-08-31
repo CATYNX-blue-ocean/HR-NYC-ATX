@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './shared/NavBar.jsx';
-import MakeStyles from './styles.js';
+import useStyles from '../shared/styles.js';
 import { Button } from '@material-ui/core';
 
-
+//this will correspond to '/orderpost' endpoint
 const OrderConfirmationPage = (props) => {
 
   const handleClick = (e) => {
