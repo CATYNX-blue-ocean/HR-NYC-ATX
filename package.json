@@ -1,7 +1,7 @@
 {
   "name": "hr-nyc-atx",
   "version": "1.0.0",
-  "description": "",
+  "description": "---",
   "main": "index.js",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -24,6 +24,7 @@
     "react-router": "^5.2.1",
     "react-router-dom": "^5.2.1",
     "styled-components": "^5.3.1",
+    "validator": "^13.6.0",
     "zustand": "^3.5.10"
   },
   "devDependencies": {
@@ -49,5 +50,6 @@
   "bugs": {
     "url": "https://github.com/CATYNX-blue-ocean/HR-NYC-ATX/issues"
   },
-  "homepage": "https://github.com/CATYNX-blue-ocean/HR-NYC-ATX#readme"
+  "homepage": "https://github.com/CATYNX-blue-ocean/HR-NYC-ATX#readme",
+  "keywords": []
 }

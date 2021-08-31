@@ -8,7 +8,9 @@ import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
-import CheckoutPage from './CheckoutPage/CheckoutPage.jsx';
+import Overview from './ProductDetails/PD-Overview.jsx';
+import exampleData from './ProductDetails/dummies';
+import { Grid } from '@material-ui/core';
 
 const App = () => {
   // example of consuming state
@@ -20,38 +22,55 @@ const App = () => {
       {/* example of changing state  */}
       <div className="landing-page-main-div">
         <Router>
-          <NavBar />
-          <Route exact path="/sign-in">
-            <SignIn />
-          </Route>
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item width="1">
+              <NavBar />
+            </Grid>
+            <Grid item width="1">
+              <Route exact path="/sign-in">
+                <SignIn />
+              </Route>
 
-          <Route path="/sign-up">
-            <SignUp />
-          </Route>
+              <Route path="/sign-up">
+                <SignUp />
+              </Route>
 
-          <Route exact path="/search">
-            <h2>Hello Search</h2>
-          </Route>
+              <Route exact path="/search">
+                <h2>Hello Search</h2>
+              </Route>
 
-          <Route exact path="/cart">
-            <h2>Hello Shopping Cart</h2>
-          </Route>
+              <Route exact path="/cart">
+                <h2>Hello Shopping Cart</h2>
+              </Route>
 
-          <Route exact path="/checkout">
-            <CheckoutPage />
-          </Route>
+              <Route exact path="/product/?id=2">
+                <Overview product={exampleData.exampleData} />
+              </Route>
 
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
+              <Route exact path="/checkout">
+                <h2>Hello Checkout</h2>
+              </Route>
+
+              <Route exact path="/">
+                <LandingPage />
+              </Route>
+            </Grid>
+          </Grid>
         </Router>
       </div>
       {/* added products container down here to test rendering */}
       {/* <ProductsContainer/> */}
+      {/* <div>
+        <Overview product={exampleData.exampleData}/>
+      </div> */}
     </>
   );
 };
 
 export default App;
-
-ReactDOM.render(<App />, document.getElementById('app'));
+//ReactDOM.render(<App />, document.getElementById('app'));

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const dbInfo = require('../config.js');
+const dbInfo = require('../config');
 mongoose.connect(`mongodb://${dbInfo.dbInfo}`);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error to Mongo:'));
-db.once('open', function() {
+db.once('open', function () {
   console.log('Connected to MongoDB!');
 });
 
@@ -36,7 +36,7 @@ const sellerSchema = mongoose.Schema({
   sellerEmail: String,
   sellerAddress: String,
   location: [String], //['latitude', 'longitude']
-  sellerPhone: Number,
+  sellerPhone: String,
   password: String, // hashed
   createdAt: Date,
   orders: [Number],
@@ -49,7 +49,7 @@ const buyerSchema = mongoose.Schema({
   buyerName: String,
   password: String, // hashed
   buyerEmail: String,
-  buyerPhone: Number,
+  buyerPhone: String,
   buyerAddress: String,
   orders: [Number]
 });
@@ -75,16 +75,120 @@ const Sellers = mongoose.model('Sellers', sellerSchema);
 const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
+const Services = mongoose.model('Services', serviceListing);
+
+const getSellerLogin = async ( email ) =>  {
+  return await Sellers.findOne({ sellerEmail: email });
+}
+
+module.exports = db;
 
 // const getSellerLogin = async (name) =>  {
 //   return await db.Sellers.findOne({sellerName: name });
 // }
+const getProductList = async (cb) => {
+  await db.collection('productListings').find({}).toArray(function(err, result) {
+    if (err) {
+      return err;
+    }
+    cb(null,result);
+  });
+}
+const getServiceList = async (cb) => {
+  await db.collection('serviceListings').find({}).toArray(function (err, result) {
+    if (err) {
+      return err;
+    }
+    cb(null, result);
+  });
+}
+const getSellerLogin = async (email) => {
+  return await db.Sellers.findOne({ sellerEmail: email });
+};
 
-// const getServiceCategory = async (category) =>  {
-//   return await db.Sellers.find({services: {} });
-// }
+const getServiceCategory = async (category) => {
+const getServiceCategory = async (category) =>  {
+  var allSellers = await Sellers.find();
+  console.log('test two ', allSellers);
+  return allSellers;
+}
+//getServiceCategory ('Plumbing'); //consult with Justin in the morning Error: 'Method "collection.find()" accepts at most two arguments'
 
-// module.exports = {
-//   getSellerLogin,
-//   getServiceCategory,
-// };
+const getBuyerLogin = async (buyerEmail) => {
+  return await db.buyerSchema.find({ buyerEmail })
+};
+
+
+const checkForBuyer = (buyerEmail) => {
+  return Buyers.exists({ buyerEmail })
+};
+
+const checkForSeller = (sellerEmail) => {
+  return Sellers.exists({ sellerEmail })
+};
+
+const saveNewBuyer = (buyerInfo) => {
+  const newUser = new Buyers({
+    buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
+    password: buyerInfo.password,
+    buyerEmail: buyerInfo.buyerEmail,
+    buyerPhone: buyerInfo.buyerPhone,
+    buyerAddress: buyerInfo.buyerAddress,
+    orders: []
+  });
+  newUser.save();
+
+};
+
+const saveNewSeller = (sellerInfo) => {
+  console.log(sellerInfo);
+  const newSeller = new Sellers({
+    sellerName: sellerInfo.sellerName,
+    sellerEmail: sellerInfo.sellerEmail,
+    sellerAddress: sellerInfo.sellerAddress,
+    location: sellerInfo.location,
+    sellerPhone: sellerInfo.sellerPhone,
+    password: sellerInfo.password,
+    createdAt: sellerInfo.createdAt,
+    orders: sellerInfo.orders,
+    products: sellerInfo.products,
+    services: sellerInfo.services,
+  });
+
+  newSeller.save();
+
+};
+
+const catFind = async (name) => {
+  return await Categories.find({});
+};
+
+
+
+module.exports = {
+  // getSellerLogin,
+  //getSellerLogin,
+  getServiceCategory,
+  getBuyerLogin,
+  saveNewBuyer,
+  checkForBuyer,
+  checkForSeller,
+  saveNewSeller,
+  getServiceList,
+  getProductList
+  catFind
+};
+
+//buyer = 'undefined undefined';
+//category = 'Plumbing'; //type service
+//orders = empty;
+//repos =
+//seller = 'Joe String'
+
+
+
+
+
+
+
+

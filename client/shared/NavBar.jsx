@@ -21,7 +21,7 @@ const NavBar = () => {
             </Link>
           </Typography>
           <div className={classes.search}
-            style={{width: '50%'}}
+            style={{width: '45%'}}
           >
             <div className={classes.searchIcon}>
               <SearchIcon />
