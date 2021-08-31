@@ -5,17 +5,18 @@ import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
 import EmailIcon from '@material-ui/icons/Email';
 
+//need to make modal pop-up for email click button
+
 const ServicesCard = ({ service }) => {
-  console.log(service);
   const classes = useStyles();
 
   let reviewAverage = () => {
-    const reviewsData = {results: [{rating: 2}, {rating: 5}, {rating: 4}, {rating: 4}, {rating: 2}]};
+    const reviewsData = service.ratings || [1, 2, 3, 4, 5, 4, 3, 2];
     let sum = 0;
-    reviewsData.results.forEach(result => {
-      sum += result.rating;
+    reviewsData.forEach(result => {
+      sum += result;
     });
-    return sum / (reviewsData.results.length);
+    return Number((sum / (reviewsData.length)).toFixed(1));
   };
 
   const [open, setOpen] = useState(false);
@@ -28,13 +29,10 @@ const ServicesCard = ({ service }) => {
     setOpen(false);
   };
 
+  //need function to connect service photos to category photos
   return (
     <Card
       data-myattr={service.id}
-      onClick={(e) => {
-        //changeProduct(e.currentTarget.getAttribute('data-myattr'));
-
-      }}
       className={classes.root}>
       {service ? (
         <CardMedia
@@ -44,9 +42,6 @@ const ServicesCard = ({ service }) => {
         <CircularProgress/>
       )}
       <CardContent style={{width: '50%', display: 'inline-block', top: '-10%', position: 'relative'}}>
-        {/* <Typography variant="caption" color="textSecondary" component="p">
-          {product.category.toUpperCase()}
-        </Typography> */}
         <Typography variant="h6" color="textSecondary" component="p" style={{fontWeight: 'bold', color: 'black'}}>
           {service.serviceName}
         </Typography>
@@ -77,7 +72,6 @@ const ServicesCard = ({ service }) => {
 				And this too
         <br/>
       </Typography>
-
       <hr style={{marginLeft: '5%', marginRight: '5%'}}/>
       <br/>
       <Typography align='right' variant="body1" color="textSecondary" component="p" style={{paddingLeft: '5%', display: 'inline-block', fontWeight: 'bold', color: 'black', left: '5%', paddingRight: '15%'}}>
