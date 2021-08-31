@@ -15,12 +15,23 @@ const ServicesContainer = ({ }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(9);
 
+<<<<<<< HEAD
   // useEffect(async () => {
   // 	const result = await axios(
   // 		'url goes here'
   // 	);
   // 	fetchAllProducts(result.data);
   // }, []);
+=======
+  const [servicesPhotos, setServicesPhotos] = useState([]);
+
+  // useEffect(async () => {
+	// 	const result = await axios(
+	// 		'http://localhost:3014/Categories'
+	// 	);
+	// 	setServicesPhotos(result.data);
+	// }, []);
+>>>>>>> 2e0b2e6a7bc4c70e854801a57710b22ce3f5cd86
 
   //change page
   const paginate = (pageNumber) => {
