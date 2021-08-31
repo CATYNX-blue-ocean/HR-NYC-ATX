@@ -21,7 +21,7 @@ const App = () => {
     <>
       <button onClick={exampleChangeFn}>change state</button>{' '}
       {/* example of changing state  */}
-      {/* <div className="landing-page-main-div">
+      <div className="landing-page-main-div">
         <Router>
           <NavBar />
           <Route exact path="/sign-in">
@@ -48,7 +48,7 @@ const App = () => {
             <LandingPage />
           </Route>
         </Router>
-      </div> */}
+      </div>
       {/* added products container down here to test rendering */}
       {/* <ProductsContainer/> */}
       <div>
