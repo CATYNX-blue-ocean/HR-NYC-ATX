@@ -79,7 +79,8 @@ const getBuyerLogin = async ( buyerEmail ) => {
   return await db.buyerSchema.find({ buyerEmail })
 };
 
-const saveNewBuyer = ( buyerInfo ) => {
+
+const saveNewBuyer = ( buyerInfo, callback ) => {
   const newUser = new Buyers( {
       buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
       password: buyerInfo.password,
@@ -88,12 +89,11 @@ const saveNewBuyer = ( buyerInfo ) => {
       buyerAddress: buyerInfo.buyerAddress,
       orders: []
     } );
-
-  newUser.save();
+      newUser.save();
 
 };
 
-//console.log(getBuyerLogin())
+
 module.exports = {
   getSellerLogin,
   getServiceCategory,
