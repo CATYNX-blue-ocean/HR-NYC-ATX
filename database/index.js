@@ -77,6 +77,9 @@ const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
 const Services = mongoose.model('Services', serviceListing);
 
+const getSellerLogin = async ( email ) =>  {
+  return await Sellers.findOne({ sellerEmail: email });
+}
 
 module.exports = db;
 
@@ -104,6 +107,7 @@ const getSellerLogin = async (email) => {
 };
 
 const getServiceCategory = async (category) => {
+const getServiceCategory = async (category) =>  {
   var allSellers = await Sellers.find();
   console.log('test two ', allSellers);
   return allSellers;
@@ -155,9 +159,15 @@ const saveNewSeller = (sellerInfo) => {
 
 };
 
+const catFind = async (name) => {
+  return await Categories.find({});
+};
+
+
 
 module.exports = {
-  getSellerLogin,
+  // getSellerLogin,
+  //getSellerLogin,
   getServiceCategory,
   getBuyerLogin,
   saveNewBuyer,
@@ -166,6 +176,7 @@ module.exports = {
   saveNewSeller,
   getServiceList,
   getProductList
+  catFind
 };
 
 //buyer = 'undefined undefined';
@@ -173,4 +184,11 @@ module.exports = {
 //orders = empty;
 //repos =
 //seller = 'Joe String'
+
+
+
+
+
+
+
 
