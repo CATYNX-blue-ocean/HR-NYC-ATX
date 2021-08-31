@@ -20,19 +20,19 @@ app.use(express.static(__dirname + '/../dist'));
 //   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 // });
 app.get('/products', function (req, res) {
-  db.collection('productListings').find({}).toArray(function(err, result) {
+  database.getProductList( function (err, response) {
     if (err) {
-      throw err;
+      console.log(err);
     }
-    res.send(result);
+    res.send(response);
   });
 });
 app.get('/services', function (req, res) {
-  db.collection('serviceListings').find({}).toArray(function(err, result) {
+  database.getServiceList( function (err, response) {
     if (err) {
-      throw err;
+      console.log(err);
     }
-    res.send(result);
+    res.send(response);
   });
 });
 //get to make sure seller has an account while logging in
