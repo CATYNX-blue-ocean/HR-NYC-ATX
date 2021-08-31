@@ -1,7 +1,7 @@
 {
   "name": "hr-nyc-atx",
   "version": "1.0.0",
-  "description": "",
+  "description": "---",
   "main": "index.js",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -50,5 +50,6 @@
   "bugs": {
     "url": "https://github.com/CATYNX-blue-ocean/HR-NYC-ATX/issues"
   },
-  "homepage": "https://github.com/CATYNX-blue-ocean/HR-NYC-ATX#readme"
+  "homepage": "https://github.com/CATYNX-blue-ocean/HR-NYC-ATX#readme",
+  "keywords": []
 }
