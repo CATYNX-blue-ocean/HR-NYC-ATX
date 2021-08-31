@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Badge, IconButton, InputBase, Toolbar, Typography } from '@material-ui/core';
 //icons won't let you destructure, leave them listed below as-is
@@ -7,12 +7,44 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import useStyles from './styles.js';
+import axios from 'axios';
+import Radio from '@material-ui/core/Radio';
+import useDataStore from '../ProductsPage/tempZustand.js';
 import useDataStore from '../zustandStore.js';
 
 const NavBar = () => {
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
   const cartNumber = cart.length;
+  const [searchInput, setSearchInput] = useState('');
+  const [searchType, setSearchType] = useState('product');
+  let isProduct = false;
+  let isService = false;
+  let searchResults = [];
+  const resetProductData = useDataStore((state) => state.resetProductData);
+  const resetServiceData = useDataStore((state) => state.resetServiceData);
+
+  const handleSearchSubmit = (e, keyword, type) => {
+    e.preventDefault();
+    console.log('KEY WORD ', keyword);
+    console.log('SEARCH TYPE ', type);
+    axios.get(`/${type}/search/?keyword=${keyword}`)
+      .then((result) => {
+        //[OPTION1]update state for Product Container===========
+        if (type === 'service') {
+          resetServiceData(result.data);
+          isService = true;
+        } else {
+          resetProductData(result.data);
+          isProduct = true;
+        }
+        //[OPTION2] render its own page=========================
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
 
   return (
     <div className={classes.grow}>
@@ -29,14 +61,21 @@ const NavBar = () => {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+            <form onSubmit={(e) => handleSearchSubmit(e, searchInput, searchType)}>
+              <InputBase
+                onChange={(e) => setSearchInput(e.target.value)}
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+              <div onChange={(e) => setSearchType(e.target.value)}>
+                <input type="radio" value="product" defaultChecked name="type"/> Product
+                <input type="radio" value="service" name="type"/> Service
+              </div>
+            </form>
           </div>
           <div className={classes.search}
             style={{width: '15%'}}
@@ -70,6 +109,8 @@ const NavBar = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
+      {isProduct && <Redirect to={{pathname: '/products', }}/>}
+      {isService && <Redirect to={{pathname: '/services', }}/>}
     </div>
   );
 };
