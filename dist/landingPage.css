@@ -5,8 +5,10 @@
   border: solid 1px;
   border-color: black;
   display: grid;
-  grid-template-rows: 1fr 5fr 2fr 2fr;
-  height: 675px;
+  grid-template-rows: 1fr 4fr 4fr 4fr;
+  /* height: 900px; */
+  height: 100%;
+  width: auto;
 }
 
 /***************************/
