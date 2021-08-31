@@ -132,7 +132,10 @@
 }
 
 .feature-item-card {
-
+  border: solid 1px;
+  border-color: black;
+  height: 100%;
+  width: 100%;
 }
 
 .temp-photo {

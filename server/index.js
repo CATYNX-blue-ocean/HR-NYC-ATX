@@ -21,7 +21,7 @@ app.get('/*', function (req, res) {
 
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
-  console.log(req.body)
+  console.log(req.body);
   const seller = req.body.sellerEmail;
   database.getSellerLogin( seller )
     .then( (sellerInfo) => {
@@ -35,7 +35,7 @@ app.get('/sellersignin', (req, res)=> {
     } )
     .catch((err)=> {
 
-    })
+    });
 
 });
 
