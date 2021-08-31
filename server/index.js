@@ -33,7 +33,7 @@ app.get('/cart', function (req, res) {
 });
 app.get('/checkout', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-
+});
 app.get('/products', function (req, res) {
   db.collection('productListings').find({}).toArray(function(err, result) {
     if (err) {
