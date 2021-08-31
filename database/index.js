@@ -201,8 +201,6 @@ const catFind = async (name) => {
   return await Categories.find({});
 };
 
-<<<<<<< HEAD
-=======
 const saveNewOrder = (orderInfo) => {
   const newOrder = new Orders({
     orderID: orderInfo.orderId,
@@ -215,7 +213,6 @@ const saveNewOrder = (orderInfo) => {
   return newOrder.save();
 };
 
->>>>>>> ccc8d45aead5cfb3c3c61029324e16ab0e2ffdb6
 module.exports = {
   getSellerLogin,
   getServiceCategory,

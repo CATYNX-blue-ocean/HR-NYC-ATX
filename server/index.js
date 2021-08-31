@@ -15,12 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/../dist'));
 
-<<<<<<< HEAD
-// Need this so that react router works
-// app.get('/*', function (req, res) {
-//   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-// });
-=======
 //landing page
 app.get('/landing', function (req, res) {
   console.log(req.body);
@@ -56,7 +50,6 @@ app.get('/checkout', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
->>>>>>> ccc8d45aead5cfb3c3c61029324e16ab0e2ffdb6
 app.get('/products', function (req, res) {
   db.collection('productListings').find({}).toArray(function(err, result) {
     if (err) {
@@ -97,7 +90,14 @@ app.get('/sellersignin', (req, res)=> {
 
 //get to make sure buyer has an account while logging in
 app.get('/buyersignin', (req, res)=> {
-
+  database.getBuyerLogin( req.body.buyerEmail )
+    .then((data) => {
+      if (data === null) {
+        res.status(400).send('Invalid login');
+      } else {
+        res.status(200).send(data);
+      }
+    });
 });
 
 //post for buyer account sign up
