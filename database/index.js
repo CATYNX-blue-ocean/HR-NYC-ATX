@@ -4,7 +4,7 @@ mongoose.connect(`mongodb://${dbInfo.dbInfo}`);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error to Mongo:'));
-db.once('open', function() {
+db.once('open', function () {
   console.log('Connected to MongoDB!');
 });
 
@@ -63,60 +63,98 @@ const orderSchema = mongoose.Schema({
   paymentInfo: String,
 });
 
+const categoriesSchema = mongoose.Schema({
+  type: String,
+  category: String,
+  image: String,
+  description: String,
+});
+
+
 const Sellers = mongoose.model('Sellers', sellerSchema);
 const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
+const Categories = mongoose.model('Categories', categoriesSchema);
+const Services = mongoose.model('Services', serviceListing);
 
-const getSellerLogin = async ( email ) => {
-  return await db.Sellers.findOne({ sellerEmail: email });
+
+const getProductList = async (cb) => {
+  await db.collection('productListings').find({}).toArray(function(err, result) {
+    if (err) {
+      return err;
+    }
+    cb(null,result);
+  });
 }
+const getServiceList = async (cb) => {
+  await db.collection('serviceListings').find({}).toArray(function (err, result) {
+    if (err) {
+      return err;
+    }
+    cb(null, result);
+  });
+}
+
+const getSellerLogin = async (email) => {
+  return await db.Sellers.findOne({ sellerEmail: email });
+};
 
 const getServiceCategory = async (category) =>  {
-  return await db.Sellers.find({services: {} });
+  var allSellers = await Sellers.find();
+  console.log('test two ', allSellers);
+  return allSellers;
 }
+//getServiceCategory ('Plumbing'); //consult with Justin in the morning Error: 'Method "collection.find()" accepts at most two arguments'
 
-const getBuyerLogin = async ( buyerEmail ) => {
+const getBuyerLogin = async (buyerEmail) => {
   return await db.buyerSchema.find({ buyerEmail })
 };
 
 
-const checkForBuyer = ( buyerEmail ) => {
+const checkForBuyer = (buyerEmail) => {
   return Buyers.exists({ buyerEmail })
 };
 
-const checkForSeller = ( sellerEmail ) => {
+const checkForSeller = (sellerEmail) => {
   return Sellers.exists({ sellerEmail })
 };
 
-const saveNewBuyer = ( buyerInfo ) => {
-  const newUser = new Buyers( {
-      buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
-      password: buyerInfo.password,
-      buyerEmail: buyerInfo.buyerEmail,
-      buyerPhone: buyerInfo.buyerPhone,
-      buyerAddress: buyerInfo.buyerAddress,
-      orders: []
-    } );
-      newUser.save();
+const saveNewBuyer = (buyerInfo) => {
+  const newUser = new Buyers({
+    buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
+    password: buyerInfo.password,
+    buyerEmail: buyerInfo.buyerEmail,
+    buyerPhone: buyerInfo.buyerPhone,
+    buyerAddress: buyerInfo.buyerAddress,
+    orders: []
+  });
+  newUser.save();
 
 };
 
-const saveNewSeller = ( sellerInfo ) => {
-  //console.log(sellerInfo);
-  const newSeller = new Sellers( {
-      sellerName: sellerInfo.sellerName,
-      sellerEmail: sellerInfo.sellerEmail,
-      sellerAddress: sellerInfo.sellerAddress,
-      location: sellerInfo.location,
-      sellerPhone: sellerInfo.sellerPhone,
-      password: sellerInfo.password,
-      createdAt: sellerInfo.createdAt,
-      orders: sellerInfo.orders,
-      products: sellerInfo.products,
-      services: sellerInfo.services,
-    } );
-      newSeller.save();
+const saveNewSeller = (sellerInfo) => {
+
+  const newSeller = new Sellers({
+    sellerName: sellerInfo.sellerName,
+    sellerEmail: sellerInfo.sellerEmail,
+    sellerAddress: sellerInfo.sellerAddress,
+    location: sellerInfo.location,
+    sellerPhone: sellerInfo.sellerPhone,
+    password: sellerInfo.password,
+    createdAt: sellerInfo.createdAt,
+    orders: sellerInfo.orders,
+    products: sellerInfo.products,
+    services: sellerInfo.services,
+  });
+
+  newSeller.save();
+
 };
+
+const catFind = async (name) => {
+  return await Categories.find({});
+};
+
 
 
 module.exports = {
@@ -126,5 +164,9 @@ module.exports = {
   saveNewBuyer,
   checkForBuyer,
   checkForSeller,
-  saveNewSeller
+  saveNewSeller,
+  getServiceList,
+  getProductList,
+  catFind
 };
+

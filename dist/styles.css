@@ -1,0 +1,19 @@
+#app {
+  /* display: inline-block; */
+  /* height: 100%;
+  width: 100%; */
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+/* html {
+  height: 100%;
+} */
+
+body {
+  min-height: 100vh;
+  margin: auto 0;
+  overflow: hidden;
+  position: relative;
+}
