@@ -8,13 +8,12 @@ import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
+import CheckoutPage from './CheckoutPage/CheckoutPage.jsx';
 
 const App = () => {
   // example of consuming state
   const myVariable = useStore((state) => state.exampleStateField);
-  console.log(myVariable);
   const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
-
   return (
     <>
       <button onClick={exampleChangeFn}>change state</button>{' '}
@@ -40,7 +39,7 @@ const App = () => {
           </Route>
 
           <Route exact path="/checkout">
-            <h2>Hello Checkout</h2>
+            <CheckoutPage />
           </Route>
 
           <Route exact path="/">
