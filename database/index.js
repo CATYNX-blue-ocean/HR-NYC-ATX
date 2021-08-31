@@ -80,6 +80,8 @@ const getSellerLogin = async ( email ) =>  {
   return await Sellers.findOne({ sellerEmail: email });
 }
 
+module.exports = db;
+
 const getServiceCategory = async (category) =>  {
   var allSellers = await Sellers.find();
   console.log('test two ', allSellers);

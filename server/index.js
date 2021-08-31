@@ -4,6 +4,7 @@ const axios = require('axios');
 var cors = require('cors');
 const database = require('../database/index.js');
 const path = require('path'); // need this for the react router enabling code line 17
+const db = require('../database/index.js');
 
 const app = express();
 const PORT = 3000;
@@ -32,13 +33,27 @@ app.get('/cart', function (req, res) {
 });
 app.get('/checkout', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-});
 
+app.get('/products', function (req, res) {
+  db.collection('productListings').find({}).toArray(function(err, result) {
+    if (err) {
+      throw err;
+    }
+    res.send(result);
+  });
+});
+app.get('/services', function (req, res) {
+  db.collection('serviceListings').find({}).toArray(function(err, result) {
+    if (err) {
+      throw err;
+    }
+    res.send(result);
+  });
+});
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
   const seller = req.query.sellerEmail;
-  console.log(seller);
-  database.getSellerLogin(seller)
+  database.getSellerLogin( seller )
     .then( (sellerInfo) => {
       if (sellerInfo === null) {
         res.Status = 400;
