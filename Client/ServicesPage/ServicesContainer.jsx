@@ -7,6 +7,7 @@ import { Container, AppBar, Typography, Grow, Grid, InputBase } from '@material-
 import ServicesCard from './ServicesCard.jsx';
 import { Pagination } from '@material-ui/lab';
 import useStyles from './styles';
+import useDataStore from './tempZustand.js';
 
 const ServicesContainer = ({ }) => {
   const classes = useStyles();
@@ -14,6 +15,10 @@ const ServicesContainer = ({ }) => {
   //const [services, fetchAllServices] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(9);
+
+  const services = useDataStore((state) => state.serviceData);
+
+  console.log(services[0]);
 
   // useEffect(async () => {
   // 	const result = await axios(
@@ -27,15 +32,17 @@ const ServicesContainer = ({ }) => {
     setCurrentPage(pageNumber);
   };
 
-  //get current posts
+  //get current posts, note that services are an array of arrays
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let totalPosts;
   let currentPosts;
   if (services) {
     totalPosts = services.length;
-    currentPosts = services.slice(indexOfFirstPost, indexOfLastPost);
+    currentPosts = services[0].slice(indexOfFirstPost, indexOfLastPost);
   }
+
+  console.log(Array.isArray(currentPosts), currentPosts.length);
 
   const numberOfPages = Math.ceil(totalPosts / postsPerPage);
 
@@ -69,292 +76,292 @@ const ServicesContainer = ({ }) => {
 
 export default ServicesContainer;
 
-const services = [{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-},
-{
-  name: 'Servicer Name',
-  photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-  id: '12345',
-  category: 'Service Category',
-  description: 'This is a service. This is the most service-y service to ever service.',
-  price: '420.69'
-}
-];
+// const services = [{
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// },
+// {
+//   name: 'Servicer Name',
+//   photo: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+//   id: '12345',
+//   category: 'Service Category',
+//   description: 'This is a service. This is the most service-y service to ever service.',
+//   price: '420.69'
+// }
+// ];

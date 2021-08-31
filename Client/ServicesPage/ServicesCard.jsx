@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import EmailIcon from '@material-ui/icons/Email';
 
 const ServicesCard = ({ service }) => {
+  console.log(service);
   const classes = useStyles();
 
   let reviewAverage = () => {
@@ -35,10 +36,10 @@ const ServicesCard = ({ service }) => {
 
       }}
       className={classes.root}>
-      {service.photo ? (
+      {service ? (
         <CardMedia
           className={classes.media}
-          image={service.photo}/>
+          image={'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg'}/>
       ) : (
         <CircularProgress/>
       )}
@@ -47,10 +48,10 @@ const ServicesCard = ({ service }) => {
           {product.category.toUpperCase()}
         </Typography> */}
         <Typography variant="h6" color="textSecondary" component="p" style={{fontWeight: 'bold', color: 'black'}}>
-          {service.name}
+          {service.serviceName}
         </Typography>
         <Typography variant="body1" color="textSecondary" component="p">
-          {service.description}
+          {service.serviceDescription}
         </Typography>
       </CardContent>
       <>
