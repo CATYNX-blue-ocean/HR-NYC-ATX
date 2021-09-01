@@ -154,8 +154,8 @@ const saveNewSeller = (sellerInfo) => {
     password: sellerInfo.password,
     createdAt: sellerInfo.createdAt,
     orders: sellerInfo.orders,
-    products: sellerInfo.products,
-    services: sellerInfo.services,
+    products: [],
+    services: []
   });
 
   newSeller.save();

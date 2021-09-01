@@ -50,6 +50,14 @@ app.get('/checkout', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
+app.get('/category/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+
+app.get('/categories', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+
 app.get('/products', function (req, res) {
   database.getProductList( function (err, result) {
     if (err) {
@@ -140,7 +148,7 @@ app.post('/buyersignup', ( req, res ) => {
 //post for seller account sign up
 app.post('/sellersignup', (req, res)=>{
   const newSeller = req.body;
-  console.log(newSeller);
+
   database.checkForSeller( newSeller.sellerEmail )
     .then( (doTheyExist) => {
       if (doTheyExist) {
@@ -210,10 +218,9 @@ app.get('/service/search', (req, res) => {
 
 app.get('/SellersInCategory', (req, res)=>{
   const queryCategory = req.query.category;
-  console.log(queryCategory);
+
   database.getServiceCategory( queryCategory )
     .then( (doTheyExist) => {
-      console.log(doTheyExist);
       res.Status = 200;
       res.send(doTheyExist);
     })
