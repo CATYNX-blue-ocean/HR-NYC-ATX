@@ -16,7 +16,7 @@ export default makeStyles((theme) => ({
     borderColor: 'black',
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: alpha(theme.palette.text.secondary, 0.25),
+      backgroundColor: '#DED1F7',
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
