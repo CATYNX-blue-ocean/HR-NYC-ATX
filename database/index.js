@@ -166,17 +166,18 @@ const searchForProducts = (key, CB) => {
 };
 
 const searchForServices = (key, CB) => {
-  Sellers.find(
-    {'services.serviceName': { $regex : '^' + key, $options: 'i' }, //{'$regex': keyword, "$options": "i"}
-    (err, data) => {
-      if (err) {
-        console.log('ERR IN DB ', err)
-        CB(err);
-      }
-      console.log('SUCCESS IN DB ', data);
-      CB(null, data);
-    }
-  );
+//   Sellers.find(
+//     {'services.serviceName': { $regex : '^' + key, $options: 'i' }, //{'$regex': keyword, "$options": "i"}
+//       (err, data) => {
+//         if (err) {
+//           console.log('ERR IN DB ', err)
+//           CB(err);
+//         }
+//         console.log('SUCCESS IN DB ', data);
+//         CB(null, data);
+//       }
+//     }
+//   );
 };
 
 const catFind = async (name) => {

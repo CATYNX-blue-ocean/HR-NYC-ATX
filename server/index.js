@@ -44,6 +44,7 @@ app.get('/cart', function (req, res) {
 app.get('/checkout', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
+
 app.get('/products', function (req, res) {
   database.getProductList( function (err, response) {
     if (err) {
@@ -60,6 +61,7 @@ app.get('/services', function (req, res) {
     res.send(response);
   });
 });
+
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
   const seller = req.query.sellerEmail;
@@ -142,6 +144,7 @@ app.get('/product/search', (req, res) => {
       res.status(200).json(result);
     }
   });
+});
 
 app.get('/SellersInCategory', (req, res)=>{
   const queryCategory = req.query.category;
