@@ -137,7 +137,7 @@ const saveNewBuyer = (buyerInfo) => {
 
 const saveNewSeller = (sellerInfo) => {
   console.log(sellerInfo);
-  const newSeller = new Sellers({
+  const newOrder = new Sellers({
     sellerName: sellerInfo.sellerName,
     sellerEmail: sellerInfo.sellerEmail,
     sellerAddress: sellerInfo.sellerAddress,
@@ -205,7 +205,18 @@ const catFind = async (name) => {
   return await Categories.find({});
 };
 
+const saveNewOrder = (orderInfo) => {
+  const newOrder = new Orders({
+    orderID: orderInfo.orderId,
+    sellerName: orderInfo.sellerName,
+    buyerName: orderInfo.buyerName,
+    productID: orderInfo.productID,
+    shippingAddress: orderInfo.shippingAddress,
+    paymentInfo: orderInfo.paymentInfo
+  });
+  return newOrder.save();
 
+};
 
 module.exports = {
   getSellerLogin,
@@ -220,7 +231,8 @@ module.exports = {
   //searchForServices,
   getServiceList,
   getProductList,
-  catFind
+  catFind,
+  saveNewOrder
 };
 
 //buyer = 'undefined undefined';

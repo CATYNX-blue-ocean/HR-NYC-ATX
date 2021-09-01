@@ -17,13 +17,18 @@ app.use(express.static(__dirname + '/../dist'));
 
 //landing page
 app.get('/landing', function (req, res) {
-
+  console.log(req.body);
   database.catFind()
     .then ((data)=> { res.json(data); })
     .catch ((err)=> { res.sendStatus(500); });
 });
 
-
+//post ordered product to database
+app.post('/orderpost', function (req, res) {
+  database.saveNewOrder(req.body)
+    .then ((data)=> { res.sendStatus(201); })
+    .catch ((err)=> { res.sendStatus(500); });
+});
 
 // Need this so that react router works
 app.get('/', function (req, res) {
