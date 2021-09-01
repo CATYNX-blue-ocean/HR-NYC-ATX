@@ -43,6 +43,7 @@ const EmailModal = ({ open, handleClose }) => {
       <Paper className={classes.modalPaper}>
         <form onSubmit={handleSubmit} autoComplete='off' noValidate className={`${classes.modalRoot} ${classes.modalForm}`}>
           <TextField
+					  style={{width: '46.5%'}}
             name='your email'
             variant='outlined'
             label='Your Email'
@@ -51,6 +52,7 @@ const EmailModal = ({ open, handleClose }) => {
 				    onChange={(e) => setEmailData({ ...emailData, email: e.target.value })}
           />
           <TextField
+					style={{width: '46.5%'}}
             name='subject'
             variant='outlined'
             label='Subject'

@@ -12,7 +12,10 @@ const ServicesCard = ({ service }) => {
   const classes = useStyles();
 
   let reviewAverage = () => {
-    const reviewsData = service.ratings || [1, 2, 3, 4, 5, 4, 3, 2];
+    let reviewsData = service.ratings || [1, 2, 3, 4, 5, 5, 5, 5];
+    if (reviewsData.length === 0) {
+      reviewsData = [1, 2, 3, 4, 5, 4, 3, 2];
+    }
     let sum = 0;
     reviewsData.forEach(result => {
       sum += result;
@@ -55,7 +58,7 @@ const ServicesCard = ({ service }) => {
         </Typography>
         <Rating style={{color: '#5E2EBA', top: '1%', paddingRight: '5%'}} name="read-only" value={reviewAverage()} readOnly precision={0.25}/>
         <Typography variant="body1" color="textSecondary" component="p" style={{textAlign: 'right', fontWeight: 'bold', color: 'black', display: 'inline', position: 'relative', top: '0%'}}>
-          {reviewAverage()}
+          {reviewAverage().toString().length === 1 ? reviewAverage() + '.0' : reviewAverage()}
         </Typography>
       </>
       <br/>
