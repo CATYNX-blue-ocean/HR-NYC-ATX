@@ -25,11 +25,11 @@ const OrderSummary = () => {
           <p>Total before tax:</p>
           <p>Estimated tax:</p>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6} styles={{ float: 'right' }}>
           <p>${itemsPrice}</p>
           <p>$2.99</p>
           <p>${itemsPrice + 2.99}</p>
-          <p>${itemsPrice + 2.99}</p>
+          <p>${(itemsPrice / 100) * 7 + itemsPrice}</p>
         </Grid>
       </Grid>
     </div>
