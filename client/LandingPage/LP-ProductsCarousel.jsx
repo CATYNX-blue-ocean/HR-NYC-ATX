@@ -12,7 +12,7 @@ const ProductsCarousel = function (props) {
   const productCategories = useDataStore((state) => state.productCategories);
 
   const handleSeeAllProductCategoryClick = function () {
-    console.log('I was clicked on See All Product Category');
+    console.log('I was clicked on See All Product Categories');
   };
 
   return (
