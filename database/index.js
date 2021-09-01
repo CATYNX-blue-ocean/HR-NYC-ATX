@@ -51,7 +51,7 @@ const buyerSchema = mongoose.Schema({
   buyerEmail: String,
   buyerPhone: String,
   buyerAddress: String,
-  orders: [Number]
+  orders: [Number],
 });
 
 const orderSchema = mongoose.Schema({
@@ -70,16 +70,15 @@ const categoriesSchema = mongoose.Schema({
   description: String,
 });
 
-
 const Sellers = mongoose.model('Sellers', sellerSchema);
 const Buyers = mongoose.model('Buyers', buyerSchema);
 const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
 const Services = mongoose.model('Services', serviceListing);
 
-const getSellerLogin = async ( email ) =>  {
+const getSellerLogin = async (email) => {
   return await Sellers.findOne({ sellerEmail: email });
-}
+};
 
 module.exports = db;
 
@@ -87,44 +86,45 @@ module.exports = db;
 //   return await db.Sellers.findOne({sellerName: name });
 // }
 const getProductList = async (cb) => {
-  await db.collection('productListings').find({}).toArray(function(err, result) {
-    if (err) {
-      return err;
-    }
-    cb(null,result);
-  });
-}
+  await db
+    .collection('productListings')
+    .find({})
+    .toArray(function (err, result) {
+      if (err) {
+        return err;
+      }
+      cb(null, result);
+    });
+};
 const getServiceList = async (cb) => {
-  await db.collection('serviceListings').find({}).toArray(function (err, result) {
-    if (err) {
-      return err;
-    }
-    cb(null, result);
-  });
-}
-const getSellerLogin = async (email) => {
-  return await db.Sellers.findOne({ sellerEmail: email });
+  await db
+    .collection('serviceListings')
+    .find({})
+    .toArray(function (err, result) {
+      if (err) {
+        return err;
+      }
+      cb(null, result);
+    });
 };
 
 const getServiceCategory = async (category) => {
-const getServiceCategory = async (category) =>  {
   var allSellers = await Sellers.find();
   console.log('test two ', allSellers);
   return allSellers;
-}
+};
 //getServiceCategory ('Plumbing'); //consult with Justin in the morning Error: 'Method "collection.find()" accepts at most two arguments'
 
 const getBuyerLogin = async (buyerEmail) => {
-  return await db.buyerSchema.find({ buyerEmail })
+  return await db.buyerSchema.find({ buyerEmail });
 };
 
-
 const checkForBuyer = (buyerEmail) => {
-  return Buyers.exists({ buyerEmail })
+  return Buyers.exists({ buyerEmail });
 };
 
 const checkForSeller = (sellerEmail) => {
-  return Sellers.exists({ sellerEmail })
+  return Sellers.exists({ sellerEmail });
 };
 
 const saveNewBuyer = (buyerInfo) => {
@@ -134,10 +134,9 @@ const saveNewBuyer = (buyerInfo) => {
     buyerEmail: buyerInfo.buyerEmail,
     buyerPhone: buyerInfo.buyerPhone,
     buyerAddress: buyerInfo.buyerAddress,
-    orders: []
+    orders: [],
   });
   newUser.save();
-
 };
 
 const saveNewSeller = (sellerInfo) => {
@@ -156,14 +155,11 @@ const saveNewSeller = (sellerInfo) => {
   });
 
   newSeller.save();
-
 };
 
 const catFind = async (name) => {
   return await Categories.find({});
 };
-
-
 
 module.exports = {
   // getSellerLogin,
@@ -175,8 +171,8 @@ module.exports = {
   checkForSeller,
   saveNewSeller,
   getServiceList,
-  getProductList
-  catFind
+  getProductList,
+  catFind,
 };
 
 //buyer = 'undefined undefined';
@@ -184,11 +180,3 @@ module.exports = {
 //orders = empty;
 //repos =
 //seller = 'Joe String'
-
-
-
-
-
-
-
-
