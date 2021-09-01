@@ -7,6 +7,7 @@ const useDataStore = create((set) => ({
   currentProduct: exampleData.productListings[0],
   currentProductCategory: exampleData.productListings[0].productCategory,
   currentServiceCategory: exampleData.serviceListings[0].serviceCategory,
+
   setProductCategory: (category) =>
     set((state) => {
       let categorisedPoducts;
