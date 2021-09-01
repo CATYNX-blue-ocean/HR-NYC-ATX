@@ -1,29 +1,25 @@
 import React from 'react';
 import Carousel from 'react-elastic-carousel';
 
-import ItemCardProducts from './LP-ItemCardProducts.jsx';
+import CategoryCardServices from './LP-CategoryCardServices.jsx';
 import exampleData from '../../exampleData.js';
 import useDataStore from '../zustandStore.js';
 
-//const products = useDataStore((state) => state.productData);
-//const services = useDataStore((state) => state.serviceData);
 
+const ServicesCarousel = function (props) {
 
-
-const ServicesCarousel = function () {
-
-  const handleTestClick = function () {
-    console.log('Me clickey');
-  };
+  const servicesCategories = useDataStore((state) => state.servicesCategories);
 
   return (
-    <div className="landing-page-services-carousel">
+    <div className="landing-page-category-carousel">
+      <div className="see-all-link">
+        <a>See All</a>
+      </div>
       <Carousel itemsToShow={3} pagination={false}>
-        {exampleData.exampleData.productListings.map((item) => <ItemCardProducts key={item.id}
-          photo={item.productImage} name={item.productName} onClick={() => { handleTestClick(); }} />)}
+        {servicesCategories.map((item) => <CategoryCardServices key={item._id}
+          photo={item.image} name={item.category} />)}
       </Carousel>
     </div>
-
   );
 
 };
