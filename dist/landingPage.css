@@ -107,14 +107,14 @@
 
 /******************************/
 
-.landing-page-products-carousel {
+.landing-page-category-carousel {
   border: solid 1px;
   border-color: black;
   width : 100%;
   height: auto;
 }
 
-.landing-page-item-card {
+.landing-page-category-card {
   border: solid 1px;
   border-color: black;
   /* margin: 20px; */
@@ -132,7 +132,10 @@
 }
 
 .feature-item-card {
-
+  border: solid 1px;
+  border-color: black;
+  height: 100%;
+  width: 100%;
 }
 
 .temp-photo {

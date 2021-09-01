@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 import useStyles from './styles.js';
-import { Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, Typography, IconButton, Modal, Backdrop, Fade, CircularProgress } from '@material-ui/core';
+import { Backdrop, Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, CircularProgress, Grid, Fade, IconButton, Modal, Paper, TextField, Typography} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
 import EmailIcon from '@material-ui/icons/Email';
+import EmailModal from './EmailModal.jsx';
+
+//need function to connect service photos to category photos
 
 const ServicesCard = ({ service }) => {
   const classes = useStyles();
 
   let reviewAverage = () => {
-    const reviewsData = {results: [{rating: 2}, {rating: 5}, {rating: 4}, {rating: 4}, {rating: 2}]};
+    let reviewsData = service.ratings || [1, 2, 3, 4, 5, 5, 5, 5];
+    if (reviewsData.length === 0) {
+      reviewsData = [1, 2, 3, 4, 5, 4, 3, 2];
+    }
     let sum = 0;
-    reviewsData.results.forEach(result => {
-      sum += result.rating;
+    reviewsData.forEach(result => {
+      sum += result;
     });
-    return sum / (reviewsData.results.length);
+    return Number((sum / (reviewsData.length)).toFixed(1));
   };
 
   const [open, setOpen] = useState(false);
@@ -30,27 +36,20 @@ const ServicesCard = ({ service }) => {
   return (
     <Card
       data-myattr={service.id}
-      onClick={(e) => {
-        //changeProduct(e.currentTarget.getAttribute('data-myattr'));
-
-      }}
       className={classes.root}>
-      {service.photo ? (
+      {service ? (
         <CardMedia
           className={classes.media}
-          image={service.photo}/>
+          image={'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg'}/>
       ) : (
         <CircularProgress/>
       )}
-      <CardContent style={{width: '50%', display: 'inline-block', top: '-10%', position: 'relative'}}>
-        {/* <Typography variant="caption" color="textSecondary" component="p">
-          {product.category.toUpperCase()}
-        </Typography> */}
+      <CardContent style={{width: '50%', display: 'inline-block', top: '-5%', position: 'relative'}}>
         <Typography variant="h6" color="textSecondary" component="p" style={{fontWeight: 'bold', color: 'black'}}>
-          {service.name}
+          {service.serviceName}
         </Typography>
         <Typography variant="body1" color="textSecondary" component="p">
-          {service.description}
+          {service.serviceDescription.length > 45 ? service.serviceDescription.slice(0, 45) + '...' : service.serviceDescription}
         </Typography>
       </CardContent>
       <>
@@ -59,7 +58,7 @@ const ServicesCard = ({ service }) => {
         </Typography>
         <Rating style={{color: '#5E2EBA', top: '1%', paddingRight: '5%'}} name="read-only" value={reviewAverage()} readOnly precision={0.25}/>
         <Typography variant="body1" color="textSecondary" component="p" style={{textAlign: 'right', fontWeight: 'bold', color: 'black', display: 'inline', position: 'relative', top: '0%'}}>
-          {reviewAverage()}
+          {reviewAverage().toString().length === 1 ? reviewAverage() + '.0' : reviewAverage()}
         </Typography>
       </>
       <br/>
@@ -76,13 +75,13 @@ const ServicesCard = ({ service }) => {
 				And this too
         <br/>
       </Typography>
-
       <hr style={{marginLeft: '5%', marginRight: '5%'}}/>
       <br/>
       <Typography align='right' variant="body1" color="textSecondary" component="p" style={{paddingLeft: '5%', display: 'inline-block', fontWeight: 'bold', color: 'black', left: '5%', paddingRight: '15%'}}>
 				Time Available
       </Typography>
       <Button
+        onClick={handleOpen}
         variant="contained"
         style={{color: '#5E2EBA', backgroundColor: '#DED1F7'}}
         className={classes.button}
@@ -90,6 +89,7 @@ const ServicesCard = ({ service }) => {
       >
         Email Me
       </Button>
+      {open ? <EmailModal open={open} handleClose={handleClose}/> : null}
     </Card>
   );
 };

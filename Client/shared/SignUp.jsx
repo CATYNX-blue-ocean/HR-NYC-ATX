@@ -4,8 +4,10 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
 import validator from 'validator';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUp = () => {
   const [show, setShow] = useState(true);
@@ -22,9 +24,57 @@ const SignUp = () => {
   const [zipCodeError, setZipCodeError] = useState(false);
   const [firstNameError, setFirstNameError] = useState(false);
   const [lastNameError, setLastNameError] = useState(false);
+  const [isSeller, setIsSeller] = useState(false);
+  const [signInError, setSignInError] = useState(false);
+  const [accountExists, setAccountExists] = useState(false);
+  const [accountCreated, setAccountCreated] = useState(false);
 
   let close = (event) => {
     history.goBack();
+  };
+
+  let checkResponse = (res) => {
+    if (res.data === 'There was an error with your request, Please try again or contact an administrator.') {
+      setSignInError(true);
+    } else if (res.data === 'Account Exists. Please log in.') {
+      setAccountExists(true);
+    } else if (res.data === 'Account Created. Please log in.') {
+      setAccountCreated(true);
+    }
+  };
+
+  const onSignUpSubmit = () => {
+    if (isSeller) {
+      let userInfo = {
+        sellerName: firstName + ' ' + lastName,
+        sellerEmail: email,
+        sellerAddress: zipCode,
+        location: [],
+        sellerPhone: phoneNumber,
+        password: password,
+        createdAt: new Date(),
+        orders: [],
+        products: [],
+        services: []
+      };
+      axios.post('/sellersignup', userInfo)
+        .then((res) => {
+          checkResponse(res);
+        });
+    } else {
+      let userInfo = {
+        buyerName: firstName + ' ' + lastName,
+        password: password,
+        buyerEmail: email,
+        buyerPhone: phoneNumber,
+        buyerAddress: zipCode,
+        orders: []
+      };
+      axios.post('/buyersignup', userInfo)
+        .then((res) => {
+          checkResponse(res);
+        });
+    }
   };
 
   const validatePhoneNumber = (phoneNumber) => {
@@ -40,7 +90,7 @@ const SignUp = () => {
     validatePhoneNumber(event.target.value);
   };
 
-  const validationEmail = (email) => {
+  const validateEmail = (email) => {
     let emailRes = false;
     if (email !== '') {
       emailRes = !validator.isEmail(email);
@@ -49,10 +99,10 @@ const SignUp = () => {
   };
   const handleSetEmail = (event) => {
     setEmail(event.target.value);
-    validationEmail(event.target.value);
+    validateEmail(event.target.value);
   };
 
-  const validationPassword = (password) => {
+  const validatePassword = (password) => {
     let passLengthValid = false;
     let passCharsValid = false;
     if (password !== '') {
@@ -70,10 +120,10 @@ const SignUp = () => {
   };
   const handleSetPassword = (event) => {
     setPassword(event.target.value);
-    validationPassword(event.target.value);
+    validatePassword(event.target.value);
   };
 
-  const validationZipCode = (zipCode) => {
+  const validateZipCode = (zipCode) => {
     let zipRes = false;
     if (zipCode !== '') {
       zipRes = !validator.isPostalCode(zipCode, 'any');
@@ -82,7 +132,7 @@ const SignUp = () => {
   };
   const handleZipCodeChange = (event) => {
     setZipCode(event.target.value);
-    validationZipCode(event.target.value);
+    validateZipCode(event.target.value);
   };
 
   const validateFirstName = (name) => {
@@ -110,12 +160,19 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <Modal
-        open={show}
-        onClose={close}
-      >
-        <Grid container spacing={3} style={{backgroundColor: '#fff'}} direction='column' alignItems='center'>
+    <Modal
+      open={show}
+      onClose={close}
+      style={{marginLeft: 25 + '%', width: 50 + '%', marginRight: 25 + '%', top: 100 + 'px'}}
+      id='sign-up-modal'
+    >
+      <Card>
+        <Grid
+          container
+          spacing={3}
+          style={{backgroundColor: '#fff', padding: 20 + 'px'}}
+          direction='column'
+        >
           <Grid item xs={12}>
             <h2>
               Sign Up
@@ -148,11 +205,20 @@ const SignUp = () => {
             <TextField required id='sign-up-zipCode' label='Zip Code' onChange={(event) => { handleZipCodeChange(event); }} error={zipCodeError}/>
           </Grid>
           <Grid item xs={12}>
-            <Button variant='contained'>Sign Up</Button>
+            <TextField select id='sign-up-seller-toggle' defaultValue='buyer' onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}>
+              <option value='buyer'>Buyer</option>
+              <option value='seller'>Seller</option>
+            </TextField>
+          </Grid>
+          <Grid item xs={12}>
+            {signInError ? <p style={{color: 'red'}}>There was an error creating your account. Please check the account details and try again!</p> : accountExists ? <p style={{color: 'red'}}>The email you used is associated with an account. Please sign in!</p> : accountCreated ? <p>Account created. Please sign in!</p> : null}
+          </Grid>
+          <Grid item xs={12}>
+            <Button variant='contained' onClick={() => { onSignUpSubmit(); }}>Sign Up</Button>
           </Grid>
         </Grid>
-      </Modal>
-    </div >
+      </Card>
+    </Modal>
   );
 };
 

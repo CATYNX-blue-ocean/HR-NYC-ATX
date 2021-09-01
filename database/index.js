@@ -9,7 +9,7 @@ db.once('open', function () {
 });
 
 const productListing = mongoose.Schema({
-  productID: Number, //OR Obj_id
+  id: Number, //OR Obj_id
   productName: String,
   productCategory: String,
   productDescription: String,
@@ -20,7 +20,7 @@ const productListing = mongoose.Schema({
 });
 
 const serviceListing = mongoose.Schema({
-  serviceID: Number, //OR Obj_id
+  id: Number, //OR Obj_id
   serviceName: String,
   serviceCategory: String,
   //categoryImage: String, //CAN BE PUT IN FRONTEND
@@ -40,8 +40,8 @@ const sellerSchema = mongoose.Schema({
   password: String, // hashed
   createdAt: Date,
   orders: [Number],
-  products: productListing,
-  services: serviceListing,
+  products: [productListing],
+  services: [serviceListing],
 });
 
 const buyerSchema = mongoose.Schema({
@@ -80,11 +80,12 @@ const getSellerLogin = async (email) => {
   return await Sellers.findOne({ sellerEmail: email });
 };
 
+const getAllCategories = () => {
+  return Categories.find({});
+};
+
 module.exports = db;
 
-// const getSellerLogin = async (name) =>  {
-//   return await db.Sellers.findOne({sellerName: name });
-// }
 const getProductList = async (cb) => {
   await db
     .collection('productListings')
@@ -96,6 +97,7 @@ const getProductList = async (cb) => {
       cb(null, result);
     });
 };
+
 const getServiceList = async (cb) => {
   await db
     .collection('serviceListings')
@@ -108,12 +110,10 @@ const getServiceList = async (cb) => {
     });
 };
 
-const getServiceCategory = async (category) => {
-  var allSellers = await Sellers.find();
-  console.log('test two ', allSellers);
-  return allSellers;
+const getServiceCategory = (category) => {
+  //get all sellers that have a service in that category
+  return Sellers.find({ 'services.serviceCategory': category });
 };
-//getServiceCategory ('Plumbing'); //consult with Justin in the morning Error: 'Method "collection.find()" accepts at most two arguments'
 
 const getBuyerLogin = async (buyerEmail) => {
   return await db.buyerSchema.find({ buyerEmail });
@@ -141,7 +141,7 @@ const saveNewBuyer = (buyerInfo) => {
 
 const saveNewSeller = (sellerInfo) => {
   console.log(sellerInfo);
-  const newSeller = new Sellers({
+  const newOrder = new Sellers({
     sellerName: sellerInfo.sellerName,
     sellerEmail: sellerInfo.sellerEmail,
     sellerAddress: sellerInfo.sellerAddress,
@@ -157,22 +157,77 @@ const saveNewSeller = (sellerInfo) => {
   newSeller.save();
 };
 
+const searchForProducts = (key, CB) => {
+  //====V1======FIND MATCHING SELLERS=======
+  // Sellers.find(
+  //   {'products.productName': { $regex : '^' + key, $options: 'i'}}, //{'$regex': keyword, "$options": "i"}
+  //   (err, data) => {
+  //     if (err) {
+  //       console.log('ERR IN DB ', err)
+  //       CB(err);
+  //     }
+  //     console.log('SUCCESS IN DB ', data);
+  //     CB(null, data);
+  //   }
+  // );
+  //====V2======FIND MATCHING SELLERS WITH ALL PRODUCTS====
+  Sellers.find({ 'products.productName': { $regex: key, $options: 'i' } })
+    .populate({ path: 'products' })
+    .exec((err, data) => {
+      if (err) {
+        console.log('ERR IN DB ', err);
+        CB(err);
+      }
+      console.log('SUCCESS IN DB ', data);
+      CB(null, data);
+    });
+  //====V3=======TRY ONLY MATCHING PRODUCT INFO ========
+};
+
+const searchForServices = (key, CB) => {
+  Sellers.find({ 'services.serviceCategory': { $regex: key, $options: 'i' } })
+    .populate({ path: 'services' })
+    .exec((err, data) => {
+      if (err) {
+        console.log('ERR IN DB ', err);
+        CB(err);
+      }
+      console.log('SUCCESS IN DB ', data);
+      CB(null, data);
+    });
+};
+
 const catFind = async (name) => {
   return await Categories.find({});
 };
 
+const saveNewOrder = (orderInfo) => {
+  const newOrder = new Orders({
+    orderID: orderInfo.orderId,
+    sellerName: orderInfo.sellerName,
+    buyerName: orderInfo.buyerName,
+    productID: orderInfo.productID,
+    shippingAddress: orderInfo.shippingAddress,
+    paymentInfo: orderInfo.paymentInfo,
+  });
+  return newOrder.save();
+};
+
 module.exports = {
-  // getSellerLogin,
-  //getSellerLogin,
+  getSellerLogin,
   getServiceCategory,
+  getAllCategories,
   getBuyerLogin,
   saveNewBuyer,
   checkForBuyer,
   checkForSeller,
   saveNewSeller,
+  searchForProducts,
+  //searchForServices,
   getServiceList,
   getProductList,
   catFind,
+  saveNewOrder,
 };
 
 //buyer = 'undefined undefined';
