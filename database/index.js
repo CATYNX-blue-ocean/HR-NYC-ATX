@@ -9,7 +9,7 @@ db.once('open', function () {
 });
 
 const productListing = mongoose.Schema({
-  productID: Number, //OR Obj_id
+  id: Number, //OR Obj_id
   productName: String,
   productCategory: String,
   productDescription: String,
@@ -20,7 +20,7 @@ const productListing = mongoose.Schema({
 });
 
 const serviceListing = mongoose.Schema({
-  serviceID: Number, //OR Obj_id
+  id: Number, //OR Obj_id
   serviceName: String,
   serviceCategory: String,
   //categoryImage: String, //CAN BE PUT IN FRONTEND
@@ -40,8 +40,8 @@ const sellerSchema = mongoose.Schema({
   password: String, // hashed
   createdAt: Date,
   orders: [Number],
-  products: productListing,
-  services: serviceListing,
+  products: [productListing],
+  services: [serviceListing],
 });
 
 const buyerSchema = mongoose.Schema({
@@ -77,6 +77,11 @@ const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
 const Services = mongoose.model('Services', serviceListing);
 
+const getSellerLogin = async( email ) =>  {
+  return await Sellers.findOne({ sellerEmail: email });
+}
+
+module.exports = db;
 
 const getProductList = async (cb) => {
   await db.collection('productListings').find({}).toArray(function(err, result) {
@@ -95,16 +100,9 @@ const getServiceList = async (cb) => {
   });
 }
 
-const getSellerLogin = async (email) => {
-  return await db.Sellers.findOne({ sellerEmail: email });
+const getServiceCategory = (category) =>  { //get all sellers that have a service in that category
+  return Sellers.find({"services.serviceCategory": category})
 };
-
-const getServiceCategory = async (category) =>  {
-  var allSellers = await Sellers.find();
-  console.log('test two ', allSellers);
-  return allSellers;
-}
-//getServiceCategory ('Plumbing'); //consult with Justin in the morning Error: 'Method "collection.find()" accepts at most two arguments'
 
 const getBuyerLogin = async (buyerEmail) => {
   return await db.buyerSchema.find({ buyerEmail })
@@ -143,8 +141,8 @@ const saveNewSeller = (sellerInfo) => {
     password: sellerInfo.password,
     createdAt: sellerInfo.createdAt,
     orders: sellerInfo.orders,
-    products: sellerInfo.products,
-    services: sellerInfo.services,
+    products: [],
+    services: []
   });
 
   newSeller.save();

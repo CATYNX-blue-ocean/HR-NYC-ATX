@@ -111,7 +111,7 @@ app.post('/buyersignup', ( req, res ) => {
 //post for seller account sign up
 app.post('/sellersignup', (req, res)=>{
   const newSeller = req.body;
-  console.log(newSeller);
+
   database.checkForSeller( newSeller.sellerEmail )
     .then( (doTheyExist) => {
       if (doTheyExist) {
@@ -122,6 +122,20 @@ app.post('/sellersignup', (req, res)=>{
         res.Status = 201;
         res.send('Account Created. Please log in.');
       }
+    })
+    .catch( () => {
+      res.status = 401;
+      res.send('There was an error with your request, Please try again or contact an administrator.');
+    });
+});
+
+app.get('/SellersInCategory', (req, res)=>{
+  const queryCategory = req.query.category;
+
+  database.getServiceCategory( queryCategory )
+    .then( (doTheyExist) => {
+      res.Status = 200;
+      res.send(doTheyExist);
     })
     .catch( () => {
       res.status = 401;
