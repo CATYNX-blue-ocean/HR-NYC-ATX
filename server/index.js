@@ -15,44 +15,69 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/../dist'));
 
+//landing page
+app.get('/landing', function (req, res) {
+
+  database.catFind()
+    .then ((data)=> { res.json(data); })
+    .catch ((err)=> { res.sendStatus(500); });
+});
+
+
+
 // Need this so that react router works
-// app.get('/*', function (req, res) {
-//   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-// });
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+app.get('/sign-in', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+app.get('/sign-up', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+app.get('/search', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+app.get('/cart', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+app.get('/checkout', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
 app.get('/products', function (req, res) {
-  db.collection('productListings').find({}).toArray(function(err, result) {
+  database.getProductList( function (err, response) {
     if (err) {
-      throw err;
+      console.log(err);
     }
-    res.send(result);
+    res.send(response);
   });
 });
 app.get('/services', function (req, res) {
-  db.collection('serviceListings').find({}).toArray(function(err, result) {
+  database.getServiceList( function (err, response) {
     if (err) {
-      throw err;
+      console.log(err);
     }
-    res.send(result);
+    res.send(response);
   });
 });
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
-  console.log(req.body);
-  const seller = req.body.sellerEmail;
+  const seller = req.query.sellerEmail;
   database.getSellerLogin( seller )
     .then( (sellerInfo) => {
       if (sellerInfo === null) {
         res.Status = 400;
         res.send('User Not Found.');
       } else {
+        sellerInfo.password = '';
         res.Status = 200;
         res.send(sellerInfo);
       }
     } )
     .catch((err)=> {
-
+      res.status = 401;
+      res.send('There was an error with your request, Please try again or contact an administrator.');
     });
-
 });
 
 //get to make sure buyer has an account while logging in
@@ -102,6 +127,7 @@ app.post('/sellersignup', (req, res)=>{
     });
 });
 
+
 // user search for products/services
 app.get('/product/search', (req, res) => {
   let keyword = req.query.keyword;
@@ -116,6 +142,21 @@ app.get('/product/search', (req, res) => {
       res.status(200).json(result);
     }
   });
+
+app.get('/SellersInCategory', (req, res)=>{
+  const queryCategory = req.query.category;
+  console.log(queryCategory);
+  database.getServiceCategory( queryCategory )
+    .then( (doTheyExist) => {
+      console.log(doTheyExist);
+      res.Status = 200;
+      res.send(doTheyExist);
+    })
+    .catch( () => {
+      res.status = 401;
+      res.send('There was an error with your request, Please try again or contact an administrator.');
+    });
+
 });
 
 app.listen(PORT, () => {

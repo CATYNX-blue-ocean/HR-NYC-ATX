@@ -1,7 +1,7 @@
 import React from 'react';
-import DeliveryBlock from './DeliveryChoiceBlock.jsx';
+import DeliveryBlock from './delivery_choice/DeliveryChoiceBlock.jsx';
 import Grid from '@material-ui/core/Grid';
-
+import OrderSummary from './order_summary/OrderSummary.jsx';
 const Checkout = () => {
   return (
     <div>
@@ -21,8 +21,17 @@ const Checkout = () => {
         >
           <DeliveryBlock />
         </Grid>
-        <Grid item xs={5}>
-          <h3>Order summary </h3>
+        <Grid
+          item
+          xs={5}
+          style={{
+            border: '1px solid #5E2EBA',
+            boxSizing: 'border-box',
+            borderRadius: '4px',
+            // padding: '0px',
+          }}
+        >
+          <OrderSummary />
         </Grid>
       </Grid>
     </div>
