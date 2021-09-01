@@ -142,6 +142,7 @@ app.get('/product/search', (req, res) => {
       res.status(200).json(result);
     }
   });
+});
 
 app.get('/SellersInCategory', (req, res)=>{
   const queryCategory = req.query.category;
@@ -173,6 +174,21 @@ app.get('/service/search', (req, res) => {
     }
   });
 });
+
+app.get('/Categories', (req, res)=>{
+  database.getAllCategories()
+    .then( (list) => {
+      console.log(list);
+      res.Status = 200;
+      res.send(list);
+    })
+    .catch( () => {
+      res.status = 401;
+      res.send('There was an error with your request, Please try again or contact an administrator.');
+    });
+
+});
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

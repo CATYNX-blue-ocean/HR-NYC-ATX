@@ -80,6 +80,9 @@ const Services = mongoose.model('Services', serviceListing);
 const getSellerLogin = async( email ) =>  {
   return await Sellers.findOne({ sellerEmail: email });
 }
+const getAllCategories = () =>  {
+  return Categories.find({});
+}
 
 module.exports = db;
 
@@ -164,19 +167,19 @@ const searchForProducts = (key, CB) => {
   );
 };
 
-const searchForServices = (key, CB) => {
-  Sellers.find(
-    {'services.serviceName': { $regex : '^' + key, $options: 'i' }, //{'$regex': keyword, "$options": "i"}
-    (err, data) => {
-      if (err) {
-        console.log('ERR IN DB ', err)
-        CB(err);
-      }
-      console.log('SUCCESS IN DB ', data);
-      CB(null, data);
-    }
-  );
-};
+// const searchForServices = (key, CB) => {
+//   Sellers.find(
+//     {'services.serviceName': { $regex : '^' + key, $options: 'i' }, //{'$regex': keyword, "$options": "i"}
+//     (err, data) => {
+//       if (err) {
+//         console.log('ERR IN DB ', err)
+//         CB(err);
+//       }
+//       console.log('SUCCESS IN DB ', data);
+//       CB(null, data);
+//     }
+//   );
+// };
 
 const catFind = async (name) => {
   return await Categories.find({});
@@ -188,13 +191,14 @@ const catFind = async (name) => {
 module.exports = {
   getSellerLogin,
   getServiceCategory,
+  getAllCategories,
   getBuyerLogin,
   saveNewBuyer,
   checkForBuyer,
   checkForSeller,
   saveNewSeller,
   searchForProducts,
-  searchForServices,
+  //searchForServices,
   getServiceList,
   getProductList,
   catFind
