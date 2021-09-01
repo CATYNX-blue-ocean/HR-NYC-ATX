@@ -12,20 +12,22 @@ import Overview from './ProductDetails/PD-Overview.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
 
-
 const App = () => {
   // example of consuming state
   const myVariable = useStore((state) => state.exampleStateField);
-  console.log(myVariable);
   const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
-
   return (
     <>
       <button onClick={exampleChangeFn}>change state</button>{' '}
       {/* example of changing state  */}
       <div className="landing-page-main-div">
         <Router>
-          <Grid container direction="column" justifyContent="center" alignItems="center">
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
             <Grid item width="1">
               <NavBar />
             </Grid>
@@ -47,7 +49,7 @@ const App = () => {
               </Route>
 
               <Route exact path="/product/?id=2">
-                <Overview product={exampleData.exampleData}/>
+                <Overview product={exampleData.exampleData} />
               </Route>
 
               <Route exact path="/checkout">
@@ -69,6 +71,7 @@ const App = () => {
     </>
   );
 };
+
 
 export default App;
 //ReactDOM.render(<App />, document.getElementById('app'));
