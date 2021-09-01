@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Grid, Paper, Card, CardHeader, CardContent, CardMedia, Container, Typography, TextField } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import useDataStore from '../../zustandStore.js';
@@ -9,12 +9,19 @@ const CartList = () => {
 
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
+  const removeFromCart = useDataStore((state) => state.removeFromCart);
+  const [cartUpdate, toggleCartUpdate] = useState(false);
+  const removeItem = (e) => {
+    const id = e.target.id;
+    removeFromCart(id);
+    toggleCartUpdate(!cartUpdate);
+  };
 
+  useEffect(() => {}, [cartUpdate]);
 
   return (
     <Container style={{padding: '25px'}}>
       <Grid container>
-
         <Grid item xs={7}>
           <Paper elevation={2}>
             <h3>Item</h3>
@@ -71,7 +78,6 @@ const CartList = () => {
                     inputProps={{min: 0, max: 10}}
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
-
                   />
                 </Grid>
 
@@ -81,7 +87,7 @@ const CartList = () => {
                   </Typography>
                 </Grid>
                 <Grid container item xs={12} justifyContent="flex-end">
-                  <Delete />
+                  <Delete id={product.id} onClick={removeFromCart}/>
                 </Grid>
 
               </Grid>

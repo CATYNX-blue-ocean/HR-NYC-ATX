@@ -33,7 +33,6 @@ const Cart = () => {
           >
             <CartList />
           </Grid>
-
           <Grid
             item
             xs={5}
