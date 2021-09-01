@@ -151,6 +151,7 @@ app.get('/product/search', (req, res) => {
     }
   });
 });
+
 // user search for services
 app.get('/service/search', (req, res) => {
   let keyword = req.query.keyword;
@@ -175,6 +176,7 @@ app.get('/service/search', (req, res) => {
   });
 });
 
+
 app.get('/SellersInCategory', (req, res)=>{
   const queryCategory = req.query.category;
   console.log(queryCategory);
@@ -190,6 +192,21 @@ app.get('/SellersInCategory', (req, res)=>{
     });
 
 });
+
+app.get('/Categories', (req, res)=>{
+  database.getAllCategories()
+    .then( (list) => {
+      console.log(list);
+      res.Status = 200;
+      res.send(list);
+    })
+    .catch( () => {
+      res.status = 401;
+      res.send('There was an error with your request, Please try again or contact an administrator.');
+    });
+
+});
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

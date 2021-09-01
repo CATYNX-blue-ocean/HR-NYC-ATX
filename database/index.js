@@ -80,6 +80,9 @@ const Services = mongoose.model('Services', serviceListing);
 const getSellerLogin = async( email ) =>  {
   return await Sellers.findOne({ sellerEmail: email });
 }
+const getAllCategories = () =>  {
+  return Categories.find({});
+}
 
 module.exports = db;
 
@@ -180,6 +183,7 @@ const searchForProducts = (key, CB) => {
 
 };
 
+
 const searchForServices = (key, CB) => {
   Sellers.find({'services.serviceCategory': { $regex : key, $options: 'i'}})
     .populate({path: 'services'})
@@ -205,13 +209,14 @@ const catFind = async (name) => {
 module.exports = {
   getSellerLogin,
   getServiceCategory,
+  getAllCategories,
   getBuyerLogin,
   saveNewBuyer,
   checkForBuyer,
   checkForSeller,
   saveNewSeller,
   searchForProducts,
-  searchForServices,
+  //searchForServices,
   getServiceList,
   getProductList,
   catFind
