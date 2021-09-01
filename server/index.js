@@ -51,20 +51,52 @@ app.get('/checkout', function (req, res) {
 });
 
 app.get('/products', function (req, res) {
+<<<<<<< HEAD
   db.collection('productListings').find({}).toArray(function(err, result) {
+=======
+  database.getProductList( function (err, result) {
+>>>>>>> dev
     if (err) {
       throw err;
     }
+<<<<<<< HEAD
     res.send(result);
+=======
+    var newProductList = [];
+
+    result.forEach((seller) => {
+      seller.products.forEach((product) => {
+        product['location'] = seller.location;
+        newProductList.push(product);
+      });
+    });
+    res.send(newProductList);
+>>>>>>> dev
   });
 });
 
 app.get('/services', function (req, res) {
+<<<<<<< HEAD
   db.collection('serviceListings').find({}).toArray(function(err, result) {
+=======
+  database.getServiceList( function (err, result) {
+>>>>>>> dev
     if (err) {
       throw err;
     }
+<<<<<<< HEAD
     res.send(result);
+=======
+    var serviceList = [];
+    var jsSellers = result.map((r) => r.toObject());
+    jsSellers.forEach((seller) => {
+      seller.services.forEach((service) => {
+        service['location'] = seller.location;
+        serviceList.push(service);
+      });
+    });
+    res.send(serviceList);
+>>>>>>> dev
   });
 });
 
