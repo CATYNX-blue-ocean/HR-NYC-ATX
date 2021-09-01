@@ -1,38 +1,41 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { Link, BrowserRouter } from 'react-router-dom';
 
 const CategoriesCards = (props) => {
-  console.log('in catergories ', props.categoryTypes, );
-
   return (
-    <div>
+    <Grid>
       <Card>
         <CardActionArea>
           <CardMedia
             component="img"
-            alt="Contemplative Reptile"
-            height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-            title="Contemplative Reptile"
+            alt="ProductOrService"
+            height="160"
+            image={props.categoryName === 'Category' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv6o9PPkVCRB6GPp0EfTV774kZBDnXVdiBIw&usqp=CAU' : 'https://www.oshatrainingbootcamp.com/wp-content/uploads/2019/06/services.png' }
           />
           <CardContent>
-            <Typography helvetica variant="h5" component="h2">
-            { props.categoryName }
+            <Typography helvetica="true" variant="h5" component="h2">
+              {props.categoryName}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-            </Typography>
+            {props.categoryTypes.map((categories, i) => (
+              <Typography key={i} variant="body2" color="textSecondary" component="p">
+                <BrowserRouter>
+                  <Link to={`/category/${ categories.category }`}>
+                    {categories.category}
+                  </Link>
+                </BrowserRouter>
+              </Typography>
+            ))}
           </CardContent>
         </CardActionArea>
       </Card>
-    </div>
+    </Grid>
   );
 };
 

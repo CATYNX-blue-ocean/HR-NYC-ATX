@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Container } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import useDataStore from '../zustandStore';
 import CategoriesCards from './CategoriesCards';
 
@@ -15,16 +15,18 @@ const ProdServCategories = (props) => {
   console.log(categoryArray);
 
   return (
-    <Container>
-      <div className="ProdServCategories">
-        {categoryArray.map( type => {
-          const categoryName = type[0];
-          return (
-            <CategoriesCards categoryTypes={type} categoryName={categoryName} />
-          );
-        })}
-      </div>
-    </Container>
+    <Grid
+      container
+      direction='row'
+      justify='space between'>
+      {categoryArray.map( (type, i) => {
+        const categoryName = type[0];
+        return (
+          <CategoriesCards key={i}categoryTypes={type} categoryName={categoryName} />
+        );
+      })}
+
+    </Grid>
   );
 };
 
