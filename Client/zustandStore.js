@@ -2,11 +2,16 @@ import create from 'zustand';
 import { exampleData } from '../exampleData';
 
 const useDataStore = create((set) => ({
+  productCategories: [],
+  servicesCategories: [],
   productData: exampleData.productListings,
   serviceData: exampleData.serviceListings,
   currentProduct: exampleData.productListings[0],
   currentProductCategory: exampleData.productListings[0].productCategory,
   currentServiceCategory: exampleData.serviceListings[0].serviceCategory,
+  setCategoryInformation: (array1, array2) => set((state) => {
+    return {productCategories: array1, servicesCategories: array2};
+  }),
   setProductCategory: (category) =>
     set((state) => {
       let categorisedPoducts;
