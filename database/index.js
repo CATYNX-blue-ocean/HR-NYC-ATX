@@ -205,10 +205,6 @@ const catFind = async (name) => {
 
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> d945250b7b9045d27350e91d44b6ad222b81cd57
 module.exports = {
   getSellerLogin,
   getServiceCategory,

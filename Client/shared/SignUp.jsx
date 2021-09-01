@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
 import validator from 'validator';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -25,16 +25,55 @@ const SignUp = () => {
   const [firstNameError, setFirstNameError] = useState(false);
   const [lastNameError, setLastNameError] = useState(false);
   const [isSeller, setIsSeller] = useState(false);
+  const [signInError, setSignInError] = useState(false);
+  const [accountExists, setAccountExists] = useState(false);
+  const [accountCreated, setAccountCreated] = useState(false);
 
   let close = (event) => {
     history.goBack();
   };
 
+  let checkResponse = (res) => {
+    if (res.data === 'There was an error with your request, Please try again or contact an administrator.') {
+      setSignInError(true);
+    } else if (res.data === 'Account Exists. Please log in.') {
+      setAccountExists(true);
+    } else if (res.data === 'Account Created. Please log in.') {
+      setAccountCreated(true);
+    }
+  };
+
   const onSignUpSubmit = () => {
     if (isSeller) {
       let userInfo = {
-
+        sellerName: firstName + ' ' + lastName,
+        sellerEmail: email,
+        sellerAddress: zipCode,
+        location: [],
+        sellerPhone: phoneNumber,
+        password: password,
+        createdAt: new Date(),
+        orders: [],
+        products: [],
+        services: []
       };
+      axios.post('/sellersignup', userInfo)
+        .then((res) => {
+          checkResponse(res);
+        });
+    } else {
+      let userInfo = {
+        buyerName: firstName + ' ' + lastName,
+        password: password,
+        buyerEmail: email,
+        buyerPhone: phoneNumber,
+        buyerAddress: zipCode,
+        orders: []
+      };
+      axios.post('/buyersignup', userInfo)
+        .then((res) => {
+          checkResponse(res);
+        });
     }
   };
 
@@ -124,10 +163,16 @@ const SignUp = () => {
     <Modal
       open={show}
       onClose={close}
-      style={{marginLeft: 30 + 'px'}}
+      style={{marginLeft: 25 + '%', width: 50 + '%', marginRight: 25 + '%', top: 100 + 'px'}}
+      id='sign-up-modal'
     >
-      <Paper >
-        <Grid container spacing={3} style={{backgroundColor: '#fff'}} direction='column' styles={{alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
+      <Card>
+        <Grid
+          container
+          spacing={3}
+          style={{backgroundColor: '#fff', padding: 20 + 'px'}}
+          direction='column'
+        >
           <Grid item xs={12}>
             <h2>
               Sign Up
@@ -166,10 +211,13 @@ const SignUp = () => {
             </TextField>
           </Grid>
           <Grid item xs={12}>
-            <Button variant='contained'>Sign Up</Button>
+            {signInError ? <p style={{color: 'red'}}>There was an error creating your account. Please check the account details and try again!</p> : accountExists ? <p style={{color: 'red'}}>The email you used is associated with an account. Please sign in!</p> : accountCreated ? <p>Account created. Please sign in!</p> : null}
+          </Grid>
+          <Grid item xs={12}>
+            <Button variant='contained' onClick={() => { onSignUpSubmit(); }}>Sign Up</Button>
           </Grid>
         </Grid>
-      </Paper >
+      </Card>
     </Modal>
   );
 };
