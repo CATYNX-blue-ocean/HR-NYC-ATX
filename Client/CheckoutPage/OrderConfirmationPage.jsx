@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../shared/NavBar.jsx';
 import useStyles from '../shared/styles.js';
 import { Button } from '@material-ui/core';
-import happyCart from './happy_cart.png';
+import happyCart from './happy_cart';
 
 //this will correspond to '/orderpost' endpoint
 const OrderConfirmationPage = (props) => {
