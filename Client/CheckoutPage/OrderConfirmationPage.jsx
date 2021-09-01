@@ -15,7 +15,7 @@ const OrderConfirmationPage = (props) => {
   return (
     <>
       <NavBar/>
-      <img src="./happy_cart.png">Placeholder for Shopping Bag Image</img>
+      <img src={happyCart}>Placeholder for Shopping Bag Image</img>
       <h3>THANK YOU FOR SHOPPING WITH US</h3>
       <div>Check your email for order confirmation</div>
       <Button onClick={handleClick}>Shop Again</Button>
