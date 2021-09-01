@@ -102,6 +102,23 @@ app.post('/sellersignup', (req, res)=>{
     });
 });
 
+// user search for products/services
+app.get('/product/search', (req, res) => {
+  let keyword = req.query.keyword;
+  //console.log('KEYWORD IN SERVER ', typeof keyword);
+  database.searchForProducts(keyword, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(404);
+    }
+    if (!result.length) {
+      res.json('No matching products for your location.');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

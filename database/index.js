@@ -138,6 +138,20 @@ const saveNewSeller = ( sellerInfo ) => {
 
 };
 
+const searchForProducts = (key, CB) => {
+  Sellers.find(
+    {'products.productName': { $regex : /key/i } }, //{'$regex': keyword, "$options": "i"}
+    (err, data) => {
+      if (err) {
+        console.log('ERR IN DB ', err)
+        CB(err);
+      }
+      console.log('SUCCESS IN DB ', data);
+      CB(null, data);
+    }
+  );
+};
+
 
 module.exports = {
   //getSellerLogin,
@@ -146,7 +160,8 @@ module.exports = {
   saveNewBuyer,
   checkForBuyer,
   checkForSeller,
-  saveNewSeller
+  saveNewSeller,
+  searchForProducts
 };
 
 //buyer = 'undefined undefined';
