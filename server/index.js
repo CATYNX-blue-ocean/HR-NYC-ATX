@@ -102,8 +102,23 @@ app.post('/sellersignup', (req, res)=>{
     });
 });
 
-// user search for products/services
+// user search for products
 app.get('/product/search', (req, res) => {
+  let keyword = req.query.keyword;
+  database.searchForProducts(keyword, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(404);
+    }
+    if (!result.length) {
+      res.json('No matching products for your location.');
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+// user search for services
+app.get('/service/search', (req, res) => {
   let keyword = req.query.keyword;
   database.searchForProducts(keyword, (err, result) => {
     if (err) {
