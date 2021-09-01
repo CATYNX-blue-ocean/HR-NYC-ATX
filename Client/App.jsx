@@ -70,16 +70,12 @@ const App = () => {
                 <ProductsContainer />
               </Route>
 
-              <Route exact path="/order-confirmation">
+              <Route exact path="/confirmation">
                 <OrderConfirmationPage/>
               </Route>
 
               <Route exact path="/services">
                 <ServicesContainer />
-              </Route>
-
-              <Route exact path="/confirmation">
-                <OrderConfirmation />
               </Route>
 
               <Route exact path="/">
