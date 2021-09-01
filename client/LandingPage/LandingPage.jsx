@@ -13,10 +13,6 @@ const LandingPage = function () {
   const productCategories = useDataStore((state) => state.productCategories);
   const servicesCategories = useDataStore((state) => state.servicesCategories);
 
-  console.log(`products: ${productCategories}`);
-  console.log(`services: ${servicesCategories}`);
-
-
   useEffect(() => {
     axios.get('http://localhost:3000/landing')
       .then((results) => {
