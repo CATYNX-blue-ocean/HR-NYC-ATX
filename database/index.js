@@ -77,12 +77,13 @@ const Orders = mongoose.model('Orders', orderSchema);
 const Categories = mongoose.model('Categories', categoriesSchema);
 const Services = mongoose.model('Services', serviceListing);
 
-const getSellerLogin = async( email ) =>  {
-  return await Sellers.findOne({ sellerEmail: email });
-}
-const getAllCategories = () =>  {
+const getSellerLogin = async ( email ) => {
+  return await Sellers.findOne({ sellerEmail: email })
+};
+
+const getAllCategories = () => {
   return Categories.find({});
-}
+};
 
 module.exports = db;
 
@@ -91,9 +92,9 @@ const getProductList = async (cb) => {
     if (err) {
       return err;
     }
-    cb(null,result);
+    cb(null, result);
   });
-}
+};
 
 const getServiceList = async (cb) => {
   await db.collection('serviceListings').find({}).toArray(function (err, result) {
@@ -102,23 +103,23 @@ const getServiceList = async (cb) => {
     }
     cb(null, result);
   });
-}
+};
 
-const getServiceCategory = (category) =>  { //get all sellers that have a service in that category
-  return Sellers.find({"services.serviceCategory": category})
+const getServiceCategory = (category) => { //get all sellers that have a service in that category
+  return Sellers.find({"services.serviceCategory": category});
 };
 
 const getBuyerLogin = async (buyerEmail) => {
-  return await db.buyerSchema.find({ buyerEmail })
+  return await db.buyerSchema.find({ buyerEmail });
 };
 
 
 const checkForBuyer = (buyerEmail) => {
-  return Buyers.exists({ buyerEmail })
+  return Buyers.exists({ buyerEmail });
 };
 
 const checkForSeller = (sellerEmail) => {
-  return Sellers.exists({ sellerEmail })
+  return Sellers.exists({ sellerEmail });
 };
 
 const saveNewBuyer = (buyerInfo) => {
