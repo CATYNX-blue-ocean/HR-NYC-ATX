@@ -17,6 +17,38 @@ const ServicesContainer = ({ }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(9);
 
+  const [sortedServices, setSortedServices] = useState(services);
+
+  //change sorting of products
+  const sortServices = (parameter) => {
+    let sortedList = services[0];
+    if (parameter === 'rating') {
+      sortedList.sort( (firstEl, secondEl) => {
+        let rate1 = firstEl.ratings.reduce((accumulator, currentVal) => accumulator + currentVal, 0) / firstEl.ratings.length;
+        let rate2 = secondEl.ratings.reduce((accumulator, currentVal) => accumulator + currentVal, 0) / secondEl.ratings.length;
+        if (rate1 > rate2 || ( isNaN(rate2) && rate1 > 0)) {
+          return -1;
+        } else if (rate1 < rate2 || ( isNaN(rate1) && rate2 > 0)) {
+          return 1;
+        } else if ( isNaN(rate1) && isNaN(rate2)) {
+          return 0;
+        }
+      });
+    } else if (parameter === 'name') {
+      sortedList.sort( (firstEl, secondEl) => {
+        if (firstEl.serviceName > secondEl.serviceName) {
+          return 1;
+        } else if (firstEl.serviceName < secondEl.serviceName) {
+          return -1;
+        } else if (firstEl.serviceName === secondEl.serviceName) {
+          return 0;
+        }
+      });
+    } //else if (parameter === 'location') {
+    //}
+    setSortedServices([sortedList]);
+  };
+
   //change page
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);

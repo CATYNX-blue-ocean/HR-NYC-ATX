@@ -6,6 +6,7 @@ import useStore from './zustandStore';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
+import ServicesContainer from './ServicesPage/ServicesContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
@@ -64,7 +65,7 @@ const App = () => {
         </Router>
       </div>
       {/* added products container down here to test rendering */}
-      {/* <ProductsContainer/> */}
+      <ServicesContainer/>
       {/* <div>
         <Overview product={exampleData.exampleData}/>
       </div> */}
