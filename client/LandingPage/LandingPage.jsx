@@ -10,11 +10,6 @@ import useDataStore from '../zustandStore.js';
 const LandingPage = function () {
 
   const setCategoryInformation = useDataStore((state) => state.setCategoryInformation);
-  const productCategories = useDataStore((state) => state.productCategories);
-  const servicesCategories = useDataStore((state) => state.servicesCategories);
-
-  console.log(productCategories);
-  console.log(servicesCategories);
 
   axios.get('http://localhost:3000/landing')
     .then((results) => {

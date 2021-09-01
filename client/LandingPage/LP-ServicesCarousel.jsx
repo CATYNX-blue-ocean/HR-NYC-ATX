@@ -17,7 +17,7 @@ const ServicesCarousel = function (props) {
       </div>
       <Carousel itemsToShow={3} pagination={false}>
         {servicesCategories.map((item) => <CategoryCardServices key={item._id}
-          photo={item.image} name={item.category} />)}
+          photo={item.image} name={item.category} description={item.description} />)}
       </Carousel>
     </div>
   );
