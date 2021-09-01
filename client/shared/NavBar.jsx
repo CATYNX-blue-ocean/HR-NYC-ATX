@@ -10,9 +10,12 @@ import useStyles from './styles.js';
 import axios from 'axios';
 import Radio from '@material-ui/core/Radio';
 import useDataStore from '../ProductsPage/tempZustand.js';
+import useDataStore from '../zustandStore.js';
 
 const NavBar = () => {
   const classes = useStyles();
+  const cart = useDataStore((state) => state.cart);
+  const cartNumber = cart.length;
   const [searchInput, setSearchInput] = useState('');
   const [searchType, setSearchType] = useState('product');
   let isProduct = false;
@@ -41,6 +44,7 @@ const NavBar = () => {
         console.error(err);
       });
   };
+
 
   return (
     <div className={classes.grow}>
@@ -99,7 +103,7 @@ const NavBar = () => {
             </Typography>
           </div>
           <IconButton style={{marginRight: '5%'}} aria-label="show new notifications" color="inherit">
-            <Badge badgeContent={1} color="secondary">
+            <Badge badgeContent={cartNumber} color="secondary">
               <Link to="/cart"><ShoppingCartOutlinedIcon /></Link>
             </Badge>
           </IconButton>
