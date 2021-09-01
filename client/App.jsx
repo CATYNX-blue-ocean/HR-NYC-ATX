@@ -12,6 +12,13 @@ import Overview from './ProductDetails/PD-Overview.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
 
+
+
+
+import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
+
+
+
 const App = () => {
   // example of consuming state
   const myVariable = useStore((state) => state.exampleStateField);
@@ -62,6 +69,9 @@ const App = () => {
             </Grid>
           </Grid>
         </Router>
+        <div>
+          <ProdServCategories />
+        </div>
       </div>
       {/* added products container down here to test rendering */}
       {/* <ProductsContainer/> */}
