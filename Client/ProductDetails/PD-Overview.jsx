@@ -2,21 +2,23 @@ import React from 'react';
 import Images from './PD-Images.jsx';
 import Info from './PD-Info.jsx';
 import Selector from './PD-Selector.jsx';
-
+import useDataStore from '../zustandStore.js';
 
 
 const Overview = (props) => {
   console.log(props);
+  //to use Zustand instead of props
+  const product = useDataStore((state) => state.currentProduct);
   return (
     <div>
-      <Images images={props.product.productImage}/>
+      <Images images={product.productImage}/>
       <Info
-        name={props.product.productName}
-        description={props.product.productDescription}
-        price={props.product.price}
-        ratings={props.product.ratings}
+        name={product.productName}
+        description={product.productDescription}
+        price={product.price}
+        ratings={product.ratings}
       />
-      <Selector inventory={props.product.inventory}/>
+      <Selector inventory={product.inventory} product={product}/>
     </div>
   );
 };
