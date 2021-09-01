@@ -181,7 +181,7 @@ const searchForProducts = (key, CB) => {
 };
 
 const searchForServices = (key, CB) => {
-  Sellers.find({'services.serviceName': { $regex : key, $options: 'i'}})
+  Sellers.find({'services.serviceCategory': { $regex : key, $options: 'i'}})
     .populate({path: 'services'})
     .exec(
       (err, data) => {

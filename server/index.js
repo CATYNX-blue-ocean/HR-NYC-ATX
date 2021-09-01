@@ -162,15 +162,15 @@ app.get('/service/search', (req, res) => {
     if (!result.length) {
       res.json('No matching services for your location.');
     } else {
-      let searchProducts = [];
+      let servicesMatch = [];
       result.forEach((seller) => {
-        seller.products.forEach((service) => {
-          if (product.productName.toLowerCase().includes(keyword.toLowerCase())) {
-            searchProducts.push(service);
+        seller.services.forEach((service) => {
+          if (service.serviceCategory.toLowerCase().includes(keyword.toLowerCase())) {
+            servicesMatch.push(service);
           }
         });
       });
-      res.status(200).json(searchProducts);
+      res.status(200).json(servicesMatch);
     }
   });
 });
