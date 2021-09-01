@@ -11,11 +11,7 @@ const CategoriesCards = (props) => {
   console.log('in catergories ', props.categoriesList);
 
   return (
-    <Container>
-      <div>
-        Hello Darkness my old friend.
-      </div>
-    </Container>
+    <div></div>
   );
 };
 
