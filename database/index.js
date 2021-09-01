@@ -164,7 +164,7 @@ const searchForProducts = (key, CB) => {
   //   }
   // );
 //====V2======FIND MATCHING SELLERS WITH ALL PRODUCTS====
-  Sellers.find({'products.productName': { $regex : '^' + key, $options: 'i'}})
+  Sellers.find({'products.productName': { $regex : key, $options: 'i'}})
     .populate({path: 'products'})
     .exec(
       (err, data) => {

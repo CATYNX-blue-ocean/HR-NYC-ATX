@@ -139,7 +139,15 @@ app.get('/product/search', (req, res) => {
     if (!result.length) {
       res.json('No matching products for your location.');
     } else {
-      res.status(200).json(result);
+      let searchProducts = [];
+      result.forEach((seller) => {
+        seller.products.forEach((product) => {
+          if (product.productName.toLowerCase().includes(keyword.toLowerCase())) {
+            searchProducts.push(product);
+          }
+        });
+      });
+      res.status(200).json(searchProducts);
     }
   });
 });
