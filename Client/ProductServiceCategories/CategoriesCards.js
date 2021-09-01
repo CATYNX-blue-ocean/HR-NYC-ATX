@@ -8,10 +8,31 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 const CategoriesCards = (props) => {
-  console.log('in catergories ', props.categoriesList);
+  console.log('in catergories ', props.categoryTypes, );
 
   return (
-    <div></div>
+    <div>
+      <Card>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Contemplative Reptile"
+            height="140"
+            image="/static/images/cards/contemplative-reptile.jpg"
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography helvetica variant="h5" component="h2">
+            { props.categoryName }
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </div>
   );
 };
 

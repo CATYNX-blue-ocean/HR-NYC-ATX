@@ -9,19 +9,22 @@ const ProdServCategories = (props) => {
 
   const productsList = useDataStore((state) => state.productCategories);
   const servicesList = useDataStore((state) => state.servicesCategories);
-  var categoryArray = [ productsList, servicesList ];
+
+  var categoryArray = [ ['Products', ...productsList], ['Services', ...servicesList] ];
 
   console.log(categoryArray);
 
   return (
-    <div className="ProdServCategories">
-      {categoryArray.forEach( type => {
-        console.log('iteration of categories ', type);
-        <div>
-          Hello?
-        </div>;
-      } )}
-    </div>
+    <Container>
+      <div className="ProdServCategories">
+        {categoryArray.map( type => {
+          const categoryName = type[0];
+          return (
+            <CategoriesCards categoryTypes={type} categoryName={categoryName} />
+          );
+        })}
+      </div>
+    </Container>
   );
 };
 
