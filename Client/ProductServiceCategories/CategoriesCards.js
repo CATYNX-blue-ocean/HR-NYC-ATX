@@ -13,25 +13,7 @@ const CategoriesCards = (props) => {
   return (
     <Container>
       <div>
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              alt="Contemplative Reptile"
-              height="140"
-              image="/static/images/cards/contemplative-reptile.jpg"
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                Lizard
-              </Typography>
-              <Typography gutterBottom variant="h5" component="h6">
-                Lizard
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+        Hello Darkness my old friend.
       </div>
     </Container>
   );
