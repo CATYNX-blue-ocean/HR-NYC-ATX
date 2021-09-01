@@ -7,9 +7,12 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import useStyles from './styles.js';
+import useDataStore from '../zustandStore.js';
 
 const NavBar = () => {
   const classes = useStyles();
+  const cart = useDataStore((state) => state.cart);
+  const cartNumber = cart.length;
 
   return (
     <div className={classes.grow}>
@@ -61,7 +64,7 @@ const NavBar = () => {
             </Typography>
           </div>
           <IconButton style={{marginRight: '5%'}} aria-label="show new notifications" color="inherit">
-            <Badge badgeContent={1} color="secondary">
+            <Badge badgeContent={cartNumber} color="secondary">
               <Link to="/cart"><ShoppingCartOutlinedIcon /></Link>
             </Badge>
           </IconButton>
