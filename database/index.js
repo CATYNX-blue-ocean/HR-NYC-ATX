@@ -207,7 +207,6 @@ const catFind = async (name) => {
 
 
 
-
 module.exports = {
   getSellerLogin,
   getServiceCategory,
