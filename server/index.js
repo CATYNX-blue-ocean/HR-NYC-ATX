@@ -51,46 +51,53 @@ app.get('/checkout', function (req, res) {
 });
 
 app.get('/products', function (req, res) {
-  database.getProductList( function (err, response) {
+  db.collection('productListings').find({}).toArray(function(err, result) {
     if (err) {
-      console.log(err);
+      throw err;
     }
-    res.send(response);
+    res.send(result);
   });
 });
 
 app.get('/services', function (req, res) {
-  database.getServiceList( function (err, response) {
+  db.collection('serviceListings').find({}).toArray(function(err, result) {
     if (err) {
-      console.log(err);
+      throw err;
     }
-    res.send(response);
+    res.send(result);
   });
 });
 
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
-  const seller = req.query.sellerEmail;
+  console.log(req.body);
+  const seller = req.body.sellerEmail;
   database.getSellerLogin( seller )
     .then( (sellerInfo) => {
       if (sellerInfo === null) {
         res.Status = 400;
         res.send('User Not Found.');
       } else {
-        sellerInfo.password = '';
         res.Status = 200;
         res.send(sellerInfo);
       }
     } )
     .catch((err)=> {
-      res.status = 401;
-      res.send('There was an error with your request, Please try again or contact an administrator.');
+
     });
+
 });
 
 //get to make sure buyer has an account while logging in
 app.get('/buyersignin', (req, res)=> {
-
+  database.getBuyerLogin( req.query.buyerEmail )
+    .then((data) => {
+      if (data === null) {
+        res.status(400).send('Invalid login');
+      } else {
+        res.status(200).send(data);
+      }
+    });
 });
 
 //post for buyer account sign up
