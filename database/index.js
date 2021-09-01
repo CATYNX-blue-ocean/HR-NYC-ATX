@@ -80,6 +80,9 @@ const Services = mongoose.model('Services', serviceListing);
 const getSellerLogin = async( email ) =>  {
   return await Sellers.findOne({ sellerEmail: email });
 }
+const getAllCategories = () =>  {
+  return Categories.find({});
+}
 
 module.exports = db;
 
@@ -152,32 +155,49 @@ const saveNewSeller = (sellerInfo) => {
 
 
 const searchForProducts = (key, CB) => {
-  Sellers.find(
-    {'products.productName': { $regex : '^' + key, $options: 'i'}}, //{'$regex': keyword, "$options": "i"}
-    (err, data) => {
-      if (err) {
-        console.log('ERR IN DB ', err)
-        CB(err);
+//====V1======FIND MATCHING SELLERS=======
+  // Sellers.find(
+  //   {'products.productName': { $regex : '^' + key, $options: 'i'}}, //{'$regex': keyword, "$options": "i"}
+  //   (err, data) => {
+  //     if (err) {
+  //       console.log('ERR IN DB ', err)
+  //       CB(err);
+  //     }
+  //     console.log('SUCCESS IN DB ', data);
+  //     CB(null, data);
+  //   }
+  // );
+//====V2======FIND MATCHING SELLERS WITH ALL PRODUCTS====
+  Sellers.find({'products.productName': { $regex : key, $options: 'i'}})
+    .populate({path: 'products'})
+    .exec(
+      (err, data) => {
+        if (err) {
+          console.log('ERR IN DB ', err)
+          CB(err);
+        }
+        console.log('SUCCESS IN DB ', data);
+        CB(null, data);
       }
-      console.log('SUCCESS IN DB ', data);
-      CB(null, data);
-    }
-  );
+    );
+//====V3=======TRY ONLY MATCHING PRODUCT INFO ========
+
 };
 
+
 const searchForServices = (key, CB) => {
-//   Sellers.find(
-//     {'services.serviceName': { $regex : '^' + key, $options: 'i' }, //{'$regex': keyword, "$options": "i"}
-//       (err, data) => {
-//         if (err) {
-//           console.log('ERR IN DB ', err)
-//           CB(err);
-//         }
-//         console.log('SUCCESS IN DB ', data);
-//         CB(null, data);
-//       }
-//     }
-//   );
+  Sellers.find({'services.serviceCategory': { $regex : key, $options: 'i'}})
+    .populate({path: 'services'})
+    .exec(
+      (err, data) => {
+        if (err) {
+          console.log('ERR IN DB ', err)
+          CB(err);
+        }
+        console.log('SUCCESS IN DB ', data);
+        CB(null, data);
+      }
+    );
 };
 
 const catFind = async (name) => {
@@ -190,13 +210,14 @@ const catFind = async (name) => {
 module.exports = {
   getSellerLogin,
   getServiceCategory,
+  getAllCategories,
   getBuyerLogin,
   saveNewBuyer,
   checkForBuyer,
   checkForSeller,
   saveNewSeller,
   searchForProducts,
-  searchForServices,
+  //searchForServices,
   getServiceList,
   getProductList,
   catFind
