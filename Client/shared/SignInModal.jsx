@@ -22,6 +22,7 @@ const SignIn = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [isSeller, setIsSeller] = useState(false);
+  const [loginError, setLoginError] = useState(false);
   const history = useHistory();
 
   let close = (event) => {
@@ -32,6 +33,11 @@ const SignIn = () => {
     if (isSeller) {
       axios.get(`/sellersignin?sellerEmail=${email}`)
         .then((res) => {
+          if (res.data === 'User Not Found.' || 'There was an error with your request, Please try again or contact an administrator.') {
+            setLoginError(true);
+          } else {
+            setLoginError(false);
+          }
           console.log(res);
         });
     } else {
@@ -41,6 +47,11 @@ const SignIn = () => {
       };
       axios.get(`/buyersignin?buyerEmail=${email}`)
         .then((res) => {
+          if (res.data === 'User Not Found.' || 'There was an error with your request, Please try again or contact an administrator.') {
+            setLoginError(true);
+          } else {
+            setLoginError(false);
+          }
           console.log(res);
         });
     }
@@ -101,10 +112,21 @@ const SignIn = () => {
             </p>
           </Grid>
           <Grid item xs={12}>
-            <TextField required id='sign-in-email' type='email' label='email' onChange={(event) => { handleSetEmail(event); }} error={emailError}/>
+            <TextField
+              required id='sign-in-email'
+              type='email' label='email'
+              onChange={(event) => { handleSetEmail(event); }}
+              error={emailError}
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextField required id='sign-in-password' type='password' label='password' onChange={(event) => { handleSetPassword(event); }} error={passwordError}/>
+            <TextField
+              required id='sign-in-password'
+              type='password'
+              label='password'
+              onChange={(event) => { handleSetPassword(event); }}
+              error={passwordError}
+            />
           </Grid>
           <Grid item xs={12}>
             <FormControl>
@@ -130,6 +152,9 @@ const SignIn = () => {
             <Link to="/sign-up">
               <Button variant='contained'>Sign Up</Button>
             </Link>
+          </Grid>
+          <Grid item xs={12}>
+            {loginError ? <p style={{color: 'red'}}>There was an error signing into your account. Please check your account details and try again!</p> : null}
           </Grid>
         </Grid>
       </Card >
