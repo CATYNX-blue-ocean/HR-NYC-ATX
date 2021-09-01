@@ -9,11 +9,17 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import useStyles from './styles.js';
 import axios from 'axios';
 import Radio from '@material-ui/core/Radio';
+import useDataStore from '../ProductsPage/tempZustand.js';
 
 const NavBar = () => {
   const classes = useStyles();
   const [searchInput, setSearchInput] = useState('');
   const [searchType, setSearchType] = useState('product');
+  let isProduct = false;
+  let isService = false;
+  let searchResults = [];
+  const resetProductData = useDataStore((state) => state.resetProductData);
+  const resetServiceData = useDataStore((state) => state.resetServiceData);
 
   const handleSearchSubmit = (e, keyword, type) => {
     e.preventDefault();
@@ -21,8 +27,15 @@ const NavBar = () => {
     console.log('SEARCH TYPE ', type);
     axios.get(`/${type}/search/?keyword=${keyword}`)
       .then((result) => {
-        //update state for Product Container
-
+        //[OPTION1]update state for Product Container===========
+        if (type === 'service') {
+          resetServiceData(result.data);
+          isService = true;
+        } else {
+          resetProductData(result.data);
+          isProduct = true;
+        }
+        //[OPTION2] render its own page=========================
       })
       .catch((err) => {
         console.error(err);
@@ -55,7 +68,7 @@ const NavBar = () => {
                 inputProps={{ 'aria-label': 'search' }}
               />
               <div onChange={(e) => setSearchType(e.target.value)}>
-                <input type="radio" value="product" name="type"/> Product
+                <input type="radio" value="product" defaultChecked name="type"/> Product
                 <input type="radio" value="service" name="type"/> Service
               </div>
             </form>
@@ -92,6 +105,8 @@ const NavBar = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
+      {isProduct && <Redirect to={{pathname: '/products', }}/>}
+      {isService && <Redirect to={{pathname: '/services', }}/>}
     </div>
   );
 };
