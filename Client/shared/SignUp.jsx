@@ -40,7 +40,7 @@ const SignUp = () => {
     validatePhoneNumber(event.target.value);
   };
 
-  const validationEmail = (email) => {
+  const validateEmail = (email) => {
     let emailRes = false;
     if (email !== '') {
       emailRes = !validator.isEmail(email);
@@ -49,10 +49,10 @@ const SignUp = () => {
   };
   const handleSetEmail = (event) => {
     setEmail(event.target.value);
-    validationEmail(event.target.value);
+    validateEmail(event.target.value);
   };
 
-  const validationPassword = (password) => {
+  const validatePassword = (password) => {
     let passLengthValid = false;
     let passCharsValid = false;
     if (password !== '') {
@@ -70,10 +70,10 @@ const SignUp = () => {
   };
   const handleSetPassword = (event) => {
     setPassword(event.target.value);
-    validationPassword(event.target.value);
+    validatePassword(event.target.value);
   };
 
-  const validationZipCode = (zipCode) => {
+  const validateZipCode = (zipCode) => {
     let zipRes = false;
     if (zipCode !== '') {
       zipRes = !validator.isPostalCode(zipCode, 'any');
@@ -82,7 +82,7 @@ const SignUp = () => {
   };
   const handleZipCodeChange = (event) => {
     setZipCode(event.target.value);
-    validationZipCode(event.target.value);
+    validateZipCode(event.target.value);
   };
 
   const validateFirstName = (name) => {
