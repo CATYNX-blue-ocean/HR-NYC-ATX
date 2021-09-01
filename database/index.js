@@ -223,7 +223,7 @@ module.exports = {
   checkForSeller,
   saveNewSeller,
   searchForProducts,
-  //searchForServices,
+  searchForServices,
   getServiceList,
   getProductList,
   catFind,
