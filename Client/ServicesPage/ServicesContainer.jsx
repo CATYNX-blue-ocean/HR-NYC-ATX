@@ -17,6 +17,15 @@ const ServicesContainer = ({ }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(9);
 
+  const [servicesPhotos, setServicesPhotos] = useState([]);
+
+  // useEffect(async () => {
+	// 	const result = await axios(
+	// 		'http://localhost:3014/Categories'
+	// 	);
+	// 	setServicesPhotos(result.data);
+	// }, []);
+
   //change page
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
