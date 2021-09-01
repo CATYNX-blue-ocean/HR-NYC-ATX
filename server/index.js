@@ -90,7 +90,14 @@ app.get('/sellersignin', (req, res)=> {
 
 //get to make sure buyer has an account while logging in
 app.get('/buyersignin', (req, res)=> {
-
+  database.getBuyerLogin( req.query.buyerEmail )
+    .then((data) => {
+      if (data === null) {
+        res.status(400).send('Invalid login');
+      } else {
+        res.status(200).send(data);
+      }
+    });
 });
 
 //post for buyer account sign up
