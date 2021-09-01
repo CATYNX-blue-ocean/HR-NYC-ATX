@@ -129,6 +129,56 @@ app.post('/sellersignup', (req, res)=>{
     });
 });
 
+
+// user search for products
+app.get('/product/search', (req, res) => {
+  let keyword = req.query.keyword;
+  database.searchForProducts(keyword, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(404);
+    }
+    if (!result.length) {
+      res.json('No matching products for your location.');
+    } else {
+      let searchProducts = [];
+      result.forEach((seller) => {
+        seller.products.forEach((product) => {
+          if (product.productName.toLowerCase().includes(keyword.toLowerCase())) {
+            searchProducts.push(product);
+          }
+        });
+      });
+      res.status(200).json(searchProducts);
+    }
+  });
+});
+
+// user search for services
+app.get('/service/search', (req, res) => {
+  let keyword = req.query.keyword;
+  database.searchForServices(keyword, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(404);
+    }
+    if (!result.length) {
+      res.json('No matching services for your location.');
+    } else {
+      let servicesMatch = [];
+      result.forEach((seller) => {
+        seller.services.forEach((service) => {
+          if (service.serviceCategory.toLowerCase().includes(keyword.toLowerCase())) {
+            servicesMatch.push(service);
+          }
+        });
+      });
+      res.status(200).json(servicesMatch);
+    }
+  });
+});
+
+
 app.get('/SellersInCategory', (req, res)=>{
   const queryCategory = req.query.category;
 
@@ -141,7 +191,23 @@ app.get('/SellersInCategory', (req, res)=>{
       res.status = 401;
       res.send('There was an error with your request, Please try again or contact an administrator.');
     });
+
 });
+
+app.get('/Categories', (req, res)=>{
+  database.getAllCategories()
+    .then( (list) => {
+      console.log(list);
+      res.Status = 200;
+      res.send(list);
+    })
+    .catch( () => {
+      res.status = 401;
+      res.send('There was an error with your request, Please try again or contact an administrator.');
+    });
+
+});
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

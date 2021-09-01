@@ -11,7 +11,10 @@ const ProductsCard = ({ product }) => {
   const currentProduct = useDataStore((state) => state.currentProduct);
 
   let reviewAverage = () => {
-    const reviewsData = product.ratings || [1, 2, 3, 4, 5, 4, 3, 2];
+    let reviewsData = product.ratings || [1, 2, 3, 4, 5, 4, 3, 2];
+    if (reviewsData.length === 0) {
+      reviewsData = [1, 2, 3, 4, 5, 4, 3, 2];
+    }
     let sum = 0;
     reviewsData.forEach(result => {
       sum += result;

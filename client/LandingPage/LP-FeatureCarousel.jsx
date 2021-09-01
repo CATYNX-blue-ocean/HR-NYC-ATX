@@ -26,16 +26,13 @@ let items = {
 
 const FeatureCarousel = function () {
 
-  const handleTestClick = function () {
-    console.log('Me Clickey');
-  };
 
   return (
     <div className="landing-page-feature-carousel">
       <Carousel itemsToShow={1} pagination={false} transitionMs={1500} showArrows={false}
         easing={'ease'} enableAutoPlay={true} autoPlaySpeed={4000} onNextEnd={(currentItem, pageIndex) => { currentItem.index = 0; }}>
         {items.teams.map((item) => <ItemCardFeature key={item.name}
-          photo={item.photo} name={item.name} onClick={(e) => handleTestClick(e)} />)}
+          photo={item.photo} name={item.name} />)}
       </Carousel>
     </div>
   );
