@@ -102,11 +102,7 @@ const getServiceList = async (cb) => {
     cb(null, result);
   });
 }
-const getSellerLogin = async (email) => {
-  return await db.Sellers.findOne({ sellerEmail: email });
-};
 
-const getServiceCategory = async (category) => {
 const getServiceCategory = async (category) =>  {
   var allSellers = await Sellers.find();
   console.log('test two ', allSellers);
@@ -166,13 +162,7 @@ const catFind = async (name) => {
 
 
 module.exports = {
-<<<<<<< HEAD
-
   getSellerLogin,
-=======
-  // getSellerLogin,
-  //getSellerLogin,
->>>>>>> dfa940ecd7999d69a4c3870ceb614411011a91ac
   getServiceCategory,
   getBuyerLogin,
   saveNewBuyer,
@@ -180,7 +170,7 @@ module.exports = {
   checkForSeller,
   saveNewSeller,
   getServiceList,
-  getProductList
+  getProductList,
   catFind
 };
 

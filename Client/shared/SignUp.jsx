@@ -4,8 +4,10 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 import validator from 'validator';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUp = () => {
   const [show, setShow] = useState(true);
@@ -22,9 +24,18 @@ const SignUp = () => {
   const [zipCodeError, setZipCodeError] = useState(false);
   const [firstNameError, setFirstNameError] = useState(false);
   const [lastNameError, setLastNameError] = useState(false);
+  const [isSeller, setIsSeller] = useState(false);
 
   let close = (event) => {
     history.goBack();
+  };
+
+  const onSignUpSubmit = () => {
+    if (isSeller) {
+      let userInfo = {
+
+      };
+    }
   };
 
   const validatePhoneNumber = (phoneNumber) => {
@@ -110,12 +121,13 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <Modal
-        open={show}
-        onClose={close}
-      >
-        <Grid container spacing={3} style={{backgroundColor: '#fff'}} direction='column' alignItems='center'>
+    <Modal
+      open={show}
+      onClose={close}
+      style={{marginLeft: 30 + 'px'}}
+    >
+      <Paper >
+        <Grid container spacing={3} style={{backgroundColor: '#fff'}} direction='column' styles={{alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
           <Grid item xs={12}>
             <h2>
               Sign Up
@@ -148,11 +160,17 @@ const SignUp = () => {
             <TextField required id='sign-up-zipCode' label='Zip Code' onChange={(event) => { handleZipCodeChange(event); }} error={zipCodeError}/>
           </Grid>
           <Grid item xs={12}>
+            <TextField select id='sign-up-seller-toggle' defaultValue='buyer' onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}>
+              <option value='buyer'>Buyer</option>
+              <option value='seller'>Seller</option>
+            </TextField>
+          </Grid>
+          <Grid item xs={12}>
             <Button variant='contained'>Sign Up</Button>
           </Grid>
         </Grid>
-      </Modal>
-    </div >
+      </Paper >
+    </Modal>
   );
 };
 
