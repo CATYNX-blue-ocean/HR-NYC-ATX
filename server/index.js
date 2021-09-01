@@ -97,7 +97,7 @@ app.get('/services', function (req, res) {
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
   console.log(req.body);
-  const seller = req.body.sellerEmail;
+  const seller = req.query.sellerEmail;
   database.getSellerLogin( seller )
     .then( (sellerInfo) => {
       if (sellerInfo === null) {

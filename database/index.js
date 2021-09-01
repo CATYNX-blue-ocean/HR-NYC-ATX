@@ -120,7 +120,7 @@ const getServiceCategory = (category) => {
 };
 
 const getBuyerLogin = async (buyerEmail) => {
-  return await db.buyerSchema.find({ buyerEmail });
+  return await Buyers.find({ buyerEmail });
 };
 
 const checkForBuyer = (buyerEmail) => {

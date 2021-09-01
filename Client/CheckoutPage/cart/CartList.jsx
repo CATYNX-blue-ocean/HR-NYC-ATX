@@ -12,7 +12,7 @@ const CartList = () => {
 
 
   return (
-    <Container>
+    <Container style={{padding: '25px'}}>
       <Grid container>
 
         <Grid item xs={7}>
@@ -79,6 +79,9 @@ const CartList = () => {
                   <Typography variant="h6" color="textSecondary" component="p" style={{color: 'black'}}>
                     {(product.price * quantity).toFixed(2)}
                   </Typography>
+                </Grid>
+                <Grid container item xs={12} justifyContent="flex-end">
+                  <Delete />
                 </Grid>
 
               </Grid>

@@ -11,6 +11,8 @@ import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
 import Cart from './CheckoutPage/cart/Cart.jsx';
+import OrderConfirmation from './CheckoutPage/OrderConfirmation.jsx';
+import CheckoutPage from './CheckoutPage/CheckoutPage.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
 import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
@@ -57,7 +59,7 @@ const App = () => {
               </Route>
 
               <Route exact path="/checkout">
-                <h2>Hello Checkout</h2>
+                <CheckoutPage />
               </Route>
 
               <Route exact path="/categories">
@@ -74,6 +76,10 @@ const App = () => {
 
               <Route exact path="/services">
                 <ServicesContainer />
+              </Route>
+
+              <Route exact path="/confirmation">
+                <OrderConfirmation />
               </Route>
 
               <Route exact path="/">
