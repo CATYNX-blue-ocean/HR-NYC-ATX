@@ -142,6 +142,7 @@ app.get('/product/search', (req, res) => {
       res.status(200).json(result);
     }
   });
+});
 
 app.get('/SellersInCategory', (req, res)=>{
   const queryCategory = req.query.category;
