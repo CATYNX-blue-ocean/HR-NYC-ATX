@@ -12,8 +12,7 @@
 } */
 
 body {
-  min-height: 100vh;
+  /* min-height: 100vh;
   margin: auto 0;
-  overflow: hidden;
   position: relative;
 }
