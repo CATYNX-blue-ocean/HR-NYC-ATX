@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import useStyles from './styles.js';
-import { Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, Typography, IconButton, Modal, Backdrop, Fade, CircularProgress } from '@material-ui/core';
+import { Backdrop, Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, CircularProgress, Grid, Fade, IconButton, Modal, Paper, TextField, Typography} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
 import EmailIcon from '@material-ui/icons/Email';
+import EmailModal from './EmailModal.jsx';
 
-//need to make modal pop-up for email click button
+//need function to connect service photos to category photos
 
 const ServicesCard = ({ service }) => {
   const classes = useStyles();
@@ -29,7 +30,6 @@ const ServicesCard = ({ service }) => {
     setOpen(false);
   };
 
-  //need function to connect service photos to category photos
   return (
     <Card
       data-myattr={service.id}
@@ -41,12 +41,12 @@ const ServicesCard = ({ service }) => {
       ) : (
         <CircularProgress/>
       )}
-      <CardContent style={{width: '50%', display: 'inline-block', top: '-10%', position: 'relative'}}>
+      <CardContent style={{width: '50%', display: 'inline-block', top: '-5%', position: 'relative'}}>
         <Typography variant="h6" color="textSecondary" component="p" style={{fontWeight: 'bold', color: 'black'}}>
           {service.serviceName}
         </Typography>
         <Typography variant="body1" color="textSecondary" component="p">
-          {service.serviceDescription}
+          {service.serviceDescription.length > 45 ? service.serviceDescription.slice(0, 45) + '...' : service.serviceDescription}
         </Typography>
       </CardContent>
       <>
@@ -86,27 +86,7 @@ const ServicesCard = ({ service }) => {
       >
         Email Me
       </Button>
-      {open ?
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={open}>
-            <div className={classes.paper}>
-              <h2 id="transition-modal-title">Transition modal</h2>
-              <p id="transition-modal-description">react-transition-group animates me.</p>
-            </div>
-          </Fade>
-        </Modal>
-        : null}
+      {open ? <EmailModal open={open} handleClose={handleClose}/> : null}
     </Card>
   );
 };
