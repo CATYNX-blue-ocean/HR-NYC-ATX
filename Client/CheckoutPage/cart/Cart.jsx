@@ -5,9 +5,11 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import useDataStore from '../../zustandStore.js';
 import EmptyCart from '../EmptyCart.jsx';
+import useStyles from '../styles.js';
 
 const Cart = () => {
 
+  const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
 
   return (
@@ -17,7 +19,7 @@ const Cart = () => {
         <h2>Your Cart</h2>
       </Grid>
 
-      {cart.length &&
+      {cart.length > 0 &&
         <Grid container spacing={2}>
           <Grid
             item

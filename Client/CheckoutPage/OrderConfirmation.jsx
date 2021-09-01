@@ -19,6 +19,7 @@ const OrderConfirmationPage = (props) => {
       <Grid container justifyContent="center">
         <div>Check your email for order confirmation</div>
       </Grid>
+      <br/>
       <Grid container justifyContent="center">
         <Link to="/">
           <Button
