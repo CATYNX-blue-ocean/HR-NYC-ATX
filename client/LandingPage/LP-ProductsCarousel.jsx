@@ -9,20 +9,10 @@ import useDataStore from '../zustandStore.js';
 const ProductsCarousel = function (props) {
 
   const setProductCategory = useDataStore((state) => state.setProductCategory);
-  const products = useDataStore((state) => state.productData);
-
-  console.log(products);
-
-  axios.get('http://localhost:3000/landing')
-    .then((results) => {
-      console.log(results.data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  const productCategories = useDataStore((state) => state.productCategories);
 
   const handleSeeAllProductCategoryClick = function () {
-    console.log('I was clicked on See All Product Category');
+    console.log('I was clicked on See All Product Categories');
   };
 
   return (
@@ -30,9 +20,9 @@ const ProductsCarousel = function (props) {
       <div className="see-all-link">
         <a>See All</a>
       </div>
-      <Carousel itemsToShow={3} pagination={false} outerSpacing={1}>
-        {products.map((item) => <CategoryCardProducts key={item.id}
-          photo={item.productImage[0]} name={item.productName} />)}
+      <Carousel itemsToShow={3} pagination={false} >
+        {productCategories.map((item) => <CategoryCardProducts key={item._id}
+          photo={item.image} name={item.category} description={item.description} />)}
       </Carousel>
     </div>
   );

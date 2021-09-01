@@ -17,13 +17,18 @@ app.use(express.static(__dirname + '/../dist'));
 
 //landing page
 app.get('/landing', function (req, res) {
-
+  console.log(req.body);
   database.catFind()
     .then ((data)=> { res.json(data); })
     .catch ((err)=> { res.sendStatus(500); });
 });
 
-
+//post ordered product to database
+app.post('/orderpost', function (req, res) {
+  database.saveNewOrder(req.body)
+    .then ((data)=> { res.sendStatus(201); })
+    .catch ((err)=> { res.sendStatus(500); });
+});
 
 // Need this so that react router works
 app.get('/', function (req, res) {
@@ -44,6 +49,7 @@ app.get('/cart', function (req, res) {
 app.get('/checkout', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
+
 app.get('/products', function (req, res) {
   database.getProductList( function (err, response) {
     if (err) {
@@ -52,6 +58,7 @@ app.get('/products', function (req, res) {
     res.send(response);
   });
 });
+
 app.get('/services', function (req, res) {
   database.getServiceList( function (err, response) {
     if (err) {
@@ -60,6 +67,7 @@ app.get('/services', function (req, res) {
     res.send(response);
   });
 });
+
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
   const seller = req.query.sellerEmail;

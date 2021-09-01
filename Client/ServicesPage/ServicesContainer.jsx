@@ -18,6 +18,7 @@ const ServicesContainer = ({ }) => {
   const [postsPerPage] = useState(9);
 
   const [sortedServices, setSortedServices] = useState(services);
+  const [servicesPhotos, setServicesPhotos] = useState([]);
 
   //change sorting of products
   const sortServices = (parameter) => {
@@ -48,6 +49,13 @@ const ServicesContainer = ({ }) => {
     //}
     setSortedServices([sortedList]);
   };
+
+  // useEffect(async () => {
+	// 	const result = await axios(
+	// 		'http://localhost:3014/Categories'
+	// 	);
+	// 	setServicesPhotos(result.data);
+	// }, []);
 
   //change page
   const paginate = (pageNumber) => {

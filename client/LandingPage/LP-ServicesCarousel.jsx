@@ -8,10 +8,7 @@ import useDataStore from '../zustandStore.js';
 
 const ServicesCarousel = function (props) {
 
-  const products = useDataStore((state) => state.productData);
-  const services = useDataStore((state) => state.serviceData);
-
-  console.log(services);
+  const servicesCategories = useDataStore((state) => state.servicesCategories);
 
   return (
     <div className="landing-page-category-carousel">
@@ -19,8 +16,8 @@ const ServicesCarousel = function (props) {
         <a>See All</a>
       </div>
       <Carousel itemsToShow={3} pagination={false}>
-        {products.map((item) => <CategoryCardServices key={item.id}
-          photo={item.productImage[0]} name={item.productName} />)}
+        {servicesCategories.map((item) => <CategoryCardServices key={item._id}
+          photo={item.image} name={item.category} description={item.description} />)}
       </Carousel>
     </div>
   );

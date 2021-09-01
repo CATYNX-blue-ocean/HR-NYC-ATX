@@ -4,11 +4,8 @@ import { Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, 
 import Rating from '@material-ui/lab/Rating';
 import useDataStore from './tempZustand.js';
 
-const ProductsCard = ({ product }) => {
+const EmptyCartProductsCard = ({ product }) => {
   const classes = useStyles();
-
-  const setCurrentProduct = useDataStore((state) => state.setCurrentProduct);
-  const currentProduct = useDataStore((state) => state.currentProduct);
 
   let reviewAverage = () => {
     let reviewsData = product.ratings || [1, 2, 3, 4, 5, 4, 3, 2];
@@ -59,4 +56,4 @@ const ProductsCard = ({ product }) => {
   );
 };
 
-export default ProductsCard;
+export default EmptyCartProductsCard;
