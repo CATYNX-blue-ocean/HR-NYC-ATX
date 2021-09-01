@@ -38,7 +38,7 @@ const ShippingChoice = () => {
       )}
       {!formToggle ? (
         <div style={{ float: 'left' }}>
-          <p> Fisr Name: {formData.firstName || ''}</p>
+          <p> First Name: {formData.firstName || ''}</p>
           <p> Last Name: {formData.lastName || ''}</p>
           <p> Address: {formData.adress || ''}</p>
           <p> City: {formData.city || ''}</p>
