@@ -82,7 +82,7 @@ const getSellerLogin = async ( email ) => {
 };
 
 const getAllCategories = () => {
-  return Categories.find({})
+  return Categories.find({});
 };
 
 module.exports = db;
@@ -95,6 +95,7 @@ const getProductList = async (cb) => {
     cb(null, result);
   });
 };
+
 const getServiceList = async (cb) => {
   await db.collection('serviceListings').find({}).toArray(function (err, result) {
     if (err) {
@@ -105,20 +106,20 @@ const getServiceList = async (cb) => {
 };
 
 const getServiceCategory = (category) => { //get all sellers that have a service in that category
-  return Sellers.find({"services.serviceCategory": category})
+  return Sellers.find({"services.serviceCategory": category});
 };
 
 const getBuyerLogin = async (buyerEmail) => {
-  return await db.buyerSchema.find({ buyerEmail })
+  return await db.buyerSchema.find({ buyerEmail });
 };
 
 
 const checkForBuyer = (buyerEmail) => {
-  return Buyers.exists({ buyerEmail })
+  return Buyers.exists({ buyerEmail });
 };
 
 const checkForSeller = (sellerEmail) => {
-  return Sellers.exists({ sellerEmail })
+  return Sellers.exists({ sellerEmail });
 };
 
 const saveNewBuyer = (buyerInfo) => {

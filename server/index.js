@@ -49,6 +49,7 @@ app.get('/cart', function (req, res) {
 app.get('/checkout', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
+
 app.get('/products', function (req, res) {
   database.getProductList( function (err, response) {
     if (err) {
@@ -57,6 +58,7 @@ app.get('/products', function (req, res) {
     res.send(response);
   });
 });
+
 app.get('/services', function (req, res) {
   database.getServiceList( function (err, response) {
     if (err) {
@@ -65,6 +67,7 @@ app.get('/services', function (req, res) {
     res.send(response);
   });
 });
+
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
   const seller = req.query.sellerEmail;
