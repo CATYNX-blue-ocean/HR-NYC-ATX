@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import hero1 from '/dist/static/default_category_img/hero1.jpg';
 
 const ItemCardFeature = function (props) {
 
@@ -8,12 +9,15 @@ const ItemCardFeature = function (props) {
   };
 
   return (
-    <div className="feature-item-card" onClick={() => { handleTestClickFeature(); }}>
-      <img className="temp-photo" src={props.photo}></img>
-      <h1>{props.name}</h1>
+    <div className="feature-item-card-container" onClick={() => { handleTestClickFeature(); }}>
+      <img className="feature-item-card-image" src={hero1}></img>
     </div>
 
   );
 };
 
 export default ItemCardFeature;
+
+
+// styles={{ objectFit: 'contain', height: 'vh' }}
+// src={hero1}
