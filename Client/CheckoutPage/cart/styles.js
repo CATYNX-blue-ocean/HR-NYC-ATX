@@ -9,8 +9,7 @@ export default makeStyles((theme) => ({
   },
   media: {
     height: '100px',
-    width: '150px',
-    float: 'left'
+    width: '150px'
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
