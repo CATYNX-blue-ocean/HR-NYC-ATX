@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import Carousel from 'react-elastic-carousel';
 import axios from 'axios';
 import CategoryCardProducts from './LP-CategoryCardProducts.jsx';
@@ -31,7 +32,9 @@ const ProductsCarousel = function (props) {
   return (
     <div className="landing-page-category-carousel">
       <h2 className="category-headline">Products</h2>
-      <a className="see-all-link">See All</a>
+      <Link to="/categories">
+        <h4 className="see-all-link">See All</h4>
+      </Link>
       <Carousel itemsToShow={3} pagination={false} >
         {productCategories.map((item) => <CategoryCardProducts key={item._id}
           photo={item.image} name={item.category} description={item.description} />)}
