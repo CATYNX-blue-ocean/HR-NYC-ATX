@@ -17,7 +17,6 @@ app.use(express.static(__dirname + '/../dist'));
 
 //landing page
 app.get('/landing', function (req, res) {
-  console.log(req.body);
   database.catFind()
     .then ((data)=> { res.json(data); })
     .catch ((err)=> { res.sendStatus(500); });
@@ -49,12 +48,18 @@ app.get('/cart', function (req, res) {
 app.get('/checkout', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
-
+app.get('/confirmation', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
 app.get('/category/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
 app.get('/categories', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+
+app.get('/product-details', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
@@ -80,21 +85,12 @@ app.get('/services', function (req, res) {
     if (err) {
       throw err;
     }
-    var serviceList = [];
-    var jsSellers = result.map((r) => r.toObject());
-    jsSellers.forEach((seller) => {
-      seller.services.forEach((service) => {
-        service['location'] = seller.location;
-        serviceList.push(service);
-      });
-    });
-    res.send(serviceList);
+    res.send(result);
   });
 });
 
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
-  console.log(req.body);
   const seller = req.query.sellerEmail;
   database.getSellerLogin( seller )
     .then( (sellerInfo) => {
@@ -116,6 +112,7 @@ app.get('/sellersignin', (req, res)=> {
 app.get('/buyersignin', (req, res)=> {
   database.getBuyerLogin( req.query.buyerEmail )
     .then((data) => {
+      setTimeout(() => { console.log('Buyer login data ' + data); }, 3000);
       if (data === null) {
         res.status(400).send('Invalid login');
       } else {
@@ -128,7 +125,7 @@ app.get('/buyersignin', (req, res)=> {
 app.post('/buyersignup', ( req, res ) => {
   const newBuyer = req.body;
 
-  database.checkForBuyer( newBuyer.email )
+  database.checkForBuyer( newBuyer.buyerEmail )
     .then( ( doTheyExist ) => {
       if (doTheyExist === true) {
         res.Status = 201;
@@ -234,7 +231,6 @@ app.get('/SellersInCategory', (req, res)=>{
 app.get('/Categories', (req, res)=>{
   database.getAllCategories()
     .then( (list) => {
-      console.log(list);
       res.Status = 200;
       res.send(list);
     })

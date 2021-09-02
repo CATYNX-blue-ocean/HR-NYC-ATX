@@ -16,8 +16,7 @@ import CheckoutPage from './CheckoutPage/CheckoutPage.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
 import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
-
-
+import OrderConfirmationPage from './CheckoutPage/OrderConfirmation.jsx';
 
 const App = () => {
   // example of consuming state
@@ -25,7 +24,7 @@ const App = () => {
   const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
   return (
     <>
-      <div className="landing-page-main-div">
+      <div className="landing-page-main-div font">
         <Router>
           <Grid
             container
@@ -53,8 +52,8 @@ const App = () => {
                 <Cart />
               </Route>
 
-              <Route exact path="/product/?id=2">
-                <Overview product={exampleData.exampleData} />
+              <Route path="/product-details">
+                <Overview />
               </Route>
 
               <Route exact path="/productInfo"
@@ -73,12 +72,12 @@ const App = () => {
                 <ProductsContainer />
               </Route>
 
-              <Route exact path="/services">
-                <ServicesContainer />
+              <Route exact path="/confirmation">
+                <OrderConfirmationPage />
               </Route>
 
-              <Route exact path="/confirmation">
-                <OrderConfirmation />
+              <Route exact path="/services">
+                <ServicesContainer />
               </Route>
 
               <Route exact path="/">
@@ -96,7 +95,6 @@ const App = () => {
     </>
   );
 };
-
 
 export default App;
 //ReactDOM.render(<App />, document.getElementById('app'));
