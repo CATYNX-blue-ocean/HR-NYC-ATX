@@ -29,13 +29,14 @@ const OrderSummary = () => {
   const cart = useDataStore((state) => state.cart);
   const isCheckout = useDataStore((state) => state.isCheckout);
   const setIsCheckout = useDataStore((state) => state.setIsCheckout);
+  const itemsPrice = useDataStore((state) => state.itemsPrice);
   const classes = useStyles();
 
   console.log(cart);
-  let itemsPrice = 0;
-  cart.map((item) => {
-    itemsPrice += Number(item.price);
-  });
+  // let itemsPrice = 0;
+  // cart.map((item) => {
+  //   itemsPrice += Number(item.price);
+  // });
 
   return (
     <Card className={classes.root}>
@@ -44,19 +45,19 @@ const OrderSummary = () => {
           <h3>Order Summary</h3>
           <h3>{cart.length} Items</h3>
         </Grid>
-        <Grid item xs={6} style={{ textAlign: 'left' }}>
-          <p>Items:</p>
+        <Grid item xs={6}>
+          <p>Subtotal:</p>
           <p>Shipping:</p>
           <p>Total before tax:</p>
           <p>Estimated tax:</p>
           <b>Total:</b>
         </Grid>
         <Grid item xs={6} style={{ textAlign: 'right' }}>
-          <p>${itemsPrice}</p>
+          <p>${Number(itemsPrice).toFixed(2)}</p>
           <p>$2.99</p>
           <p>${itemsPrice + 2.99}</p>
-          <p>${(itemsPrice / 100) * 7}</p>
-          <b>${(itemsPrice / 100) * 7 + itemsPrice}</b>
+          <p>${Number(((itemsPrice / 100) * 7)).toFixed(2)}</p>
+          <b>${Number(((itemsPrice / 100) * 7 + itemsPrice)).toFixed(2)}</b>
         </Grid>
         <Grid item xs={12}>
           {!isCheckout && (

@@ -62,6 +62,10 @@ app.get('/products-page', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
+app.get('/product-details', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+
 app.get('/products', function (req, res) {
   database.getProductList( function (err, result) {
     if (err) {
@@ -111,7 +115,7 @@ app.get('/sellersignin', (req, res)=> {
 app.get('/buyersignin', (req, res)=> {
   database.getBuyerLogin( req.query.buyerEmail )
     .then((data) => {
-      setTimeout(() => {console.log('Buyer login data ' + data); }, 3000);
+      setTimeout(() => { console.log('Buyer login data ' + data); }, 3000);
       if (data === null) {
         res.status(400).send('Invalid login');
       } else {

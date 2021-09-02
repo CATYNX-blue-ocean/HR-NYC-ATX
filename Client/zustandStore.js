@@ -12,6 +12,7 @@ const useDataStore = create((set) => ({
   userName: null,
   cart: [exampleData.productListings[0], exampleData.productListings[1]],
   isCheckout: false,
+  itemsPrice: 0,
 
   setCategoryInformation: (array1, array2) =>
     set((state) => {
@@ -78,6 +79,13 @@ const useDataStore = create((set) => ({
       return { isCheckout: toggle };
     });
   },
+
+  setItemsPrice: (price) => {
+    set((state) => {
+      return { itemsPrice: price };
+    });
+  }
+
 }));
 
 export default useDataStore;
