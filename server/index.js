@@ -49,7 +49,9 @@ app.get('/cart', function (req, res) {
 app.get('/checkout', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
-
+app.get('/confirmation', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
 app.get('/category/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });

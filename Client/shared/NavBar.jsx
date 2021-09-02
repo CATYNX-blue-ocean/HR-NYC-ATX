@@ -40,7 +40,6 @@ const NavBar = () => {
           resetProductData(result.data);
           setIsProduct(true);
         }
-        //[OPTION2] render its own page=========================
       })
       .catch((err) => {
         console.error(err);
