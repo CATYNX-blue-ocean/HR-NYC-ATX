@@ -120,7 +120,6 @@ const getServiceCategory = (category) => {
 };
 
 const getBuyerLogin = async (email) => {
-  console.log('Database Log ' + email);
   return await Buyers.find({buyerEmail: email});
 };
 
