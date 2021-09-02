@@ -20,7 +20,7 @@ const ServicesContainer = ({ }) => {
 
   //change sorting of products
   const sortServices = (parameter) => {
-    let sortedList = services;
+    let sortedList = services[0];
     if (parameter === 'rating') {
       sortedList.sort((firstEl, secondEl) => {
         let rate1 = firstEl.ratings.reduce((accumulator, currentVal) => accumulator + currentVal, 0) / firstEl.ratings.length;
