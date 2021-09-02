@@ -45,10 +45,18 @@ const NavBar = () => {
       });
   };
 
+  axios.get('http://ip-api.com/json')
+    .then((results) => {
+      console.log('this is your location based on ip address', results.data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none', color: 'black'}}>
+      <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none', color: 'black' }}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             <Link to="" style={{ textDecoration: 'none' }}>
@@ -56,7 +64,7 @@ const NavBar = () => {
             </Link>
           </Typography>
           <div className={classes.search}
-            style={{width: '45%'}}
+            style={{ width: '45%' }}
           >
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -72,13 +80,13 @@ const NavBar = () => {
                 inputProps={{ 'aria-label': 'search' }}
               />
               <div onChange={(e) => setSearchType(e.target.value)}>
-                <input type="radio" value="product" defaultChecked name="type"/> Product
-                <input type="radio" value="service" name="type"/> Service
+                <input type="radio" value="product" defaultChecked name="type" /> Product
+                <input type="radio" value="service" name="type" /> Service
               </div>
             </form>
           </div>
           <div className={classes.search}
-            style={{width: '15%'}}
+            style={{ width: '15%' }}
           >
             <div className={classes.searchIcon}>
               <LocationOnIcon />
@@ -94,7 +102,7 @@ const NavBar = () => {
           </div>
           <div className={classes.grow} />
           <div
-            style={{marginRight: '5%'}}
+            style={{ marginRight: '5%' }}
           >
             <Typography variant="h6" noWrap>
               <Link to="/sign-in" style={{ textDecoration: 'none' }}>
@@ -102,15 +110,15 @@ const NavBar = () => {
               </Link>
             </Typography>
           </div>
-          <IconButton style={{marginRight: '5%'}} aria-label="show new notifications" color="inherit">
+          <IconButton style={{ marginRight: '5%' }} aria-label="show new notifications" color="inherit">
             <Badge badgeContent={cartNumber} color="secondary">
               <Link to="/cart"><ShoppingCartOutlinedIcon /></Link>
             </Badge>
           </IconButton>
         </Toolbar>
       </AppBar>
-      {isProduct && <Redirect to={{ pathname: '/products', }}/>}
-      {isService && <Redirect to={{ pathname: '/services', }}/>}
+      {isProduct && <Redirect to={{ pathname: '/products', }} />}
+      {isService && <Redirect to={{ pathname: '/services', }} />}
     </div>
   );
 };
