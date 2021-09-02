@@ -16,6 +16,7 @@ import CheckoutPage from './CheckoutPage/CheckoutPage.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
 import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
+import OrderConfirmationPage from './CheckoutPage/OrderConfirmation.jsx';
 
 
 
@@ -67,6 +68,10 @@ const App = () => {
 
               <Route exact path="/products">
                 <ProductsContainer />
+              </Route>
+
+              <Route exact path="/order-confirmation">
+                <OrderConfirmationPage/>
               </Route>
 
               <Route exact path="/services">
