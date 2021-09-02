@@ -10,8 +10,6 @@ const ServicesCarousel = function (props) {
 
   const servicesCategories = useDataStore((state) => state.servicesCategories);
 
-  console.log(servicesCategories);
-
   return (
     <div className="landing-page-category-carousel">
       <h2 className="category-headline">Services</h2>
