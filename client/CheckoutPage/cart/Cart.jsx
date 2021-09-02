@@ -12,8 +12,6 @@ const Cart = () => {
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
 
-  useEffect(() => console.log('welre rendfenign'), []);
-
   return (
 
     <Container>
@@ -33,7 +31,7 @@ const Cart = () => {
               padding: '0px',
             }}
           >
-            <CartList />
+            <CartList cart={cart}/>
           </Grid>
           <Grid
             item
@@ -45,7 +43,7 @@ const Cart = () => {
               padding: '0px',
             }}
           >
-            <OrderSummary />
+            <OrderSummary cart={cart}/>
           </Grid>
         </Grid>
       }

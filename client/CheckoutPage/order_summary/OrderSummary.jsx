@@ -28,19 +28,11 @@ const OrderSummary = () => {
   const itemsPrice = useDataStore((state) => state.itemsPrice);
   const classes = useStyles();
 
-<<<<<<< HEAD:Client/CheckoutPage/order_summary/OrderSummary.jsx
-  console.log(cart, 'summary');
-  let itemsPrice = 0;
-  cart.map((item) => {
-    itemsPrice += Number(item.price);
-  });
-=======
-  console.log(cart);
+  // console.log(cart);
   // let itemsPrice = 0;
   // cart.map((item) => {
   //   itemsPrice += Number(item.price);
   // });
->>>>>>> dev:client/CheckoutPage/order_summary/OrderSummary.jsx
 
   return (
     <Card className={classes.root}>

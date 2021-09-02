@@ -52,7 +52,7 @@ const useDataStore = create((set) => ({
         newCart.splice(i, 1);
       }
     }
-    return { cart: [...newCart] };
+    return { cart: [newCart] };
   }),
 
   setUserName: (name) => {

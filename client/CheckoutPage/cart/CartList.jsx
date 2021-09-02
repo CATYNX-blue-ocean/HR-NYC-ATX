@@ -9,14 +9,12 @@ const CartList = () => {
 
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
-<<<<<<< HEAD:Client/CheckoutPage/cart/CartList.jsx
+  const itemsPrice = useDataStore((state) => state.itemsPrice);
+  const setItemsPrice = useDataStore((state) => state.setItemsPrice);
   const removeFromCart = useDataStore((state) => state.removeFromCart);
   // const [cartUpdate, toggleCartUpdate] = useState(false);
 
   // useEffect(() => {}, [cartUpdate]);
-=======
-  const itemsPrice = useDataStore((state) => state.itemsPrice);
-  const setItemsPrice = useDataStore((state) => state.setItemsPrice);
 
   let total = 0;
   cart.map((product) => total += Number(product.price));
@@ -24,7 +22,6 @@ const CartList = () => {
   useEffect(() => {
     setItemsPrice(total);
   }, []);
->>>>>>> dev:client/CheckoutPage/cart/CartList.jsx
 
   return (
     <Container style={{padding: '25px'}}>
@@ -85,9 +82,6 @@ const CartList = () => {
                     variant="outlined"
                     inputProps={{min: 0, max: 10}}
                     value={quantity}
-<<<<<<< HEAD:Client/CheckoutPage/cart/CartList.jsx
-                    onChange={(e) => setQuantity(e.target.value)}
-=======
                     onChange={(e) => {
                       if (e.target.value > quantity) {
                         setQuantity(e.target.value);
@@ -98,7 +92,6 @@ const CartList = () => {
                       }
                     }}
 
->>>>>>> dev:client/CheckoutPage/cart/CartList.jsx
                   />
                 </Grid>
 
