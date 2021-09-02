@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import validator from 'validator';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -179,7 +182,14 @@ const SignUp = () => {
             </h2>
           </Grid>
           <Grid item xs={12}>
-            <TextField required id='sign-up-email' type='email' label='Email' onChange={(event) => { handleSetEmail(event); }} error={emailError}/>
+            <TextField
+              required
+              id='sign-up-email'
+              type='email'
+              label='Email'
+              onChange={(event) => { handleSetEmail(event); }}
+              error={emailError}
+            />
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -194,27 +204,72 @@ const SignUp = () => {
             />
           </Grid>
           <Grid item xs={6}>
-            <TextField required id='sign-up-firstName' label='First Name' onChange={(event) => { handleFirstNameChange(event); }} error={firstNameError}/>
-
-            <TextField required id='sign-up-lastName' label='Last Name' onChange={(event) => { handleLastNameChange(event); }} error={lastNameError}/>
+            <TextField
+              required
+              id='sign-up-firstName'
+              label='First Name'
+              onChange={(event) => { handleFirstNameChange(event); }}
+              error={firstNameError}
+            />
+            <TextField
+              required
+              id='sign-up-lastName'
+              label='Last Name'
+              onChange={(event) => { handleLastNameChange(event); }}
+              error={lastNameError}
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextField required type='tel' id='sign-up-phoneNumber' label='Phone Number' onChange={(event) => { handleSetPhoneNumber(event); }} error={phoneError}/>
+            <TextField
+              required
+              type='tel'
+              id='sign-up-phoneNumber'
+              label='Phone Number'
+              onChange={(event) => { handleSetPhoneNumber(event); }}
+              error={phoneError}
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextField required id='sign-up-zipCode' label='Zip Code' onChange={(event) => { handleZipCodeChange(event); }} error={zipCodeError}/>
+            <TextField
+              required
+              id='sign-up-zipCode'
+              label='Zip Code'
+              onChange={(event) => { handleZipCodeChange(event); }}
+              error={zipCodeError}
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextField select id='sign-up-seller-toggle' defaultValue='buyer' onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}>
-              <option value='buyer'>Buyer</option>
-              <option value='seller'>Seller</option>
-            </TextField>
+            <FormControl>
+              <InputLabel style={{paddingBottom: 10 + 'px'}}>Buyer or Seller?</InputLabel>
+              <Select
+                id='sign-up-seller-toggle'
+                defaultValue='buyer'
+                style={{width: 125 + 'px'}}
+                onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}
+              >
+                <MenuItem value='buyer'>Buyer</MenuItem>
+                <MenuItem value='seller'>Seller</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
-            {signInError ? <p style={{color: 'red'}}>There was an error creating your account. Please check the account details and try again!</p> : accountExists ? <p style={{color: 'red'}}>The email you used is associated with an account. Please sign in!</p> : accountCreated ? <p>Account created. Please sign in!</p> : null}
+            {
+              signInError ?
+                <p style={{color: 'red'}}>There was an error creating your account. Please check the account details and try again!</p> :
+                accountExists ?
+                  <p style={{color: 'red'}}>The email you used is associated with an account. Please sign in!</p> :
+                  accountCreated ?
+                    <p>Account created. Please sign in!</p> :
+                    null
+            }
           </Grid>
           <Grid item xs={12}>
-            <Button variant='contained' onClick={() => { onSignUpSubmit(); }}>Sign Up</Button>
+            <Button
+              variant='contained'
+              onClick={() => { onSignUpSubmit(); }}
+            >
+              Sign Up
+            </Button>
           </Grid>
         </Grid>
       </Card>
