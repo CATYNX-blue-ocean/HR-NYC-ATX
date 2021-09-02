@@ -58,15 +58,13 @@ const useDataStore = create((set) => ({
   //this function removes a product from the cart
   removeFromCart: (itemID) => set((state) => {
     let newCart = state.cart;
-    const id = itemID.target.parentElement.id;
     for (var i = 0; i < state.cart.length; i ++) {
-      console.log(state.cart[i].id, id);
-      if (state.cart[i].id === parseInt(id)) {
+      // console.log(state.cart[i].id === parseInt(itemID));
+      if (state.cart[i].id === parseInt(itemID)) {
         newCart.splice(i, 1);
-        console.log(newCart);
-        return { cart: newCart };
       }
     }
+    return { cart: [...newCart] };
   }),
 
   setUserName: (name) => {

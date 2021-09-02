@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CartList from './CartList.jsx';
 import OrderSummary from '../order_summary/OrderSummary.jsx';
 import Grid from '@material-ui/core/Grid';
@@ -11,6 +11,8 @@ const Cart = () => {
 
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
+
+  useEffect(() => console.log('welre rendfenign'), []);
 
   return (
 

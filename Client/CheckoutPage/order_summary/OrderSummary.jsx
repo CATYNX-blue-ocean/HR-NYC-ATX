@@ -11,7 +11,7 @@ const OrderSummary = () => {
   const isCheckout = useDataStore((state) => state.isCheckout);
   const setIsCheckout = useDataStore((state) => state.setIsCheckout);
 
-  console.log(cart);
+  console.log(cart, 'summary');
   let itemsPrice = 0;
   cart.map((item) => {
     itemsPrice += Number(item.price);

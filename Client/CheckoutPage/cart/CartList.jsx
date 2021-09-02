@@ -10,14 +10,9 @@ const CartList = () => {
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
   const removeFromCart = useDataStore((state) => state.removeFromCart);
-  const [cartUpdate, toggleCartUpdate] = useState(false);
-  const removeItem = (e) => {
-    const id = e.target.id;
-    removeFromCart(id);
-    toggleCartUpdate(!cartUpdate);
-  };
+  // const [cartUpdate, toggleCartUpdate] = useState(false);
 
-  useEffect(() => {}, [cartUpdate]);
+  // useEffect(() => {}, [cartUpdate]);
 
   return (
     <Container style={{padding: '25px'}}>
@@ -87,7 +82,13 @@ const CartList = () => {
                   </Typography>
                 </Grid>
                 <Grid container item xs={12} justifyContent="flex-end">
-                  <Delete id={product.id} onClick={removeFromCart}/>
+                  <Delete id={product.id} onClick={(e) => {
+                    const id = e.target.parentElement.id;
+                    removeFromCart(id);
+                    console.log(cart, 'list');
+                    // toggleCartUpdate(!cartUpdate);
+                    // console.log(cartUpdate);
+                  }}/>
                 </Grid>
 
               </Grid>
