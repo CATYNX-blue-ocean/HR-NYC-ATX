@@ -27,22 +27,9 @@ const EmptyCart = () => {
 
   return (
     <Container maxwidth='lg'>
-      <Router>
-        <NavBar/>
-      </Router>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
       <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
         <img src={sadBag}/>
-        <br/>
-        <br/>
-        <br/>
       </div>
-      <br/>
-      <br/>
       <br/>
       <Button
         // onClick={handleOpen}
@@ -51,11 +38,9 @@ const EmptyCart = () => {
         className={classes.button}
         startIcon={<ShoppingBasketIcon />}
       >
-        <Router>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-          SHOP NOW
-          </Link>
-        </Router>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+        SHOP NOW
+        </Link>
       </Button>
       <br/>
       <br/>

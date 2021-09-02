@@ -54,7 +54,7 @@ const useDataStore = create((set) => ({
   // this function adds a product to cart
 
   addToCart: (product) => set((state) => ({ cart: product })),
-  
+
   setUserName: (name) => {
     set((state) => {
       return ({userName: name});
