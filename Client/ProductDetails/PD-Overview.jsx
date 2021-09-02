@@ -2,21 +2,26 @@ import React from 'react';
 import Images from './PD-Images.jsx';
 import Info from './PD-Info.jsx';
 import Selector from './PD-Selector.jsx';
+import { useLocation } from 'react-router-dom';
+import useDataStore from '../zustandStore.js';
 
 
 
 const Overview = (props) => {
-  console.log(props);
+
+  const currentProduct = useDataStore((state) => state.currentProduct);
+  console.log(currentProduct);
+
   return (
     <div>
-      <Images images={props.product.productImage}/>
+      <Images images={currentProduct.productImage} />
       <Info
-        name={props.product.productName}
-        description={props.product.productDescription}
-        price={props.product.price}
-        ratings={props.product.ratings}
+        name={currentProduct.productName}
+        description={currentProduct.productDescription}
+        price={currentProduct.price}
+        ratings={currentProduct.ratings}
       />
-      <Selector inventory={props.product.inventory}/>
+      <Selector inventory={currentProduct.inventory} />
     </div>
   );
 };
