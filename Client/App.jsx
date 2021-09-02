@@ -53,7 +53,7 @@ const App = () => {
                 <Cart />
               </Route>
 
-              <Route exact path="/product/?id=2">
+              <Route exact path="/product-details">
                 <Overview product={exampleData.exampleData} />
               </Route>
 

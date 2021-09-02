@@ -132,7 +132,7 @@ const NavBar = () => {
       {isProduct && <Redirect to={{ pathname: '/products', }} />}
       {isService && <Redirect to={{ pathname: '/services', }} />}
       {isAlert &&
-        <div><Alert severity="warning">
+        <div><Alert severity="warning" onClose={() => setIsAlert(false)}>
           <AlertTitle>Oops</AlertTitle>
           <strong>{message}</strong>
         </Alert></div>}

@@ -4,7 +4,7 @@ const Images = ({ images}) => {
   const [currentImg, setCurrentImg] = useState(images[0]);
   const [thumbs, setThumbs] = useState(images.slice(1));
   const thumbStyle = {margin: '10px', height: '30px', width: '30px'};
-
+  console.log('PD Images ', images);
   const changeMain = (selectedImg) => {
     setCurrentImg(selectedImg);
     let newThumbs = images.filter((item) => { return item !== selectedImg; });
