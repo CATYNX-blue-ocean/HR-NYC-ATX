@@ -12,6 +12,7 @@ const useDataStore = create((set) => ({
   userName: null,
   cart: [exampleData.productListings[0], exampleData.productListings[1]],
   isCheckout: false,
+  itemsPrice: 0,
 
   setCategoryInformation: (array1, array2) =>
     set((state) => {
@@ -20,24 +21,11 @@ const useDataStore = create((set) => ({
 
   setProductCategory: (category) =>
     set((state) => {
-      let categorisedPoducts;
-      state.productData.map((product) => {
-        if (product.productCategory === category) {
-          categorisedPoducts.push(product);
-        }
-      });
-      return { currentProductCategory: categorisedPoducts };
+      return { currentProductCategory: category };
     }),
-
   setServiceCategory: (category) =>
     set((state) => {
-      let categorisedServices;
-      state.serviceData.map((service) => {
-        if (service.serviceCategory === category) {
-          categorisedServices.push(service);
-        }
-      });
-      return { currentServiceCategory: categorisedServices };
+      return { currentServiceCategory: category };
     }),
 
   // this function sets the current product
@@ -69,7 +57,7 @@ const useDataStore = create((set) => ({
 
   setUserName: (name) => {
     set((state) => {
-      return ({userName: name});
+      return { userName: name };
     });
   },
 
@@ -88,7 +76,13 @@ const useDataStore = create((set) => ({
 
   setIsCheckout: (toggle) => {
     set((state) => {
-      return {isCheckout: toggle};
+      return { isCheckout: toggle };
+    });
+  },
+
+  setItemsPrice: (price) => {
+    set((state) => {
+      return { itemsPrice: price };
     });
   }
 

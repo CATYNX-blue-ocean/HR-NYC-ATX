@@ -9,8 +9,8 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import useStyles from './styles.js';
 import axios from 'axios';
 import Radio from '@material-ui/core/Radio';
-//import useDataStore from '../ProductsPage/tempZustand.js';
 import useDataStore from '../zustandStore.js';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 const NavBar = () => {
   const classes = useStyles();
@@ -21,6 +21,8 @@ const NavBar = () => {
   const [searchType, setSearchType] = useState('product');
   const [isProduct, setIsProduct] = useState(false);
   const [isService, setIsService] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
+  const [message, setMessage] = useState('');
   const [userCity, setUserCity] = useState();
 
   const resetProductData = useDataStore((state) => state.resetProductData);
@@ -33,12 +35,20 @@ const NavBar = () => {
     axios.get(`/${type}/search/?keyword=${keyword}`)
       .then((result) => {
         //[OPTION1]update state for Product Container===========
-        if (type === 'service') {
-          resetServiceData(result.data);
-          setIsService(true);
+        console.log('SEARCH RESULT ', typeof result.data);
+        if (typeof result.data === 'string') {
+          //alert(result.data);
+          setMessage(result.data);
+          setIsAlert(true);
         } else {
-          resetProductData(result.data);
-          setIsProduct(true);
+          if (type === 'service') {
+            resetServiceData(result.data);
+            setIsService(true);
+          } else {
+            console.log('ISPRODUCT', isProduct);
+            resetProductData(result.data);
+            setIsProduct(true);
+          }
         }
       })
       .catch((err) => {
@@ -54,13 +64,19 @@ const NavBar = () => {
       console.error(err);
     });
 
+  const refreshPage = () => {
+    setTimeout(()=>{
+      window.location.reload(false);
+    }, 250);
+    console.log('page to reload');
+  };
 
   return (
     <div className={classes.grow}>
       <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none', color: 'black' }}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="" style={{ textDecoration: 'none' }}>
+            <Link to="" style={{ textDecoration: 'none' }} onClick={refreshPage}>
               Odds 'n' Ends
             </Link>
           </Typography>
@@ -122,6 +138,11 @@ const NavBar = () => {
       </AppBar>
       {isProduct && <Redirect to={{ pathname: '/products', }} />}
       {isService && <Redirect to={{ pathname: '/services', }} />}
+      {isAlert &&
+        <div><Alert severity="warning" onClose={() => setIsAlert(false)}>
+          <AlertTitle>Oops</AlertTitle>
+          <strong>{message}</strong>
+        </Alert></div>}
     </div>
   );
 };

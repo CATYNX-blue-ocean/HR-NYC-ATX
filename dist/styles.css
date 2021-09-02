@@ -7,6 +7,10 @@
   position: absolute; */
 }
 
+.font {
+  font-family: 'Roboto', sans-serif;
+}
+
 /* html {
   height: 100%;
 } */
@@ -14,5 +18,69 @@
 body {
   /* min-height: 100vh;
   margin: auto 0;
-  position: relative;
+  position: relative; */
+}
+
+/* Sign in Modal */
+
+#sign-in-modal {
+  margin: 25%;
+  width: 50%;
+}
+#sign-in-greeting {
+  text-align: center;
+}
+#sign-in-email {
+  text-align: center;
+}
+#sign-in-password {
+  text-align: center;
+}
+#sign-in-seller-toggle {
+  text-align: center;
+}
+#sign-in-button {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+#sign-in-divider {
+  text-align: center;
+  padding: 2px;
+  margin: 5px;
+}
+#sign-up-button {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Sign Up Modal */
+
+#sign-up-modal {
+  margin: 25%;
+  width: 50%;
+}
+#sign-up-header {
+  margin-left: 250px;
+}
+#sign-up-email {
+  margin-left: 200px;
+}
+#sign-up-password {
+  margin-left: 150px;
+}
+#sign-up-name {
+  display: inline-block;
+  margin-left: 125px;
+}
+#sign-up-phoneNumber,
+#sign-up-zipCode {
+  margin-left: 200px;
+}
+#sign-up-seller-toggle {
+  margin-left: 220px;
+}
+#sign-up-modal-button {
+  margin-left: 240px;
 }

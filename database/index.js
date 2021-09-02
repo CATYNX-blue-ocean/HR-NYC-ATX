@@ -102,11 +102,10 @@ const getProductList = async (cb) => {
 
 
 const getServiceList = async (cb) => {
-  await Sellers
+  await db
+    .collection('serviceListings')
     .find({})
-    .populate({ path: 'services' })
-    //.lean()
-    .exec(function (err, result) {
+    .toArray(function (err, result) {
       if (err) {
         return err;
       }
@@ -119,8 +118,8 @@ const getServiceCategory = (category) => {
   return Sellers.find({ 'services.serviceCategory': category });
 };
 
-const getBuyerLogin = async (buyerEmail) => {
-  return await Buyers.find({ buyerEmail });
+const getBuyerLogin = async (email) => {
+  return await Buyers.find({buyerEmail: email});
 };
 
 const checkForBuyer = (buyerEmail) => {
@@ -133,7 +132,7 @@ const checkForSeller = (sellerEmail) => {
 
 const saveNewBuyer = (buyerInfo) => {
   const newUser = new Buyers({
-    buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
+    buyerName: buyerInfo.buyerName,
     password: buyerInfo.password,
     buyerEmail: buyerInfo.buyerEmail,
     buyerPhone: buyerInfo.buyerPhone,
@@ -187,6 +186,7 @@ const searchForProducts = (key, CB) => {
     });
 };
 
+//The query of the SELLERS database
 const searchForServices = (key, CB) => {
   Sellers.find({ 'services.serviceCategory': { $regex: key, $options: 'i' } })
     .populate({ path: 'services' })
@@ -199,6 +199,22 @@ const searchForServices = (key, CB) => {
       CB(null, data);
     });
 };
+
+//The query of the SERVICES database - this gets all results then check for match on the server side. I had to do this because of upper/lower case
+const searchServices = async (service, cb) => {
+  await db
+    .collection('serviceListings')
+    .find({})
+    .toArray(function (err, result) {
+      if (err) {
+        return err;
+      }
+      cb(null, result);
+    });
+};
+
+
+
 
 const catFind = async (name) => {
   return await Categories.find({});
@@ -216,6 +232,8 @@ const saveNewOrder = (orderInfo) => {
   return newOrder.save();
 };
 
+
+
 module.exports = {
   getSellerLogin,
   getServiceCategory,
@@ -231,6 +249,7 @@ module.exports = {
   getProductList,
   catFind,
   saveNewOrder,
+  searchServices,
 };
 
 //buyer = 'undefined undefined';
@@ -238,3 +257,5 @@ module.exports = {
 //orders = empty;
 //repos =
 //seller = 'Joe String'
+
+// searchServices()

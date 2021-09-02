@@ -17,7 +17,6 @@ app.use(express.static(__dirname + '/../dist'));
 
 //landing page
 app.get('/landing', function (req, res) {
-  console.log(req.body);
   database.catFind()
     .then ((data)=> { res.json(data); })
     .catch ((err)=> { res.sendStatus(500); });
@@ -59,6 +58,13 @@ app.get('/category/*', function (req, res) {
 app.get('/categories', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
+app.get('/products-page', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+
+app.get('/product-details', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
 
 app.get('/products', function (req, res) {
   database.getProductList( function (err, result) {
@@ -82,21 +88,12 @@ app.get('/services', function (req, res) {
     if (err) {
       throw err;
     }
-    var serviceList = [];
-    var jsSellers = result.map((r) => r.toObject());
-    jsSellers.forEach((seller) => {
-      seller.services.forEach((service) => {
-        service['location'] = seller.location;
-        serviceList.push(service);
-      });
-    });
-    res.send(serviceList);
+    res.send(result);
   });
 });
 
 //get to make sure seller has an account while logging in
 app.get('/sellersignin', (req, res)=> {
-  console.log(req.body);
   const seller = req.query.sellerEmail;
   database.getSellerLogin( seller )
     .then( (sellerInfo) => {
@@ -118,6 +115,7 @@ app.get('/sellersignin', (req, res)=> {
 app.get('/buyersignin', (req, res)=> {
   database.getBuyerLogin( req.query.buyerEmail )
     .then((data) => {
+      setTimeout(() => { console.log('Buyer login data ' + data); }, 3000);
       if (data === null) {
         res.status(400).send('Invalid login');
       } else {
@@ -130,7 +128,7 @@ app.get('/buyersignin', (req, res)=> {
 app.post('/buyersignup', ( req, res ) => {
   const newBuyer = req.body;
 
-  database.checkForBuyer( newBuyer.email )
+  database.checkForBuyer( newBuyer.buyerEmail )
     .then( ( doTheyExist ) => {
       if (doTheyExist === true) {
         res.Status = 201;
@@ -193,10 +191,37 @@ app.get('/product/search', (req, res) => {
   });
 });
 
-// user search for services
+// user search for services - ORIGINAL - querying the SELLERS database
+// app.get('/service/search', (req, res) => {
+//   let keyword = req.query.keyword;
+//   database.searchForServices(keyword, (err, result) => {
+//     if (err) {
+//       console.error(err);
+//       res.sendStatus(404);
+//     }
+//     if (!result.length) {
+//       res.json('No matching services for your location.');
+//     } else {
+//       let servicesMatch = [];
+//       result.forEach((seller) => {
+//         seller.services.forEach((service) => {
+//           if (service.serviceCategory.toLowerCase().includes(keyword.toLowerCase())) {
+//             servicesMatch.push(service);
+//           }
+//         });
+//       });
+//       res.status(200).json(servicesMatch);
+//     }
+//   });
+// });
+
+
+
+//user search for services -VERSION 2 - Querying SERVICES database
 app.get('/service/search', (req, res) => {
   let keyword = req.query.keyword;
-  database.searchForServices(keyword, (err, result) => {
+  console.log(keyword);
+  database.searchServices(keyword, (err, result) => {
     if (err) {
       console.error(err);
       res.sendStatus(404);
@@ -206,11 +231,9 @@ app.get('/service/search', (req, res) => {
     } else {
       let servicesMatch = [];
       result.forEach((seller) => {
-        seller.services.forEach((service) => {
-          if (service.serviceCategory.toLowerCase().includes(keyword.toLowerCase())) {
-            servicesMatch.push(service);
-          }
-        });
+        if (seller.serviceCategory.toLowerCase().includes(keyword.toLowerCase())) {
+          servicesMatch.push(seller);
+        }
       });
       res.status(200).json(servicesMatch);
     }
@@ -236,7 +259,6 @@ app.get('/SellersInCategory', (req, res)=>{
 app.get('/Categories', (req, res)=>{
   database.getAllCategories()
     .then( (list) => {
-      console.log(list);
       res.Status = 200;
       res.send(list);
     })
