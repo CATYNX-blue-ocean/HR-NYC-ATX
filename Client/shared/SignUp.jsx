@@ -265,6 +265,7 @@ const SignUp = () => {
           </Grid>
           <Grid item xs={12}>
             <Button
+              style={{backgroundColor: '#5E2EBA', color: 'white'}}
               variant='contained'
               onClick={() => { onSignUpSubmit(); }}
             >

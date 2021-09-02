@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -11,7 +11,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import validator from 'validator';
 import axios from 'axios';
-import useStore from '../zustandStore';
+import useDataStore from '../zustandStore';
 import {
   Link,
   useHistory
@@ -25,6 +25,10 @@ const SignIn = () => {
   const [isSeller, setIsSeller] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const history = useHistory();
+  const setUsername = useDataStore((state) => state.setUserName);
+  let username = useDataStore((state) => state.userName);
+  let [name, setName] = useState('');
+
 
   let close = (event) => {
     history.goBack();
@@ -38,7 +42,8 @@ const SignIn = () => {
             setLoginError(true);
           } else {
             setLoginError(false);
-            console.log(res.data);
+            setUsername(res.data.sellerName);
+            close();
           }
         });
     } else {
@@ -48,7 +53,8 @@ const SignIn = () => {
             setLoginError(true);
           } else {
             setLoginError(false);
-            console.log(res);
+            setUsername(res.data.buyerName);
+            close();
           }
         });
     }
@@ -95,10 +101,12 @@ const SignIn = () => {
       <Card>
         <Grid
           id='sign-in-modal'
-          container spacing={1}
-          style={{backgroundColor: '#fff', padding: 20 + 'px'}}
-          direction="column"
+          container
+          spacing={1}
+          style={{backgroundColor: '#fff', paddingLeft: 150 + 'px'}}
+          // direction="row"
           alignItems="center"
+          justify="center"
         >
           <Grid item xs={12}>
             <h2>
@@ -140,14 +148,20 @@ const SignIn = () => {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <Button variant='contained' onClick={onSignInSubmit}>Sign In</Button>
+            <Button
+              variant='contained'
+              onClick={onSignInSubmit}
+              style={{backgroundColor: '#5E2EBA', color: 'white'}}
+            >
+              Sign In
+            </Button>
           </Grid>
           <Grid item xs={12}>
             <p>
               or
             </p>
             <Link to="/sign-up">
-              <Button variant='contained'>Sign Up</Button>
+              <Button variant='contained' style={{backgroundColor: '#DED1F7'}}>Sign Up</Button>
             </Link>
           </Grid>
           <Grid item xs={12}>
