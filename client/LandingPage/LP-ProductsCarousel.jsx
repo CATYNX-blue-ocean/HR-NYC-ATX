@@ -30,17 +30,9 @@ const ProductsCarousel = function (props) {
   };
   return (
     <div className="landing-page-category-carousel">
-      <div className="see-all-link">
-        <a>See All</a>
-      </div>
-      <Carousel
-        itemsToShow={3}
-        pagination={false}
-        ref={carouselRef}
-        onPrevStart={onPrevStart}
-        onNextStart={onNextStart}
-        disableArrowsOnEnd={false}
-      >
+      <h2 className="category-headline">Products</h2>
+      <a className="see-all-link">See All</a>
+      <Carousel itemsToShow={3} pagination={false} >
         {productCategories.map((item) => <CategoryCardProducts key={item._id}
           photo={item.image} name={item.category} description={item.description} />)}
       </Carousel>
