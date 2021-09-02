@@ -9,7 +9,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import useStyles from './styles.js';
 import axios from 'axios';
 import Radio from '@material-ui/core/Radio';
-import useDataStore from '../ProductsPage/tempZustand.js';
+// import useDataStore from '../ProductsPage/tempZustand.js';
 import useDataStore from '../zustandStore.js';
 
 const NavBar = () => {
