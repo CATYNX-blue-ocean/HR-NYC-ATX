@@ -9,7 +9,8 @@ const CartList = () => {
 
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
-
+  const itemsPrice = useDataStore((state) => state.itemsPrice);
+  const setItemsPrice = 
 
   return (
     <Container style={{padding: '25px'}}>

@@ -12,6 +12,7 @@ const useDataStore = create((set) => ({
   userName: null,
   cart: [exampleData.productListings[0], exampleData.productListings[1]],
   isCheckout: false,
+  itemsPrice: 0,
 
   setCategoryInformation: (array1, array2) =>
     set((state) => {
@@ -54,7 +55,7 @@ const useDataStore = create((set) => ({
   // this function adds a product to cart
 
   addToCart: (product) => set((state) => ({ cart: product })),
-  
+
   setUserName: (name) => {
     set((state) => {
       return ({userName: name});
@@ -77,6 +78,12 @@ const useDataStore = create((set) => ({
   setIsCheckout: (toggle) => {
     set((state) => {
       return {isCheckout: toggle};
+    });
+  },
+
+  setItemsPrice: (price) => {
+    set((state) => {
+      return { itemsPrice: price };
     });
   }
 

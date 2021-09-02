@@ -10,12 +10,13 @@ const OrderSummary = () => {
   const cart = useDataStore((state) => state.cart);
   const isCheckout = useDataStore((state) => state.isCheckout);
   const setIsCheckout = useDataStore((state) => state.setIsCheckout);
+  const itemsPrice = useDataStore((state) => state.itemsPrice);
 
   console.log(cart);
-  let itemsPrice = 0;
-  cart.map((item) => {
-    itemsPrice += Number(item.price);
-  });
+  // let itemsPrice = 0;
+  // cart.map((item) => {
+  //   itemsPrice += Number(item.price);
+  // });
 
   return (
     <div>
@@ -25,7 +26,7 @@ const OrderSummary = () => {
           <h3>{cart.length} Items</h3>
         </Grid>
         <Grid item xs={6}>
-          <p>Items:</p>
+          <p>Subtotal:</p>
           <p>Shipping:</p>
           <p>Total before tax:</p>
           <p>Estimated tax:</p>
