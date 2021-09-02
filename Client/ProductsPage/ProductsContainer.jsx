@@ -38,9 +38,6 @@ const ProductsContainer = ({ }) => {
 
   return (
     <Container maxwidth='lg'>
-      {/* <Router>
-        <NavBar/>
-      </Router> */}
       <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justifyContent='space-between' alignItems='stretch' spacing={3}>

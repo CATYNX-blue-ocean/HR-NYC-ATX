@@ -45,12 +45,6 @@ const NavBar = () => {
         console.error(err);
       });
   };
-  // [BACKUP PLAN]Search triggered by onChange
-  // const handleSearchChange = (e, keyword, type) => {
-  //   if (e.target.value.length < 4) {
-
-  //   }
-  // };
 
   axios.get('http://ip-api.com/json')
     .then((results) => {
