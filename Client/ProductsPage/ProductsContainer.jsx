@@ -6,6 +6,7 @@ import ProductsCard from './ProductsCard.jsx';
 import { Pagination } from '@material-ui/lab';
 import useStyles from './styles';
 import useDataStore from '../zustandStore.js';
+import {BrowserRouter as Router, useParams} from 'react-router-dom';
 
 //react router for card click to product detail page??
 
@@ -31,7 +32,7 @@ const ProductsContainer = ({ }) => {
     totalPosts = products.length;
     currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
   }
-
+  let {id} = userParams();
   const numberOfPages = Math.ceil(totalPosts / postsPerPage);
 
   return (

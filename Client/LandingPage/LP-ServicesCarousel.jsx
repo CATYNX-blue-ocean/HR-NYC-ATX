@@ -17,8 +17,14 @@ const ServicesCarousel = function (props) {
         <h4 className="see-all-link">See All</h4>
       </Link>
       <Carousel itemsToShow={3} pagination={false}>
-        {servicesCategories.map((item) => <CategoryCardServices key={item._id}
-          photo={item.image} name={item.category} description={item.description} />)}
+        {servicesCategories.map((item) => {
+          return (
+            <Link style={{textDecoration: 'none'}} to="/categories">
+              <CategoryCardServices key={item._id}
+                photo={item.image} name={item.category} description={item.description} />
+            </Link>
+          );
+        })}
       </Carousel>
     </div>
   );

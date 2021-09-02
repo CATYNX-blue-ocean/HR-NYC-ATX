@@ -36,8 +36,14 @@ const ProductsCarousel = function (props) {
         <h4 className="see-all-link">See All</h4>
       </Link>
       <Carousel itemsToShow={3} pagination={false} >
-        {productCategories.map((item) => <CategoryCardProducts key={item._id}
-          photo={item.image} name={item.category} description={item.description} />)}
+        {productCategories.map((item) => {
+          return (
+            <Link style={{ textDecoration: 'none' }} to="/products">
+              <CategoryCardProducts key={item._id}
+                photo={item.image} name={item.category} description={item.description} />
+            </Link>
+          );
+        })}
       </Carousel>
     </div>
   );

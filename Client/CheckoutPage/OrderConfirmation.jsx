@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-=======
 import NavBar from '../shared/NavBar.jsx';
->>>>>>> dev
 import useStyles from '../shared/styles.js';
 import { Button, Grid } from '@material-ui/core';
 import axios from 'axios';
