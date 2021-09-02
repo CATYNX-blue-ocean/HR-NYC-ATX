@@ -59,6 +59,10 @@ app.get('/categories', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
+app.get('/product-details', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+
 app.get('/products', function (req, res) {
   database.getProductList( function (err, result) {
     if (err) {
