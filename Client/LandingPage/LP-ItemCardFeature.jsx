@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import hero1 from '/dist/static/default_category_img/hero1.jpg';
+
 
 const ItemCardFeature = function (props) {
 
@@ -10,7 +10,7 @@ const ItemCardFeature = function (props) {
 
   return (
     <div className="feature-item-card-container" onClick={() => { handleTestClickFeature(); }}>
-      <img className="feature-item-card-image" src={hero1}></img>
+      <img className="feature-item-card-image" src={props.photo}></img>
     </div>
 
   );
