@@ -59,17 +59,10 @@ app.get('/categories', function (req, res) {
 });
 
 app.get('/products', function (req, res) {
-<<<<<<< HEAD
-  db.collection('productListings').find({}).toArray(function(err, result) {
-=======
   database.getProductList( function (err, result) {
->>>>>>> dev
     if (err) {
       throw err;
     }
-<<<<<<< HEAD
-    res.send(result);
-=======
     var newProductList = [];
 
     result.forEach((seller) => {
@@ -79,22 +72,14 @@ app.get('/products', function (req, res) {
       });
     });
     res.send(newProductList);
->>>>>>> dev
   });
 });
 
 app.get('/services', function (req, res) {
-<<<<<<< HEAD
-  db.collection('serviceListings').find({}).toArray(function(err, result) {
-=======
   database.getServiceList( function (err, result) {
->>>>>>> dev
     if (err) {
       throw err;
     }
-<<<<<<< HEAD
-    res.send(result);
-=======
     var serviceList = [];
     var jsSellers = result.map((r) => r.toObject());
     jsSellers.forEach((seller) => {
@@ -104,7 +89,6 @@ app.get('/services', function (req, res) {
       });
     });
     res.send(serviceList);
->>>>>>> dev
   });
 });
 
