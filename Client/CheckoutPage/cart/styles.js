@@ -1,14 +1,16 @@
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   root: {
     width: '100%',
-    height: 450,
+    height: 150,
     marginBottom: '20px',
     position: 'relative'
   },
   media: {
-    height: '65%'
+    height: '100px',
+    width: '150px',
+    float: 'left'
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -16,8 +18,8 @@ export default makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
-  button: {
-    position: 'absolute',
-    right: '47%',
-  },
+  quantity: {
+    height: '30px',
+    width: '60px'
+  }
 }));
