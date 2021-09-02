@@ -12,7 +12,7 @@ import { Link, BrowserRouter } from 'react-router-dom';
 
 const CategoriesCards = (props) => {
   return (
-    <Grid item style={ { width: '40%'} }>
+    <Grid item style={ { width: '40%', padding: '50px'} }>
       <Card style={ { height: '100%' } }>
         <CardActionArea>
           <CardMedia
