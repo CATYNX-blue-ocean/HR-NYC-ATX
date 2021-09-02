@@ -166,7 +166,6 @@ const SignUp = () => {
     <Modal
       open={show}
       onClose={close}
-      style={{marginLeft: 25 + '%', width: 50 + '%', marginRight: 25 + '%', top: 100 + 'px'}}
       id='sign-up-modal'
     >
       <Card>
@@ -177,24 +176,23 @@ const SignUp = () => {
           direction='column'
         >
           <Grid item xs={12}>
-            <h2>
+            <h2 id='sign-up-header'>
               Sign Up
             </h2>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} id='sign-up-email'>
             <TextField
               required
-              id='sign-up-email'
+
               type='email'
               label='Email'
               onChange={(event) => { handleSetEmail(event); }}
               error={emailError}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} id='sign-up-password'>
             <TextField
               required
-              id='sign-up-password'
               type='password'
               size='medium'
               label='Password'
@@ -203,10 +201,9 @@ const SignUp = () => {
               error={passwordError}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} id='sign-up-name'>
             <TextField
               required
-              id='sign-up-firstName'
               label='First Name'
               onChange={(event) => { handleFirstNameChange(event); }}
               error={firstNameError}
@@ -219,30 +216,29 @@ const SignUp = () => {
               error={lastNameError}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} id='sign-up-phoneNumber'>
             <TextField
               required
               type='tel'
-              id='sign-up-phoneNumber'
+
               label='Phone Number'
               onChange={(event) => { handleSetPhoneNumber(event); }}
               error={phoneError}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} id='sign-up-zipCode'>
             <TextField
               required
-              id='sign-up-zipCode'
               label='Zip Code'
               onChange={(event) => { handleZipCodeChange(event); }}
               error={zipCodeError}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} id='sign-up-seller-toggle'>
             <FormControl>
               <InputLabel style={{paddingBottom: 10 + 'px'}}>Buyer or Seller?</InputLabel>
               <Select
-                id='sign-up-seller-toggle'
+
                 defaultValue='buyer'
                 style={{width: 125 + 'px'}}
                 onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}
@@ -263,7 +259,7 @@ const SignUp = () => {
                     null
             }
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} id='sign-up-modal-button'>
             <Button
               style={{backgroundColor: '#5E2EBA', color: 'white'}}
               variant='contained'
