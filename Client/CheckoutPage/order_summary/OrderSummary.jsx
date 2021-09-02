@@ -2,16 +2,24 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { useState, useEffect } from 'react';
 import useDataStore from '../../zustandStore.js';
+import Button from '@material-ui/core/Button';
 
 const OrderSummary = () => {
   // const [cartItems, setCart] = useState([]);
   const cart = useDataStore((state) => state.cart);
-  console.log(cart);
+  const test = useDataStore((state) => state.setCategoryInformation);
+  const test2 = useDataStore((state) => state.test2);
+
   let itemsPrice = 0;
   cart.map((item) => {
     itemsPrice += Number(item.price);
   });
-
+  const onClick = () => {
+    test(['test1'], [1, 2, 3, 4]);
+  };
+  const onClick2 = () => {
+    test2();
+  };
   return (
     <div>
       <Grid container spacing={3} style={{ padding: '25px' }}>
@@ -24,12 +32,18 @@ const OrderSummary = () => {
           <p>Shipping:</p>
           <p>Total before tax:</p>
           <p>Estimated tax:</p>
+          <h3>Total:</h3>
         </Grid>
         <Grid item xs={6} styles={{ float: 'right' }}>
           <p>${itemsPrice}</p>
           <p>$2.99</p>
           <p>${itemsPrice + 2.99}</p>
-          <p>${(itemsPrice / 100) * 7 + itemsPrice}</p>
+          <p>${(itemsPrice / 100) * 7}</p>
+          <h3>${(itemsPrice / 100) * 7 + itemsPrice + 2.99}</h3>
+        </Grid>
+        <Grid item xs={12}>
+          <Button onClick={onClick}>CHECKOUT</Button>
+          <Button onClick={onClick2}>COUT</Button>
         </Grid>
       </Grid>
     </div>
