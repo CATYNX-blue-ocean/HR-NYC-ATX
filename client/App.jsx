@@ -59,12 +59,14 @@ const App = () => {
               <Route exact path="/">
                 <LandingPage />
               </Route>
+
+              <Route path="/product-detail/:productid" children={<Overview />} />
             </Grid>
           </Grid>
         </Router>
       </div>
       {/* added products container down here to test rendering */}
-      {/* <ProductsContainer/> */}
+      <ProductsContainer/>
       {/* <div>
         <Overview product={exampleData.exampleData}/>
       </div> */}

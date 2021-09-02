@@ -8,6 +8,7 @@ import ProductsCard from './ProductsCard.jsx';
 import { Pagination } from '@material-ui/lab';
 import useStyles from './styles';
 import useDataStore from './tempZustand.js';
+import {Switch} from 'react-router-dom';
 
 //react router for card click to product detail page??
 
@@ -80,14 +81,14 @@ const ProductsContainer = ({ }) => {
   return (
     <Container maxwidth='lg'>
       <Router>
-        <NavBar/>
-      </Router>
       <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justifyContent='space-between' alignItems='stretch' spacing={3}>
             {currentPosts.map((product, i) => (
               <Grid item key={i} xs={4} >
-                <ProductsCard product={product}/>
+                <Switch>
+                  <ProductsCard product={product}/>
+                </Switch>
               </Grid>
             ))}
             <Pagination
@@ -100,7 +101,9 @@ const ProductsContainer = ({ }) => {
           </Grid>
         </Container>
       </Grow>
+    </Router>
     </Container>
+
   );
 };
 
