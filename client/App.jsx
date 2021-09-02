@@ -32,35 +32,37 @@ const App = () => {
               <NavBar />
             </Grid>
             <Grid item width="1">
-              <Route exact path="/sign-in">
-                <SignIn />
-              </Route>
+              <Switch>
+                <Route exact path="/sign-in">
+                  <SignIn />
+                </Route>
 
-              <Route path="/sign-up">
-                <SignUp />
-              </Route>
+                <Route path="/sign-up">
+                  <SignUp />
+                </Route>
 
-              <Route exact path="/search">
-                <h2>Hello Search</h2>
-              </Route>
+                <Route exact path="/search">
+                  <h2>Hello Search</h2>
+                </Route>
 
-              <Route exact path="/cart">
-                <h2>Hello Shopping Cart</h2>
-              </Route>
+                <Route exact path="/cart">
+                  <h2>Hello Shopping Cart</h2>
+                </Route>
 
-              <Route exact path="/product/?id=2">
-                <Overview product={exampleData.exampleData} />
-              </Route>
+                <Route exact path="/product/?id=2">
+                  <Overview product={exampleData.exampleData} />
+                </Route>
 
-              <Route exact path="/checkout">
-                <h2>Hello Checkout</h2>
-              </Route>
+                <Route exact path="/checkout">
+                  <h2>Hello Checkout</h2>
+                </Route>
 
-              <Route exact path="/">
-                <LandingPage />
-              </Route>
+                <Route exact path="/">
+                  <LandingPage />
+                </Route>
 
-              <Route path="/product-detail/:productid" children={<Overview />} />
+                <Route path="/product-detail/:productid" children={<Overview />} />
+              </Switch>
             </Grid>
           </Grid>
         </Router>
