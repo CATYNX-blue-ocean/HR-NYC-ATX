@@ -57,6 +57,10 @@ const App = () => {
                 <Overview product={exampleData.exampleData} />
               </Route>
 
+              <Route exact path="/productInfo"
+                render={(props) => (<Overview props={props} isAuthed={true} />)}>
+              </Route>
+
               <Route exact path="/checkout">
                 <CheckoutPage />
               </Route>
