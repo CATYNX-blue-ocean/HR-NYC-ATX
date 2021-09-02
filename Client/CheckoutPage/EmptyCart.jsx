@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Container, Typography, Grow, Grid, InputBase } from '@material-ui/core';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -7,7 +7,6 @@ import useStyles from './styles.js';
 import NavBar from '../shared/NavBar.jsx';
 import useDataStore from '../zustandStore.js';
 import EmptyCartProductsCard from './EmptyCartCards.jsx';
-import { Link } from 'react-router-dom';
 
 const sadBag = 'https://i1.wp.com/www.huratips.com/wp-content/uploads/2019/04/empty-cart.png?fit=603%2C288&ssl=1';
 
@@ -37,7 +36,7 @@ const EmptyCart = () => {
       <br/>
       <br/>
       <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-        <img src={'https://i1.wp.com/www.huratips.com/wp-content/uploads/2019/04/empty-cart.png?fit=603%2C288&ssl=1'}/>
+        <img src={sadBag}/>
         <br/>
         <br/>
         <br/>

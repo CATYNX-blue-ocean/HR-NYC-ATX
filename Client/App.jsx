@@ -6,20 +6,22 @@ import useStore from './zustandStore';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
+import ServicesContainer from './ServicesPage/ServicesContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
-import Checkout from './CheckoutPage/CheckoutPage.jsx';
+import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
+
+
+
 const App = () => {
   // example of consuming state
   const myVariable = useStore((state) => state.exampleStateField);
   const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
   return (
     <>
-      <button onClick={exampleChangeFn}>change state</button>{' '}
-      {/* example of changing state  */}
       <div className="landing-page-main-div">
         <Router>
           <Grid
@@ -53,7 +55,19 @@ const App = () => {
               </Route>
 
               <Route exact path="/checkout">
-                <Checkout />
+                <h2>Hello Checkout</h2>
+              </Route>
+
+              <Route exact path="/categories">
+                <ProdServCategories />
+              </Route>
+
+              <Route exact path="/products">
+                <ProductsContainer />
+              </Route>
+
+              <Route exact path="/services">
+                <ServicesContainer />
               </Route>
 
               <Route exact path="/">

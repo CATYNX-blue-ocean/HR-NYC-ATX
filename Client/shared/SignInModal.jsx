@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Backdrop from '@material-ui/core/Backdrop';
+import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import validator from 'validator';
+import axios from 'axios';
+import useDataStore from '../zustandStore';
 import {
   Link,
   useHistory
@@ -15,10 +22,42 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [isSeller, setIsSeller] = useState(false);
+  const [loginError, setLoginError] = useState(false);
   const history = useHistory();
+  const setUsername = useDataStore((state) => state.setUserName);
+  let username = useDataStore((state) => state.userName);
+  let [name, setName] = useState('');
+
 
   let close = (event) => {
     history.goBack();
+  };
+
+  let onSignInSubmit = () => {
+    if (isSeller) {
+      axios.get(`/sellersignin?sellerEmail=${email}`)
+        .then((res) => {
+          if (res.data === 'User Not Found.' || res.data === 'There was an error with your request, Please try again or contact an administrator.') {
+            setLoginError(true);
+          } else {
+            setLoginError(false);
+            setUsername(res.data.sellerName);
+            close();
+          }
+        });
+    } else {
+      axios.get(`/buyersignin?buyerEmail=${email}`)
+        .then((res) => {
+          if (res.data === 'User Not Found.' || res.data === 'There was an error with your request, Please try again or contact an administrator.') {
+            setLoginError(true);
+          } else {
+            setLoginError(false);
+            setUsername(res.data.buyerName);
+            close();
+          }
+        });
+    }
   };
 
   const validateEmail = (email) => {
@@ -54,12 +93,21 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <Modal
-        open={true}
-        onClose={close}
-      >
-        <Grid id='sign-in-modal' container spacing={1} style={{backgroundColor: '#fff'}} direction="column" alignItems="center">
+    <Modal
+      open={true}
+      onClose={close}
+      style={{marginLeft: 25 + '%', width: 50 + '%', marginRight: 25 + '%', top: 100 + 'px'}}
+    >
+      <Card>
+        <Grid
+          id='sign-in-modal'
+          container
+          spacing={1}
+          style={{backgroundColor: '#fff', paddingLeft: 150 + 'px'}}
+          // direction="row"
+          alignItems="center"
+          justify="center"
+        >
           <Grid item xs={12}>
             <h2>
               Sign In
@@ -69,25 +117,59 @@ const SignIn = () => {
             </p>
           </Grid>
           <Grid item xs={12}>
-            <TextField required id='sign-in-email' type='email' label='email' onChange={(event) => { handleSetEmail(event); }} error={emailError}/>
+            <TextField
+              required id='sign-in-email'
+              type='email' label='email'
+              onChange={(event) => { handleSetEmail(event); }}
+              error={emailError}
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextField required id='sign-in-password' type='password' label='password' onChange={(event) => { handleSetPassword(event); }} error={passwordError}/>
+            <TextField
+              required id='sign-in-password'
+              type='password'
+              label='password'
+              onChange={(event) => { handleSetPassword(event); }}
+              error={passwordError}
+            />
           </Grid>
           <Grid item xs={12}>
-            <Button variant='contained'>Sign In</Button>
+            <FormControl>
+              <InputLabel>Buyer or Seller?</InputLabel>
+              <Select
+                id='sign-up-seller-toggle'
+                defaultValue='buyer'
+                style={{width: 125 + 'px'}}
+                onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}
+              >
+                <MenuItem value='buyer'>Buyer</MenuItem>
+                <MenuItem value='seller'>Seller</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              variant='contained'
+              onClick={onSignInSubmit}
+              style={{backgroundColor: '#5E2EBA', color: 'white'}}
+            >
+              Sign In
+            </Button>
           </Grid>
           <Grid item xs={12}>
             <p>
               or
             </p>
             <Link to="/sign-up">
-              <Button variant='contained'>Sign Up</Button>
+              <Button variant='contained' style={{backgroundColor: '#DED1F7'}}>Sign Up</Button>
             </Link>
           </Grid>
+          <Grid item xs={12}>
+            {loginError ? <p style={{color: 'red'}}>There was an error signing into your account. Please check your account details and try again!</p> : null}
+          </Grid>
         </Grid>
-      </Modal>
-    </div >
+      </Card >
+    </Modal>
   );
 };
 

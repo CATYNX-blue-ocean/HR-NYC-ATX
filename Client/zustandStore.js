@@ -9,10 +9,14 @@ const useDataStore = create((set) => ({
   currentProduct: exampleData.productListings[0],
   currentProductCategory: exampleData.productListings[0].productCategory,
   currentServiceCategory: exampleData.serviceListings[0].serviceCategory,
+  userName: null,
+  cart: [exampleData.productListings[0], exampleData.productListings[1]],
+
   setCategoryInformation: (array1, array2) =>
     set((state) => {
       return { productCategories: array1, servicesCategories: array2 };
     }),
+
   setProductCategory: (category) =>
     set((state) => {
       let categorisedPoducts;
@@ -22,10 +26,6 @@ const useDataStore = create((set) => ({
         }
       });
       return { currentProductCategory: categorisedPoducts };
-    }),
-  test2: () =>
-    set((state) => {
-      console.log('state:', state.productCategories, state.servicesCategories);
     }),
   setServiceCategory: (category) =>
     set((state) => {
@@ -37,8 +37,8 @@ const useDataStore = create((set) => ({
       });
       return { currentServiceCategory: categorisedServices };
     }),
+
   // this function sets the current product
-  cart: [exampleData.productListings[0], exampleData.productListings[1]],
   setCurrentProduct: (id) =>
     set((state) => {
       let current;
@@ -50,7 +50,26 @@ const useDataStore = create((set) => ({
       return { currentProduct: current };
     }),
   // this function adds a product to cart
+
   addToCart: (product) => set((state) => ({ cart: product })),
+  setUserName: (name) => {
+    set((state) => {
+      return { userName: name };
+    });
+  },
+
+  // for Search: reset data
+  resetProductData: (data) => {
+    set((state) => {
+      return { productData: data };
+    });
+  },
+  // for Search: reset data
+  resetServiceData: (data) => {
+    set((state) => {
+      return { serviceData: data };
+    });
+  },
 }));
 
 export default useDataStore;

@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   root: {
-    width: '100%',
-    height: 450,
+    width: '90%',
+    height: 200,
     marginBottom: '20px',
     position: 'relative'
   },
@@ -15,9 +15,5 @@ export default makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-  },
-  button: {
-    position: 'absolute',
-    right: '47%',
-  },
+  }
 }));

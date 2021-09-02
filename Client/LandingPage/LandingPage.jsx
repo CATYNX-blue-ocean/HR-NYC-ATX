@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { Link, Redirect } from 'react-router-dom';
 import { Container, Grid } from '@material-ui/core';
 import NavBar from '../shared/NavBar.jsx';
 import FeatureCarousel from './LP-FeatureCarousel.jsx';
@@ -12,10 +13,6 @@ const LandingPage = function () {
   const setCategoryInformation = useDataStore((state) => state.setCategoryInformation);
   const productCategories = useDataStore((state) => state.productCategories);
   const servicesCategories = useDataStore((state) => state.servicesCategories);
-
-  console.log(`products: ${productCategories}`);
-  console.log(`services: ${servicesCategories}`);
-
 
   useEffect(() => {
     axios.get('http://localhost:3000/landing')
