@@ -18,15 +18,13 @@ import { Grid } from '@material-ui/core';
 import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
 import OrderConfirmationPage from './CheckoutPage/OrderConfirmation.jsx';
 
-
-
 const App = () => {
   // example of consuming state
   const myVariable = useStore((state) => state.exampleStateField);
   const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
   return (
     <>
-      <div className="landing-page-main-div">
+      <div className="landing-page-main-div font">
         <Router>
           <Grid
             container
@@ -71,7 +69,7 @@ const App = () => {
               </Route>
 
               <Route exact path="/confirmation">
-                <OrderConfirmationPage/>
+                <OrderConfirmationPage />
               </Route>
 
               <Route exact path="/services">
@@ -93,7 +91,6 @@ const App = () => {
     </>
   );
 };
-
 
 export default App;
 //ReactDOM.render(<App />, document.getElementById('app'));
