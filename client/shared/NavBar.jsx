@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import { AppBar, Badge, IconButton, InputBase, Toolbar, Typography } from '@material-ui/core';
 //icons won't let you destructure, leave them listed below as-is
 import SearchIcon from '@material-ui/icons/Search';
@@ -115,4 +115,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default withRouter(NavBar);
