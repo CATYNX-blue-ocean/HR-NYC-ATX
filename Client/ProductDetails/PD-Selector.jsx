@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import useDataStore from '../zustandStore.js';
 
-const Selector = ({ inventory }) => {
+const Selector = ({ inventory, product }) => {
   var stockObj = JSON.parse(inventory);
   const [addCart, setAddCart] = useState(true);
+  const addToCart = useDataStore((state) => state.addToCart);
   const handleAddCart = () => {
     setAddCart(false);
+    addToCart(product);
   };
   const history = useHistory();
   const handleBuyNow = () => {
