@@ -11,12 +11,9 @@ import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
-<<<<<<< HEAD
 import Checkout from './CheckoutPage/CheckoutPage.jsx';
-=======
 import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
 import OrderConfirmationPage from './CheckoutPage/OrderConfirmation.jsx';
->>>>>>> c892cc1f582196d9ee2a67e3be8216f52e1924cf
 
 const App = () => {
   // example of consuming state
@@ -26,13 +23,7 @@ const App = () => {
 
   return (
     <>
-<<<<<<< HEAD
-      <button onClick={exampleChangeFn}>change state</button>{' '}
-      {/* example of changing state  */}
-      <div className="landing-page-main-div">
-=======
       <div className="landing-page-main-div font">
->>>>>>> c892cc1f582196d9ee2a67e3be8216f52e1924cf
         <Router>
           <Grid container direction="column" justifyContent="center" alignItems="center">
             <Grid item width="1">
