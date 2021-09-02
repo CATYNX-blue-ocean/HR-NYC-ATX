@@ -53,11 +53,11 @@ const OrderSummary = () => {
           <b>Total:</b>
         </Grid>
         <Grid item xs={6} style={{ textAlign: 'right' }}>
-          <p>${itemsPrice}</p>
+          <p>${Number(itemsPrice).toFixed(2)}</p>
           <p>$2.99</p>
           <p>${itemsPrice + 2.99}</p>
-          <p>${(itemsPrice / 100) * 7}</p>
-          <b>${(itemsPrice / 100) * 7 + itemsPrice}</b>
+          <p>${Number(((itemsPrice / 100) * 7)).toFixed(2)}</p>
+          <b>${Number(((itemsPrice / 100) * 7 + itemsPrice)).toFixed(2)}</b>
         </Grid>
         <Grid item xs={12}>
           {!isCheckout && (
