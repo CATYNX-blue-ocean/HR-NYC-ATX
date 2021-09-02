@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,14 +11,14 @@ import { Link, BrowserRouter } from 'react-router-dom';
 
 const CategoriesCards = (props) => {
   return (
-    <Grid>
-      <Card>
+    <Grid item style={ { width:'40%', height:'fit-content' } }>
+      <Card >
         <CardActionArea>
           <CardMedia
             component="img"
             alt="ProductOrService"
             height="160"
-            image={props.categoryName === 'Category' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv6o9PPkVCRB6GPp0EfTV774kZBDnXVdiBIw&usqp=CAU' : 'https://www.oshatrainingbootcamp.com/wp-content/uploads/2019/06/services.png' }
+            image={props.categoryName === 'Products' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv6o9PPkVCRB6GPp0EfTV774kZBDnXVdiBIw&usqp=CAU' : 'https://www.oshatrainingbootcamp.com/wp-content/uploads/2019/06/services.png' }
           />
           <CardContent>
             <Typography helvetica="true" variant="h5" component="h2">
