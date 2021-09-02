@@ -10,6 +10,7 @@ import ServicesContainer from './ServicesPage/ServicesContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
+import Cart from './CheckoutPage/cart/Cart.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
 import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
@@ -22,8 +23,6 @@ const App = () => {
   const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
   return (
     <>
-      <button onClick={exampleChangeFn}>change state</button>{' '}
-      {/* example of changing state  */}
       <div className="landing-page-main-div">
         <Router>
           <Grid
@@ -49,7 +48,7 @@ const App = () => {
               </Route>
 
               <Route exact path="/cart">
-                <h2>Hello Shopping Cart</h2>
+                <Cart />
               </Route>
 
               <Route exact path="/product/?id=2">
