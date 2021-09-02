@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import useStyles from './styles.js';
-import { Backdrop, Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, CircularProgress, Grid, Fade, IconButton, Modal, Paper, TextField, Typography} from '@material-ui/core';
+import { Backdrop, Button, Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, CircularProgress, Grid, Fade, IconButton, Modal, Paper, TextField, Typography} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
-import Button from '@material-ui/core/Button';
 import EmailIcon from '@material-ui/icons/Email';
 import EmailModal from './EmailModal.jsx';
 
-//need function to connect service photos to category photos
+const serviceCategories = [
+  ['Delivery Service', 'https://cdn2.howtostartanllc.com/images/business-ideas/business-idea-images/Delivery-Service.jpg'],
+  ['Furniture Assembly', 'https://blog.puls.com/hs-fs/hubfs/puls-furnture-assembly-services-included.jpg?width=2400&name=puls-furnture-assembly-services-included.jpg'],
+  ['General Cleaning', 'https://insights.workwave.com/wp-content/uploads/2020/05/cleaning-lady-with-a-bucket-and-cleaning-products-picture-id870219332.jpg'],
+  ['Heavy Lifting', 'https://denverpromovers.com/wp-content/uploads/2021/03/D1ew.jpg'],
+  ['Help Moving', 'https://www.movinghelp.com/image/profile/61910'],
+  ['Home Repairs', 'https://ca-times.brightspotcdn.com/dims4/default/2899176/2147483647/strip/true/crop/1800x1190+0+0/resize/840x555!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F4a%2F08%2F2c894d17453995bc900b87e8645d%2Fhome-repairs-clip-art.jpg'],
+  ['Personal Assistant', 'https://res.cloudinary.com/taskrabbit-com/image/upload/c_fill,h_217,w_366/v1574202751/hedmk9v0cvs1nsk97ewh.jpg'],
+  ['Spring Cleaning', 'http://www.thenewpotato.com/wp-content/uploads/2015/08/0712-cher-horowitz-clueless-closet_fa-620x360.jpg?x94818']
+];
 
 const ServicesCard = ({ service }) => {
   const classes = useStyles();
@@ -33,6 +41,15 @@ const ServicesCard = ({ service }) => {
     setOpen(false);
   };
 
+  let photo;
+  serviceCategories.forEach((category, key) => {
+    console.log('category: ', category);
+    console.log('key', key);
+    if (service.serviceCategory === category[0]) {
+      photo = category[1];
+    }
+  });
+
   return (
     <Card
       data-myattr={service.id}
@@ -40,7 +57,7 @@ const ServicesCard = ({ service }) => {
       {service ? (
         <CardMedia
           className={classes.media}
-          image={'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg'}/>
+          image={photo}/>
       ) : (
         <CircularProgress/>
       )}
