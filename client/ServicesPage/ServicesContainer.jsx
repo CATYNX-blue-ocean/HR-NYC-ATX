@@ -77,10 +77,10 @@ const ServicesContainer = ({ }) => {
 
   if (services) {
     if (pathName[1] === 'services-by-category') {
-      for (var i = 0; i < services[0].length; i++) {
+      for (var i = 0; i < services.length; i++) {
         //console.log(services[0][i].serviceCategory.toLowerCase(), currentServiceCategory);
-        if (services[0][i].serviceCategory.toLowerCase() === currentServiceCategory.toLowerCase()) {
-          newServices.push(services[0][i]);
+        if (services[i].serviceCategory.toLowerCase() === currentServiceCategory.toLowerCase()) {
+          newServices.push(services[i]);
         }
       }
       totalPosts = newServices.length;

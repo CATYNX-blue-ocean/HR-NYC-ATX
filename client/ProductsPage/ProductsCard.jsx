@@ -30,7 +30,7 @@ const ProductsCard = ({ product }) => {
   }
 
   return (
-    <Link to='/productInfo'>
+    <Link to='/productInfo' style={{textDecoration: 'none'}}>
       <Card
         id={product.id}
         onClick={(e) => {

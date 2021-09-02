@@ -19,6 +19,8 @@ const serviceCategories = [
 const ServicesCard = ({ service }) => {
   const classes = useStyles();
 
+  console.log('SERVICE', service);
+
   let reviewAverage = () => {
     let reviewsData = service.ratings || [1, 2, 3, 4, 5, 5, 5, 5];
     if (reviewsData.length === 0) {
