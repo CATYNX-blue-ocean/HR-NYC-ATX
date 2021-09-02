@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Grid, Paper, Card, CardHeader, CardContent, CardMedia, Container, Typography, TextField } from '@material-ui/core';
-
-// import {cart} from '../zustandStore.js';
-import fakeCart from '../fakeCart.js';
+import Delete from '@material-ui/icons/Delete';
+import useDataStore from '../../zustandStore.js';
 import useStyles from './styles.js';
 
 
 const CartList = () => {
 
-  const cart = fakeCart;
   const classes = useStyles();
+  const cart = useDataStore((state) => state.cart);
+
 
   return (
     <Container>
@@ -36,6 +36,7 @@ const CartList = () => {
       <Grid container>
 
         {cart.map((product) => {
+          const [quantity, setQuantity] = useState(1);
           return (
             <Card
               className={classes.root}
@@ -43,36 +44,40 @@ const CartList = () => {
             >
               <Grid container>
 
-                <Grid item xs={7}>
+                <Grid container item xs={7}>
                   <Grid item xs={5}>
                     <CardMedia
                       className={classes.media}
                       image={product.productImage[0]}
                     />
                   </Grid>
-                  <Grid xs={7} style={{padding: '10px'}}>
+                  <Grid item xs={7} style={{padding: '10px'}}>
                     <Typography variant="h6" color="textSecondary" component="p" style={{fontWeight: 'bold', color: 'black'}}>
                       {product.productName}
                     </Typography>
                     <Typography color="textSecondary" component="p" style={{color: 'black'}}>
                       {product.productCategory}
                     </Typography>
-                    
+
                   </Grid>
                 </Grid>
 
-                <Grid item xs={3}>
+                <Grid container item xs={3}>
                   <TextField
                     id="standard-outlined"
                     className={classes.quantity}
                     type="number"
                     variant="outlined"
+                    inputProps={{min: 0, max: 10}}
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+
                   />
                 </Grid>
 
-                <Grid item xs={2}>
+                <Grid container item xs={2}>
                   <Typography variant="h6" color="textSecondary" component="p" style={{color: 'black'}}>
-                    {product.price}
+                    {(product.price * quantity).toFixed(2)}
                   </Typography>
                 </Grid>
 

@@ -16,10 +16,12 @@ const NavBar = () => {
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
   const cartNumber = cart.length;
+  let userName = useDataStore((state) => state.userName);
   const [searchInput, setSearchInput] = useState('');
   const [searchType, setSearchType] = useState('product');
   const [isProduct, setIsProduct] = useState(false);
   const [isService, setIsService] = useState(false);
+  const [userCity, setUserCity] = useState();
 
   const resetProductData = useDataStore((state) => state.resetProductData);
   const resetServiceData = useDataStore((state) => state.resetServiceData);
@@ -52,7 +54,7 @@ const NavBar = () => {
 
   axios.get('http://ip-api.com/json')
     .then((results) => {
-      console.log('this is your location based on ip address', results.data);
+      setUserCity((results.data.city));
     })
     .catch((err) => {
       console.error(err);
@@ -97,7 +99,7 @@ const NavBar = () => {
               <LocationOnIcon />
             </div>
             <InputBase
-              placeholder="Location…"
+              placeholder={userCity}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -110,9 +112,11 @@ const NavBar = () => {
             style={{ marginRight: '5%' }}
           >
             <Typography variant="h6" noWrap>
-              <Link to="/sign-in" style={{ textDecoration: 'none' }}>
+              {userName ? `Hello, ${userName}` :
+                <Link to="/sign-in" style={{ textDecoration: 'none' }}>
                 Sign in
-              </Link>
+                </Link>
+              }
             </Typography>
           </div>
           <IconButton style={{ marginRight: '5%' }} aria-label="show new notifications" color="inherit">

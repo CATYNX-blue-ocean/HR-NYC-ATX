@@ -7,7 +7,7 @@ import { Container, AppBar, Typography, Grow, Grid, InputBase } from '@material-
 import ProductsCard from './ProductsCard.jsx';
 import { Pagination } from '@material-ui/lab';
 import useStyles from './styles';
-import useDataStore from './tempZustand.js';
+import useDataStore from '../zustandStore.js';
 
 //react router for card click to product detail page??
 

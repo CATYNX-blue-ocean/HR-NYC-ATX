@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { Link, Redirect } from 'react-router-dom';
 import { Container, Grid } from '@material-ui/core';
 import NavBar from '../shared/NavBar.jsx';
 import FeatureCarousel from './LP-FeatureCarousel.jsx';
