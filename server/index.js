@@ -232,15 +232,15 @@ app.get('/service/search', (req, res) => {
       console.error(err);
       res.sendStatus(404);
     }
-    if (!result.length) {
+    let servicesMatch = [];
+    result.forEach((seller) => {
+      if (seller.serviceCategory.toLowerCase().includes(keyword.toLowerCase())) {
+        servicesMatch.push(seller);
+      }
+    });
+    if (!servicesMatch.length) {
       res.json('No matching services for your location.');
     } else {
-      let servicesMatch = [];
-      result.forEach((seller) => {
-        if (seller.serviceCategory.toLowerCase().includes(keyword.toLowerCase())) {
-          servicesMatch.push(seller);
-        }
-      });
       res.status(200).json(servicesMatch);
     }
   });
