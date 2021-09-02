@@ -102,11 +102,10 @@ const getProductList = async (cb) => {
 
 
 const getServiceList = async (cb) => {
-  await Sellers
+  await db
+    .collection('serviceListings')
     .find({})
-    .populate({ path: 'services' })
-    //.lean()
-    .exec(function (err, result) {
+    .toArray(function (err, result) {
       if (err) {
         return err;
       }
