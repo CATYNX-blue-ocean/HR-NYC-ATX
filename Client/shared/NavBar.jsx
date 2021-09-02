@@ -21,6 +21,7 @@ const NavBar = () => {
   const [searchType, setSearchType] = useState('product');
   const [isProduct, setIsProduct] = useState(false);
   const [isService, setIsService] = useState(false);
+  const [userCity, setUserCity] = useState();
 
   const resetProductData = useDataStore((state) => state.resetProductData);
   const resetServiceData = useDataStore((state) => state.resetServiceData);
@@ -48,7 +49,7 @@ const NavBar = () => {
 
   axios.get('http://ip-api.com/json')
     .then((results) => {
-      console.log('this is your location based on ip address', results.data);
+      setUserCity((results.data.city));
     })
     .catch((err) => {
       console.error(err);
@@ -93,7 +94,7 @@ const NavBar = () => {
               <LocationOnIcon />
             </div>
             <InputBase
-              placeholder="Location…"
+              placeholder={userCity}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
