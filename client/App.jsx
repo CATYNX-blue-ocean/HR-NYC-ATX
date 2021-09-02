@@ -11,7 +11,7 @@ import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
-import Checkout from './CheckoutPage/CheckoutPage.jsx';
+
 const App = () => {
   // example of consuming state
   const myVariable = useStore((state) => state.exampleStateField);
@@ -53,7 +53,7 @@ const App = () => {
               </Route>
 
               <Route exact path="/checkout">
-                <Checkout />
+                <h2>Hello Checkout</h2>
               </Route>
 
               <Route exact path="/">

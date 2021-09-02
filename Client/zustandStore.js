@@ -52,6 +52,19 @@ const useDataStore = create((set) => ({
   // this function adds a product to cart
 
   addToCart: (product) => set((state) => ({ cart: product })),
+
+  // for Search: reset data
+  resetProductData: (data) => {
+    set((state) => {
+      return { productData: data };
+    });
+  },
+  // for Search: reset data
+  resetServiceData: (data) => {
+    set((state) => {
+      return { serviceData: data };
+    });
+  }
 }));
 
 export default useDataStore;

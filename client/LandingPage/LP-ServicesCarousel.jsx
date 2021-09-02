@@ -12,9 +12,8 @@ const ServicesCarousel = function (props) {
 
   return (
     <div className="landing-page-category-carousel">
-      <div className="see-all-link">
-        <a>See All</a>
-      </div>
+      <h2 className="category-headline">Services</h2>
+      <a className="see-all-link">See All</a>
       <Carousel itemsToShow={3} pagination={false}>
         {servicesCategories.map((item) => <CategoryCardServices key={item._id}
           photo={item.image} name={item.category} description={item.description} />)}
