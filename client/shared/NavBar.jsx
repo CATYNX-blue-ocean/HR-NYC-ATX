@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { AppBar, Badge, IconButton, InputBase, Toolbar, Typography } from '@material-ui/core';
 //icons won't let you destructure, leave them listed below as-is
 import SearchIcon from '@material-ui/icons/Search';
@@ -9,7 +9,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import useStyles from './styles.js';
 import axios from 'axios';
 import Radio from '@material-ui/core/Radio';
-// import useDataStore from '../ProductsPage/tempZustand.js';
+//import useDataStore from '../ProductsPage/tempZustand.js';
 import useDataStore from '../zustandStore.js';
 
 const NavBar = () => {
@@ -18,9 +18,9 @@ const NavBar = () => {
   const cartNumber = cart.length;
   const [searchInput, setSearchInput] = useState('');
   const [searchType, setSearchType] = useState('product');
-  let isProduct = false;
-  let isService = false;
-  let searchResults = [];
+  const [isProduct, setIsProduct] = useState(false);
+  const [isService, setIsService] = useState(false);
+
   const resetProductData = useDataStore((state) => state.resetProductData);
   const resetServiceData = useDataStore((state) => state.resetServiceData);
 
@@ -33,10 +33,10 @@ const NavBar = () => {
         //[OPTION1]update state for Product Container===========
         if (type === 'service') {
           resetServiceData(result.data);
-          isService = true;
+          setIsService(true);
         } else {
           resetProductData(result.data);
-          isProduct = true;
+          setIsProduct(true);
         }
         //[OPTION2] render its own page=========================
       })
@@ -109,8 +109,8 @@ const NavBar = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      {isProduct && <Redirect to={{pathname: '/products', }}/>}
-      {isService && <Redirect to={{pathname: '/services', }}/>}
+      {isProduct && <Redirect to={{ pathname: '/products', }}/>}
+      {isService && <Redirect to={{ pathname: '/services', }}/>}
     </div>
   );
 };
