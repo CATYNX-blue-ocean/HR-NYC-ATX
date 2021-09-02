@@ -2,7 +2,7 @@ import React from 'react';
 import Images from './PD-Images.jsx';
 import Info from './PD-Info.jsx';
 import Selector from './PD-Selector.jsx';
-
+import useDataStore from '../zustandStore.js';
 
 
 const Overview = (props) => {
@@ -16,7 +16,7 @@ const Overview = (props) => {
         price={props.product.price}
         ratings={props.product.ratings}
       />
-      <Selector inventory={props.product.inventory}/>
+      <Selector inventory={props.product.inventory} product={props.product}/>
     </div>
   );
 };
