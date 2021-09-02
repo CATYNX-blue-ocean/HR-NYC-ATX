@@ -25,12 +25,32 @@ let items = {
 
 
 const FeatureCarousel = function () {
-
+  const carouselRef = React.useRef(null);
+  const itemsPerPage = 1;
+  const totalPages = Math.ceil(items.teams.length / itemsPerPage);
+  let resetTimeout;
 
   return (
     <div className="landing-page-feature-carousel">
-      <Carousel itemsToShow={1} pagination={false} transitionMs={1500} showArrows={false}
-        easing={'ease'} enableAutoPlay={true} autoPlaySpeed={4000} onNextEnd={(currentItem, pageIndex) => { currentItem.index = 0; }}>
+      <Carousel
+        itemsToShow={1}
+        pagination={false}
+        transitionMs={1500}
+        showArrows={false}
+        easing={'ease'}
+        enableAutoPlay={true}
+        autoPlaySpeed={4000}
+        ref={carouselRef}
+        onNextEnd={({ index }) => {
+          clearTimeout(resetTimeout);
+          if (index + 1 === totalPages) {
+            resetTimeout = setTimeout(() => {
+              carouselRef.current.goTo(0);
+            }, 1500);// same time
+          }
+        }}
+        itemsToShow={1}
+      >
         {items.teams.map((item) => <ItemCardFeature key={item.name}
           photo={item.photo} name={item.name} />)}
       </Carousel>

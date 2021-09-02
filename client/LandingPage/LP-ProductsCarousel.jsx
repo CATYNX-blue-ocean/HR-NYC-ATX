@@ -15,6 +15,19 @@ const ProductsCarousel = function (props) {
     console.log('I was clicked on See All Product Categories');
   };
 
+  const carouselRef = React.useRef(null);
+  const onNextStart = (currentItem, nextItem) => {
+    if (currentItem.index === nextItem.index) {
+      // we hit the last item, go to first item
+      carouselRef.current.goTo(0);
+    }
+  };
+  const onPrevStart = (currentItem, nextItem) => {
+    if (currentItem.index === nextItem.index) {
+      // we hit the first item, go to last item
+      carouselRef.current.goTo(universities.length);
+    }
+  };
   return (
     <div className="landing-page-category-carousel">
       <h2 className="category-headline">Products</h2>
