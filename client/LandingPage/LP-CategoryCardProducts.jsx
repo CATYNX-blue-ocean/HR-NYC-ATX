@@ -33,7 +33,7 @@ const CategoryCardProducts = function (props) {
           {props.name}
         </Typography>
         <Typography variant="caption" color="textSecondary" component="p">
-          {props.description.length > 105 ? props.description.slice(0, 105) + '...' : props.description}
+          {props.description.length > 50 ? props.description.slice(0, 50) + '...' : props.description}
         </Typography>
       </CardContent>
     </Card>
