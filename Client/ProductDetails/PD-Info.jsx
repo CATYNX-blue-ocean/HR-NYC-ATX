@@ -7,7 +7,7 @@ const Info = (props) => {
   for (let i = 0; i < props.ratings.length; i++) {
     total += props.ratings[i];
   }
-  var avgRating = total / props.ratings.length;
+  var avgRating = (total / props.ratings.length).toFixed(2);
 
   return (
     <div>

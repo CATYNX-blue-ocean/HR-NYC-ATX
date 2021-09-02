@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import useDataStore from '../zustandStore.js';
+import { Redirect, withRouter } from 'react-router-dom';
 
 const Selector = ({ inventory, product }) => {
   var stockObj = JSON.parse(inventory);
   const [addCart, setAddCart] = useState(true);
+  const [isRedirect, setIsRedirect] = useState(false);
   const addToCart = useDataStore((state) => state.addToCart);
+
   const handleAddCart = () => {
     setAddCart(false);
     addToCart(product);
   };
-  const history = useHistory();
+  //const history = useHistory();
   const handleBuyNow = () => {
-    history.push('/cart');
+    //history.push('/cart');
+    setIsRedirect(true);
   };
 
   return (
@@ -37,8 +41,9 @@ const Selector = ({ inventory, product }) => {
           <button onClick={handleBuyNow}>BUY NOW</button>
         </span>
       </div>
+      {isRedirect && <Redirect to={{ pathname: '/products', }}/>}
     </div>
   );
 };
 
-export default Selector;
+export default withRouter(Selector);
