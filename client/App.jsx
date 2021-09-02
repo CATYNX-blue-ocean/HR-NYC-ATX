@@ -9,6 +9,7 @@ import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
+import Cart from './CheckoutPage/cart/Cart.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
 
@@ -45,7 +46,7 @@ const App = () => {
               </Route>
 
               <Route exact path="/cart">
-                <h2>Hello Shopping Cart</h2>
+                <Cart />
               </Route>
 
               <Route exact path="/product/?id=2">
