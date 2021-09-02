@@ -32,7 +32,7 @@ const ProductsContainer = ({ }) => {
     totalPosts = products.length;
     currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
   }
-  let {id} = userParams();
+  // let {id} = userParams();
   const numberOfPages = Math.ceil(totalPosts / postsPerPage);
 
   return (

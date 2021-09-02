@@ -38,7 +38,7 @@ const ProductsCarousel = function (props) {
       <Carousel itemsToShow={3} pagination={false} >
         {productCategories.map((item) => {
           return (
-            <Link style={{ textDecoration: 'none' }} to="/products">
+            <Link style={{ textDecoration: 'none' }} to={'/products-page/' + item.category}>
               <CategoryCardProducts key={item._id}
                 photo={item.image} name={item.category} description={item.description} />
             </Link>
