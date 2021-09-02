@@ -22,8 +22,6 @@ const App = () => {
   const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
   return (
     <>
-      <button onClick={exampleChangeFn}>change state</button>{' '}
-      {/* example of changing state  */}
       <div className="landing-page-main-div">
         <Router>
           <Grid
