@@ -6,6 +6,7 @@ import useStore from './zustandStore';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
+import ServicesContainer from './ServicesPage/ServicesContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
@@ -54,6 +55,14 @@ const App = () => {
 
               <Route exact path="/checkout">
                 <h2>Hello Checkout</h2>
+              </Route>
+
+              <Route exact path="/products">
+                <ProductsContainer />
+              </Route>
+
+              <Route exact path="/services">
+                <ServicesContainer />
               </Route>
 
               <Route exact path="/">

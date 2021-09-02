@@ -44,19 +44,20 @@ const CartList = () => {
               <Grid container>
 
                 <Grid item xs={7}>
-                  <Grid>
+                  <Grid item xs={5}>
                     <CardMedia
                       className={classes.media}
                       image={product.productImage[0]}
                     />
                   </Grid>
-                  <Grid style={{padding: '10px'}}>
+                  <Grid xs={7} style={{padding: '10px'}}>
                     <Typography variant="h6" color="textSecondary" component="p" style={{fontWeight: 'bold', color: 'black'}}>
                       {product.productName}
                     </Typography>
                     <Typography color="textSecondary" component="p" style={{color: 'black'}}>
                       {product.productCategory}
                     </Typography>
+                    
                   </Grid>
                 </Grid>
 

@@ -87,22 +87,26 @@ const getAllCategories = () => {
 module.exports = db;
 
 const getProductList = async (cb) => {
-  await db
-    .collection('productListings')
+  await Sellers
     .find({})
-    .toArray(function (err, result) {
+    .populate({ path: 'products' })
+    //.lean()
+    .exec(function (err, result) {
       if (err) {
         return err;
       }
+      result = result.map((r) => r.toObject());
       cb(null, result);
     });
 };
 
+
 const getServiceList = async (cb) => {
-  await db
-    .collection('serviceListings')
+  await Sellers
     .find({})
-    .toArray(function (err, result) {
+    .populate({ path: 'services' })
+    //.lean()
+    .exec(function (err, result) {
       if (err) {
         return err;
       }
@@ -181,7 +185,6 @@ const searchForProducts = (key, CB) => {
       console.log('SUCCESS IN DB ', data);
       CB(null, data);
     });
-  //====V3=======TRY ONLY MATCHING PRODUCT INFO ========
 };
 
 const searchForServices = (key, CB) => {
