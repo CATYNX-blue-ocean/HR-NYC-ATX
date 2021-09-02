@@ -9,6 +9,7 @@ const useDataStore = create((set) => ({
   currentProduct: exampleData.productListings[0],
   currentProductCategory: exampleData.productListings[0].productCategory,
   currentServiceCategory: exampleData.serviceListings[0].serviceCategory,
+  userName: null,
   setCategoryInformation: (array1, array2) =>
     set((state) => {
       return { productCategories: array1, servicesCategories: array2 };
@@ -47,6 +48,7 @@ const useDataStore = create((set) => ({
     }),
   // this function adds a product to cart
   addToCart: (product) => set((state) => ({ cart: product })),
+  setUserName: (name) => set((state) => ({userName: name}))
 }));
 
 export default useDataStore;

@@ -13,6 +13,7 @@ const NavBar = () => {
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
   const cartNumber = cart.length;
+  let userName = useDataStore((state) => state.userName);
 
   return (
     <div className={classes.grow}>
@@ -58,9 +59,11 @@ const NavBar = () => {
             style={{marginRight: '5%'}}
           >
             <Typography variant="h6" noWrap>
-              <Link to="/sign-in" style={{ textDecoration: 'none' }}>
+              {userName ? `Hello, ${userName}` :
+                <Link to="/sign-in" style={{ textDecoration: 'none' }}>
                 Sign in
-              </Link>
+                </Link>
+              }
             </Typography>
           </div>
           <IconButton style={{marginRight: '5%'}} aria-label="show new notifications" color="inherit">

@@ -11,6 +11,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import validator from 'validator';
 import axios from 'axios';
+import useStore from '../zustandStore';
 import {
   Link,
   useHistory
@@ -33,26 +34,22 @@ const SignIn = () => {
     if (isSeller) {
       axios.get(`/sellersignin?sellerEmail=${email}`)
         .then((res) => {
-          if (res.data === 'User Not Found.' || 'There was an error with your request, Please try again or contact an administrator.') {
+          if (res.data === 'User Not Found.' || res.data === 'There was an error with your request, Please try again or contact an administrator.') {
             setLoginError(true);
           } else {
             setLoginError(false);
+            console.log(res.data);
           }
-          console.log(res);
         });
     } else {
-      let userInfo = {
-        password: password,
-        buyerEmail: email,
-      };
       axios.get(`/buyersignin?buyerEmail=${email}`)
         .then((res) => {
-          if (res.data === 'User Not Found.' || 'There was an error with your request, Please try again or contact an administrator.') {
+          if (res.data === 'User Not Found.' || res.data === 'There was an error with your request, Please try again or contact an administrator.') {
             setLoginError(true);
           } else {
             setLoginError(false);
+            console.log(res);
           }
-          console.log(res);
         });
     }
   };
