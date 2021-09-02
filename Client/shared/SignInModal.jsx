@@ -52,8 +52,9 @@ const SignIn = () => {
           if (res.data === 'User Not Found.' || res.data === 'There was an error with your request, Please try again or contact an administrator.') {
             setLoginError(true);
           } else {
+            console.log(res);
             setLoginError(false);
-            setUsername(res.data.buyerName);
+            setUsername(res.data[0].buyerName);
             close();
           }
         });

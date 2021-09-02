@@ -119,8 +119,9 @@ const getServiceCategory = (category) => {
   return Sellers.find({ 'services.serviceCategory': category });
 };
 
-const getBuyerLogin = async (buyerEmail) => {
-  return await Buyers.find({ buyerEmail });
+const getBuyerLogin = async (email) => {
+  console.log('Database Log ' + email);
+  return await Buyers.find({buyerEmail: email});
 };
 
 const checkForBuyer = (buyerEmail) => {
@@ -133,7 +134,7 @@ const checkForSeller = (sellerEmail) => {
 
 const saveNewBuyer = (buyerInfo) => {
   const newUser = new Buyers({
-    buyerName: buyerInfo.buyerFirstName + ' ' + buyerInfo.buyerLastName,
+    buyerName: buyerInfo.buyerName,
     password: buyerInfo.password,
     buyerEmail: buyerInfo.buyerEmail,
     buyerPhone: buyerInfo.buyerPhone,
