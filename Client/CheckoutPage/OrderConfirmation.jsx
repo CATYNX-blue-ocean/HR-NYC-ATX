@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from './shared/NavBar.jsx';
+import NavBar from '../shared/NavBar.jsx';
 import useStyles from '../shared/styles.js';
 import { Button } from '@material-ui/core';
 
