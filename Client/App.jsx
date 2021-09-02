@@ -44,11 +44,39 @@ const App = () => {
               </Route>
 
               <Route exact path="/cart">
+<<<<<<< HEAD
                 <h2>Hello Shopping Cart</h2>
               </Route>
 
               <Route exact path="/checkout">
                 <h2>Hello Checkout</h2>
+=======
+                <Cart />
+              </Route>
+
+              <Route exact path="/product-details">
+                <Overview product={exampleData.exampleData} />
+              </Route>
+
+              <Route exact path="/checkout">
+                <CheckoutPage />
+              </Route>
+
+              <Route exact path="/categories">
+                <ProdServCategories />
+              </Route>
+
+              <Route exact path="/products">
+                <ProductsContainer />
+              </Route>
+
+              <Route exact path="/confirmation">
+                <OrderConfirmationPage/>
+              </Route>
+
+              <Route exact path="/services">
+                <ServicesContainer />
+>>>>>>> 6944ac4713257c433f07e6564000091f494e545a
               </Route>
 
               <Route exact path="/">

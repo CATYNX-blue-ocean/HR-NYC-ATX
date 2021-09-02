@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import NavBar from '../shared/NavBar.jsx';
 import useStyles from '../shared/styles.js';
 import { Button, Grid } from '@material-ui/core';
@@ -6,18 +7,6 @@ import axios from 'axios';
 
 
 const OrderConfirmationPage = (props) => {
-
-  // having issues redirecting to home page
-  const handleClick = (e) => {
-    e.preventDefault();
-    axios.get('/', (res, err) => {
-      if (res) {
-        console.log(res);
-      } else {
-        console.log(err);
-      }
-    });
-  };
 
   return (
     <>
@@ -30,8 +19,17 @@ const OrderConfirmationPage = (props) => {
       <Grid container justifyContent="center">
         <div>Check your email for order confirmation</div>
       </Grid>
+      <br/>
       <Grid container justifyContent="center">
-        <Button onClick={handleClick}>Shop Again</Button>
+        <Link to="/">
+          <Button
+            variant="contained"
+            style={{backgroundColor: '#5E2EBA', color: 'white'}}
+            onClick={() => setIsCheckout(!isCheckout)}
+          >
+          Continue Shopping
+          </Button>
+        </Link>
       </Grid>
     </>
   );
