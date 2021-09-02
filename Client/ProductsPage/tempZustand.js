@@ -16,6 +16,13 @@ const useDataStore = create((set) => ({
       });
       return { currentProduct: current };
     }),
+
+  // for Search: reset data
+  resetProductData: (data) => {
+    set((state) => {
+      return { productData: data };
+    });
+  }
 }));
 
 export default useDataStore;
