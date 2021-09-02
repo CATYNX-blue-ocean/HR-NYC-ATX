@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import NavBar from '../shared/NavBar.jsx';
-import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import { Container, AppBar, Typography, Grow, Grid, InputBase } from '@material-ui/core';
 import ProductsCard from './ProductsCard.jsx';
@@ -79,9 +77,6 @@ const ProductsContainer = ({ }) => {
 
   return (
     <Container maxwidth='lg'>
-      <Router>
-        <NavBar/>
-      </Router>
       <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justifyContent='space-between' alignItems='stretch' spacing={3}>
