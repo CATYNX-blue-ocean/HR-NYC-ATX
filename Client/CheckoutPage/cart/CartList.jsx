@@ -10,7 +10,7 @@ const CartList = () => {
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
   const itemsPrice = useDataStore((state) => state.itemsPrice);
-  const setItemsPrice = 
+  const setItemsPrice = useDataStore((state) => state.setItemsPrice);
 
   return (
     <Container style={{padding: '25px'}}>
@@ -38,6 +38,7 @@ const CartList = () => {
 
         {cart.map((product) => {
           const [quantity, setQuantity] = useState(1);
+          setItemsPrice(quantity * product.price);
           return (
             <Card
               className={classes.root}
@@ -78,9 +79,10 @@ const CartList = () => {
 
                 <Grid container item xs={2}>
                   <Typography variant="h6" color="textSecondary" component="p" style={{color: 'black'}}>
-                    {(product.price * quantity).toFixed(2)}
+                    ${(product.price * quantity).toFixed(2)}
                   </Typography>
                 </Grid>
+
                 <Grid container item xs={12} justifyContent="flex-end">
                   <Delete />
                 </Grid>

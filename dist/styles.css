@@ -14,5 +14,63 @@
 body {
   /* min-height: 100vh;
   margin: auto 0;
-  position: relative;
+  position: relative; */
+}
+
+/* Sign in Modal */
+
+#sign-in-modal {
+  margin: 25%;
+  width: 50%;
+}
+#sign-in-greeting {
+  padding-left: 120px;
+}
+#sign-in-email {
+  margin-left: 75px;
+}
+#sign-in-password {
+  margin-left: 75px;
+}
+#sign-in-seller-toggle {
+  margin-left: 100px;
+}
+#sign-in-button {
+  margin-left: 120px;
+}
+#sign-in-divider {
+  margin-left: 155px;
+}
+#sign-up-button {
+  margin-left: 118px;
+}
+
+/* Sign Up Modal */
+
+#sign-up-modal {
+  margin: 25%;
+  width: 50%;
+}
+#sign-up-header {
+  margin-left: 250px;
+}
+#sign-up-email {
+  margin-left: 200px;
+}
+#sign-up-password {
+  margin-left: 150px;
+}
+#sign-up-name {
+  display: inline-block;
+  margin-left: 125px;
+}
+#sign-up-phoneNumber,
+#sign-up-zipCode {
+  margin-left: 200px;
+}
+#sign-up-seller-toggle {
+  margin-left: 220px;
+}
+#sign-up-modal-button {
+  margin-left: 240px;
 }
