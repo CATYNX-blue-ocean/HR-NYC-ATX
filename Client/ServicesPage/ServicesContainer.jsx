@@ -22,7 +22,7 @@ const ServicesContainer = ({ }) => {
 
   //change sorting of products
   const sortServices = (parameter) => {
-    let sortedList = services[0];
+    let sortedList = services;
     if (parameter === 'rating') {
       sortedList.sort((firstEl, secondEl) => {
         let rate1 = firstEl.ratings.reduce((accumulator, currentVal) => accumulator + currentVal, 0) / firstEl.ratings.length;
@@ -68,8 +68,8 @@ const ServicesContainer = ({ }) => {
   let totalPosts;
   let currentPosts;
   if (services) {
-    totalPosts = services[0].length;
-    currentPosts = services[0].slice(indexOfFirstPost, indexOfLastPost);
+    totalPosts = services.length;
+    currentPosts = services.slice(indexOfFirstPost, indexOfLastPost);
   }
 
   const numberOfPages = Math.ceil(totalPosts / postsPerPage);
