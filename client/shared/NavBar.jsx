@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import { AppBar, Badge, IconButton, InputBase, Toolbar, Typography } from '@material-ui/core';
 //icons won't let you destructure, leave them listed below as-is
 import SearchIcon from '@material-ui/icons/Search';
@@ -16,6 +16,7 @@ const NavBar = () => {
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
   const cartNumber = cart.length;
+  let userName = useDataStore((state) => state.userName);
   const [searchInput, setSearchInput] = useState('');
   const [searchType, setSearchType] = useState('product');
   const [isProduct, setIsProduct] = useState(false);
@@ -105,9 +106,11 @@ const NavBar = () => {
             style={{ marginRight: '5%' }}
           >
             <Typography variant="h6" noWrap>
-              <Link to="/sign-in" style={{ textDecoration: 'none' }}>
+              {userName ? `Hello, ${userName}` :
+                <Link to="/sign-in" style={{ textDecoration: 'none' }}>
                 Sign in
-              </Link>
+                </Link>
+              }
             </Typography>
           </div>
           <IconButton style={{ marginRight: '5%' }} aria-label="show new notifications" color="inherit">
@@ -123,4 +126,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default withRouter(NavBar);
