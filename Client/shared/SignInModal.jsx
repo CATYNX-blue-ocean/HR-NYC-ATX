@@ -53,7 +53,7 @@ const SignIn = () => {
             setLoginError(true);
           } else {
             setLoginError(false);
-            setUsername(res.data.buyerName);
+            setUsername(res.data[0].buyerName);
             close();
           }
         });
@@ -96,48 +96,46 @@ const SignIn = () => {
     <Modal
       open={true}
       onClose={close}
-      style={{marginLeft: 25 + '%', width: 50 + '%', marginRight: 25 + '%', top: 100 + 'px'}}
+      id='sign-in-modal'
     >
       <Card>
         <Grid
-          id='sign-in-modal'
           container
           spacing={1}
           style={{backgroundColor: '#fff', paddingLeft: 150 + 'px'}}
           // direction="row"
           alignItems="center"
-          justify="center"
         >
           <Grid item xs={12}>
-            <h2>
+            <h2 id='sign-in-greeting'>
               Sign In
             </h2>
             <p>
               Please sign in in order to post a product or a service. <br /> You are one step away from joining your community.
             </p>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} id='sign-in-email'>
             <TextField
-              required id='sign-in-email'
+              required
               type='email' label='email'
               onChange={(event) => { handleSetEmail(event); }}
               error={emailError}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} id='sign-in-password'>
             <TextField
-              required id='sign-in-password'
+              required
+              className='sign-in-textfield'
               type='password'
               label='password'
               onChange={(event) => { handleSetPassword(event); }}
               error={passwordError}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} id='sign-in-seller-toggle'>
             <FormControl>
               <InputLabel>Buyer or Seller?</InputLabel>
               <Select
-                id='sign-up-seller-toggle'
                 defaultValue='buyer'
                 style={{width: 125 + 'px'}}
                 onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}
@@ -152,16 +150,17 @@ const SignIn = () => {
               variant='contained'
               onClick={onSignInSubmit}
               style={{backgroundColor: '#5E2EBA', color: 'white'}}
+              id='sign-in-button'
             >
               Sign In
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <p>
+            <p id='sign-in-divider'>
               or
             </p>
             <Link to="/sign-up">
-              <Button variant='contained' style={{backgroundColor: '#DED1F7'}}>Sign Up</Button>
+              <Button id ='sign-up-button' variant='contained' style={{backgroundColor: '#DED1F7'}}>Sign Up</Button>
             </Link>
           </Grid>
           <Grid item xs={12}>
