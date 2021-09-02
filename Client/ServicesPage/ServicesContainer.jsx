@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import { Container, AppBar, Typography, Grow, Grid, InputBase } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import useStyles from './styles';
 import ServicesCard from './ServicesCard.jsx';
-import NavBar from '../shared/NavBar.jsx';
 import useDataStore from '../zustandStore.js';
 
 const ServicesContainer = ({ }) => {
@@ -22,7 +20,7 @@ const ServicesContainer = ({ }) => {
 
   //change sorting of products
   const sortServices = (parameter) => {
-    let sortedList = services[0];
+    let sortedList = services;
     if (parameter === 'rating') {
       sortedList.sort((firstEl, secondEl) => {
         let rate1 = firstEl.ratings.reduce((accumulator, currentVal) => accumulator + currentVal, 0) / firstEl.ratings.length;
@@ -68,17 +66,14 @@ const ServicesContainer = ({ }) => {
   let totalPosts;
   let currentPosts;
   if (services) {
-    totalPosts = services[0].length;
-    currentPosts = services[0].slice(indexOfFirstPost, indexOfLastPost);
+    totalPosts = services.length;
+    currentPosts = services.slice(indexOfFirstPost, indexOfLastPost);
   }
 
   const numberOfPages = Math.ceil(totalPosts / postsPerPage);
 
   return (
     <Container maxwidth='lg'>
-      <Router>
-        <NavBar />
-      </Router>
       <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justifyContent='space-between' alignItems='stretch' spacing={3}>
