@@ -5,7 +5,6 @@ import useDataStore from '../../zustandStore.js';
 import Button from '@material-ui/core/Button';
 
 const OrderSummary = () => {
-  // const [cartItems, setCart] = useState([]);
   const cart = useDataStore((state) => state.cart);
   const test = useDataStore((state) => state.setCategoryInformation);
   const test2 = useDataStore((state) => state.test2);
@@ -14,12 +13,7 @@ const OrderSummary = () => {
   cart.map((item) => {
     itemsPrice += Number(item.price);
   });
-  const onClick = () => {
-    test(['test1'], [1, 2, 3, 4]);
-  };
-  const onClick2 = () => {
-    test2();
-  };
+
   return (
     <div>
       <Grid container spacing={3} style={{ padding: '25px' }}>
@@ -43,7 +37,6 @@ const OrderSummary = () => {
         </Grid>
         <Grid item xs={12}>
           <Button onClick={onClick}>CHECKOUT</Button>
-          <Button onClick={onClick2}>COUT</Button>
         </Grid>
       </Grid>
     </div>

@@ -23,7 +23,10 @@ const useDataStore = create((set) => ({
       });
       return { currentProductCategory: categorisedPoducts };
     }),
-
+  test2: () =>
+    set((state) => {
+      console.log('state:', state.productCategories, state.servicesCategories);
+    }),
   setServiceCategory: (category) =>
     set((state) => {
       let categorisedServices;
