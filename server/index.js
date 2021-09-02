@@ -81,15 +81,7 @@ app.get('/services', function (req, res) {
     if (err) {
       throw err;
     }
-    var serviceList = [];
-    var jsSellers = result.map((r) => r.toObject());
-    jsSellers.forEach((seller) => {
-      seller.services.forEach((service) => {
-        service['location'] = seller.location;
-        serviceList.push(service);
-      });
-    });
-    res.send(serviceList);
+    res.send(result);
   });
 });
 
