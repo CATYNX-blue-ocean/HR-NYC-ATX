@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import { Container, AppBar, Typography, Grow, Grid, InputBase } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import useStyles from './styles';
 import ServicesCard from './ServicesCard.jsx';
-import NavBar from '../shared/NavBar.jsx';
 import useDataStore from '../zustandStore.js';
 
 const ServicesContainer = ({ }) => {
@@ -76,9 +74,6 @@ const ServicesContainer = ({ }) => {
 
   return (
     <Container maxwidth='lg'>
-      <Router>
-        <NavBar />
-      </Router>
       <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justifyContent='space-between' alignItems='stretch' spacing={3}>
