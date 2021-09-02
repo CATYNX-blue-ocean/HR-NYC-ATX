@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useStyles from './catCardStyles.js';
+import { Link, Redirect } from 'react-router-dom';
 import { Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, Typography, IconButton, Modal, Backdrop, Fade, CircularProgress } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import useDataStore from '../zustandStore.js';
@@ -12,6 +13,7 @@ const CategoryCardServices = function (props) {
   const handleServiceCategoryClick = function (e) {
     console.log('this click from Services Category Card');
     console.log(e);
+    console.log(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
   };
 
   return (
