@@ -12,6 +12,9 @@ import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
+import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
+
+
 
 const App = () => {
   // example of consuming state
@@ -55,6 +58,10 @@ const App = () => {
 
               <Route exact path="/checkout">
                 <h2>Hello Checkout</h2>
+              </Route>
+
+              <Route exact path="/categories">
+                <ProdServCategories />
               </Route>
 
               <Route exact path="/products">
