@@ -10,7 +10,7 @@ const CategoryCardServices = function (props) {
   const setProductCategory = useDataStore((state) => state.setProductCategory);
 
   const handleServiceCategoryClick = function (e) {
-    console.log('this click from Product Category Card');
+    console.log('this click from Services Category Card');
     console.log(e);
   };
 

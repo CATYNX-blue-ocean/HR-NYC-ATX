@@ -12,6 +12,7 @@ const CategoryCardProducts = function (props) {
   const handleProductCategoryClick = function (e) {
     console.log('this click from Product Category Card');
     console.log(e);
+    console.log(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
   };
 
   return (
