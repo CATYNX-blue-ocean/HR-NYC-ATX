@@ -7,8 +7,7 @@ import { Pagination } from '@material-ui/lab';
 import useStyles from './styles';
 import ServicesCard from './ServicesCard.jsx';
 import NavBar from '../shared/NavBar.jsx';
-
-import useDataStore from './tempZustand.js';
+import useDataStore from '../zustandStore.js';
 
 const ServicesContainer = ({ }) => {
   const classes = useStyles();
