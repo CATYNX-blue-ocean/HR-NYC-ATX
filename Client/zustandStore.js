@@ -28,7 +28,6 @@ const useDataStore = create((set) => ({
       });
       return { currentProductCategory: categorisedPoducts };
     }),
-
   setServiceCategory: (category) =>
     set((state) => {
       let categorisedServices;
@@ -57,7 +56,7 @@ const useDataStore = create((set) => ({
 
   setUserName: (name) => {
     set((state) => {
-      return ({userName: name});
+      return { userName: name };
     });
   },
 
@@ -76,10 +75,9 @@ const useDataStore = create((set) => ({
 
   setIsCheckout: (toggle) => {
     set((state) => {
-      return {isCheckout: toggle};
+      return { isCheckout: toggle };
     });
-  }
-
+  },
 }));
 
 export default useDataStore;
