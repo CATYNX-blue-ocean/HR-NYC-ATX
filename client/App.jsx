@@ -11,10 +11,6 @@ import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
-
-
-
-
 import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
 
 
@@ -63,7 +59,7 @@ const App = () => {
                 <h2>Hello Checkout</h2>
               </Route>
 
-              <Route exact path="/categories" component={ProdServCategories}>
+              <Route exact path="/categories" component={ProdServCategories} >
                 <h2>Categories</h2>
               </Route>
 
@@ -73,9 +69,6 @@ const App = () => {
             </Grid>
           </Grid>
         </Router>
-        <div>
-          <ProdServCategories />
-        </div>
       </div>
       {/* added products container down here to test rendering */}
       {/* <ProductsContainer/> */}

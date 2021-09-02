@@ -17,23 +17,25 @@ const ProdServCategories = (props) => {
 
 
   return (
-    <Grid container spacing={2} direction="row" justifyContent="space-evenly">
-      <Router>
+    <Router>
+      <Grid container spacing={2} direction="row" justifyContent="space-evenly">
+        {/* <Router>
         <Grid item width="1">
           <NavBar />
         </Grid>
-      </Router>
-      {categoryArray.map((type, i) => {
-        const categoryName = type[0];
-        return (
-          <CategoriesCards
-            key={i}
-            categoryTypes={type}
-            categoryName={categoryName}
-          />
-        );
-      })}
-    </Grid>
+      </Router> */}
+        {categoryArray.map((type, i) => {
+          const categoryName = type[0];
+          return (
+            <CategoriesCards
+              key={i}
+              categoryTypes={type}
+              categoryName={categoryName}
+            />
+          );
+        })}
+      </Grid>
+    </Router>
   );
 };
 
