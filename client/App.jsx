@@ -59,8 +59,8 @@ const App = () => {
                 <h2>Hello Checkout</h2>
               </Route>
 
-              <Route exact path="/categories" component={ProdServCategories} >
-                <h2>Categories</h2>
+              <Route exact path="/categories">
+                <ProdServCategories />
               </Route>
 
               <Route exact path="/">

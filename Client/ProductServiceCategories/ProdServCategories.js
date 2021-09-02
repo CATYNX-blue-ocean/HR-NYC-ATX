@@ -9,6 +9,7 @@ import NavBar from '../shared/NavBar.jsx';
 const ProdServCategories = (props) => {
   const productsList = useDataStore((state) => state.productCategories);
   const servicesList = useDataStore((state) => state.servicesCategories);
+  console.log(productsList, servicesList );
 
   var categoryArray = [
     ['Products', ...productsList],
