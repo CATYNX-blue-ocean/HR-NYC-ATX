@@ -39,7 +39,7 @@
   },
   "scripts": {
     "test": "test",
-    "start": "nodemon ./Server/index.js",
+    "start": "nodemon ./server/index.js",
     "build-dev": "webpack --mode development --watch"
   },
   "repository": {
