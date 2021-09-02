@@ -24,7 +24,7 @@ const FeatureCarousel = function () {
         showArrows={false}
         easing={'ease'}
         enableAutoPlay={true}
-        autoPlaySpeed={7000}
+        autoPlaySpeed={6000}
         ref={carouselRef}
         onNextEnd={({ index }) => {
           clearTimeout(resetTimeout);
