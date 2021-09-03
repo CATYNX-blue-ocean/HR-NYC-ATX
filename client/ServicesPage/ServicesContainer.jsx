@@ -20,7 +20,6 @@ const ServicesContainer = ({ }) => {
   const [sortedServices, setSortedServices] = useState(services);
   const [servicesPhotos, setServicesPhotos] = useState([]);
 
-  console.log(services);
 
   //change sorting of products
   const sortServices = (parameter) => {

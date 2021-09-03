@@ -16,27 +16,33 @@ const Info = ({ name, price, description, ratings }) => {
   var avgRating = Number(avgRating);
 
   return (
-    <Container maxWidth="sm" styles={{ float: 'left' }}>
+    <Container maxWidth="sm" styles={{ float: 'left'}}>
       <Typography
         variant="h5"
         color="textSecondary"
         component="p"
-        style={{ fontWeight: 'bold', color: 'black' }}
+        style={{ fontWeight: 'bold', color: 'black', paddingBottom: '2vh' }}
       >
         {name}
       </Typography>
-      <Typography variant="h6" color="black" component="p">
+      <Typography variant="h6" color="black" component="p" style={{ paddingBottom: '1vh' }}>
         ${price} USD
         <br />
         <Typography variant="body1" color="black" component="p">
-          <span style={{ flexDirection: 'row', width: '50%' }}>
+          <span style={{ flexDirection: 'row', width: '50%', paddingBottom: '1vh'}}>
             {description}
           </span>
         </Typography>
       </Typography>
       <Typography variant="body1" color="black" component="p">
-        {avgRating.toString().length === 1 ? (avgRating + 1) + '.0' : (avgRating + 1)}
-        <Rating style={{color: '#5E2EBA', paddingLeft: '5%', position: 'relative'}} name="half-rating-read" defaultValue={avgRating + 1} precision={0.25} readOnly />
+        {avgRating}
+        <Rating
+          style={{ color: '#5E2EBA', paddingLeft: '5%', position: 'relative', paddingBottom: '2vh' }}
+          name="half-rating-read"
+          defaultValue={avgRating}
+          precision={0.25}
+          readOnly
+        />
       </Typography>
     </Container>
   );
