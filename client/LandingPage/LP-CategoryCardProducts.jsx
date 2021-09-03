@@ -10,8 +10,8 @@ const CategoryCardProducts = function (props) {
   const classes = useStyles();
   const setProductCategory = useDataStore((state) => state.setProductCategory);
 
-  const handleServiceCategoryClick = function (e) {
-    setServiceCategory(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
+  const handleProductCategoryClick = function (e) {
+    setProductCategory(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
   };
 
   return (
@@ -19,8 +19,8 @@ const CategoryCardProducts = function (props) {
       <Card
         id={props.key}
         name={props.name}
-        style={{height: '30vh', width: '35vh'}}
-        onClick={(e) => { handleServiceCategoryClick(e); }}
+        style={{ height: '30vh', width: '35vh' }}
+        onClick={(e) => { handleProductCategoryClick(e); }}
         className={classes.root}>
         {props.photo ? (
           <CardMedia
