@@ -4,8 +4,8 @@ import { exampleData } from '../exampleData';
 const useDataStore = create((set) => ({
   productCategories: [],
   servicesCategories: [],
-  productData: exampleData.productListings,
-  serviceData: exampleData.serviceListings,
+  productData: [],
+  serviceData: [],
   currentProduct: exampleData.productListings[0],
   currentProductCategory: exampleData.productListings[0].productCategory,
   currentServiceCategory: exampleData.serviceListings[0].serviceCategory,
