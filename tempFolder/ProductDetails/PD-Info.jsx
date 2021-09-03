@@ -9,7 +9,6 @@ const Info = (props) => {
   }
   var avgRating = (total / props.ratings.length).toFixed(2);
   var avgRating = Number(avgRating);
-  console.log(avgRating);
 
   return (
     <div>
