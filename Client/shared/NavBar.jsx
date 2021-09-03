@@ -105,7 +105,7 @@ const NavBar = () => {
           <div
             style={{ marginRight: '5%' }}
           >
-            <Typography variant="h6" noWrap>
+            <Typography variant="h6" id='navbar-greeting' noWrap>
               {userName ? `Hello, ${userName}` :
                 <Link to="/sign-in" style={{ textDecoration: 'none' }}>
                 Sign in
