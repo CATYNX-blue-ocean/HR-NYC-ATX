@@ -4,7 +4,17 @@ import useDataStore from '../zustandStore.js';
 import { Redirect, withRouter } from 'react-router-dom';
 
 const Selector = ({ inventory, product }) => {
-  var stockObj = JSON.parse(inventory);
+  //JSON.parse cannot parse single quotes...only double...this loop fixes that -NK
+  let newInventory = '';
+  for (let i = 0; i < inventory.length; i++) {
+    if (inventory[i] === `'`) {
+      newInventory += `"`;
+      continue;
+    } else {
+      newInventory += inventory[i];
+    }
+  }
+  var stockObj = JSON.parse(newInventory);
   const [addCart, setAddCart] = useState(true);
   const [isRedirect, setIsRedirect] = useState(false);
   const addToCart = useDataStore((state) => state.addToCart);
@@ -43,7 +53,7 @@ const Selector = ({ inventory, product }) => {
           <button onClick={handleBuyNow}>BUY NOW</button>
         </span>
       </div>
-      {isRedirect && <Redirect to={{ pathname: '/cart', }}/>}
+      {isRedirect && <Redirect to={{ pathname: '/cart', }} />}
     </div>
   );
 };

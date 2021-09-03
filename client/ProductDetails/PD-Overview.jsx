@@ -10,7 +10,8 @@ import useDataStore from '../zustandStore.js';
 const Overview = (props) => {
 
   const currentProduct = useDataStore((state) => state.currentProduct);
-  console.log(currentProduct);
+
+  console.log('this is current product', currentProduct);
 
   return (
     <div>
