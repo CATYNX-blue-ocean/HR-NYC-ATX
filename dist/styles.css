@@ -53,34 +53,39 @@ body {
   text-align: center;
   display: block;
   margin: 0 auto;
+  padding: 5px;
 }
 
 /* Sign Up Modal */
 
 #sign-up-modal {
-  margin: 25%;
-  width: 50%;
+  display: block;
+  margin: 0 auto;
+  width: 40%;
+  margin-top: 10%;
 }
 #sign-up-header {
-  margin-left: 250px;
+  text-align: center;
 }
 #sign-up-email {
-  margin-left: 200px;
+  text-align: center;
 }
 #sign-up-password {
-  margin-left: 150px;
+  text-align: center;
 }
 #sign-up-name {
-  display: inline-block;
-  margin-left: 125px;
+  display: flex;
+  flex-direction: row;
 }
 #sign-up-phoneNumber,
 #sign-up-zipCode {
-  margin-left: 200px;
+  text-align: center;
 }
 #sign-up-seller-toggle {
-  margin-left: 220px;
+  text-align: center;
 }
 #sign-up-modal-button {
-  margin-left: 240px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
 }
