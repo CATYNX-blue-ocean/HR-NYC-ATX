@@ -15,6 +15,7 @@ const ProductsContainer = ({ }) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(9);
+  const currentProductCategory = useDataStore((state) => state.currentProductCategory);
 
   const products = useDataStore((state) => state.productData);
   let pathName = window.location.pathname;
@@ -33,10 +34,10 @@ const ProductsContainer = ({ }) => {
   var newProducts = [];
 
   if (products) {
-    if (pathName[1] === 'products-page') {
-      for (var x = 0; x < products.length; x++) {
-        if (products[x].productCategory.toLowerCase() === pathName[2].toLowerCase()) {
-          newProducts.push(products[x]);
+    if (pathName[1] === 'products-by-category') {
+      for (var i = 0; i < products.length; i++) {
+        if (products[i].productCategory.toLowerCase() === currentProductCategory.toLowerCase()) {
+          newProducts.push(products[i]);
         }
       }
       totalPosts = newProducts.length;

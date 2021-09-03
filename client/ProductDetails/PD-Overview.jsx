@@ -11,7 +11,7 @@ const Overview = (props) => {
 
   const currentProduct = useDataStore((state) => state.currentProduct);
 
-  console.log('this is current product', currentProduct.inventory);
+  console.log('this is current product', currentProduct);
 
   return (
     <div>

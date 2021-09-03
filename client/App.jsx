@@ -72,6 +72,14 @@ const App = () => {
                 <ProductsContainer />
               </Route>
 
+              <Route exact path="/products-by-category">
+                <ProductsContainer />
+              </Route>
+
+              <Route exact path="/services-by-category">
+                <ServicesContainer />
+              </Route>
+
               <Route exact path="/confirmation">
                 <OrderConfirmationPage />
               </Route>
