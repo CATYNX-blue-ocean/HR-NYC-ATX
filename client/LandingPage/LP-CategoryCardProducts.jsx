@@ -14,10 +14,11 @@ const CategoryCardProducts = function (props) {
     console.log('this click from Product Category Card');
     console.log(e);
     console.log(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
+    setProductCategory(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
   };
 
   return (
-    <Link style={{ textDecoration: 'none' }} to="/categories">
+    <Link style={{ textDecoration: 'none' }} to="/products-by-category">
       <Card
         id={props.key}
         name={props.name}

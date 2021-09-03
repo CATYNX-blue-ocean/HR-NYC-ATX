@@ -8,16 +8,17 @@ import useDataStore from '../zustandStore.js';
 const CategoryCardServices = function (props) {
 
   const classes = useStyles();
-  const setProductCategory = useDataStore((state) => state.setProductCategory);
+  const setServiceCategory = useDataStore((state) => state.setServiceCategory);
 
   const handleServiceCategoryClick = function (e) {
     console.log('this click from Services Category Card');
     console.log(e);
     console.log(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
+    setServiceCategory(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
   };
 
   return (
-    <Link style={{ textDecoration: 'none' }} to="/categories">
+    <Link style={{ textDecoration: 'none' }} to="/services-by-category">
       <Card
         id={props.key}
         name={props.name}

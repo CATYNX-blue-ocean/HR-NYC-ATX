@@ -21,23 +21,11 @@ const useDataStore = create((set) => ({
 
   setProductCategory: (category) =>
     set((state) => {
-      let categorisedPoducts;
-      state.productData.map((product) => {
-        if (product.productCategory === category) {
-          categorisedPoducts.push(product);
-        }
-      });
-      return { currentProductCategory: categorisedPoducts };
+      return { currentProductCategory: category };
     }),
   setServiceCategory: (category) =>
     set((state) => {
-      let categorisedServices;
-      state.serviceData.map((service) => {
-        if (service.serviceCategory === category) {
-          categorisedServices.push(service);
-        }
-      });
-      return { currentServiceCategory: categorisedServices };
+      return { currentServiceCategory: category };
     }),
 
   // this function sets the current product
