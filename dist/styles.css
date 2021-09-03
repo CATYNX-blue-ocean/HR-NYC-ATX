@@ -12,9 +12,8 @@
 } */
 
 body {
-  /* min-height: 100vh;
   margin: auto 0;
-  position: relative; */
+  background-color: rgba(198, 0, 200, 0.02);
 }
 
 /* Sign in Modal */
