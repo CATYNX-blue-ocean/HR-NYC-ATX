@@ -19,7 +19,7 @@ import useStyles from './styles.js';
 import axios from 'axios';
 import useDataStore from '../zustandStore.js';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import logo from './logo.png';
+import logo from './logo2.png';
 
 const NavBar = () => {
   const classes = useStyles();
