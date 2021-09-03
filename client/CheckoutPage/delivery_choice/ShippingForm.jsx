@@ -40,7 +40,7 @@ const ShippingChoice = () => {
         <div style={{ float: 'left' }}>
           <p> First Name: {formData.firstName || ''}</p>
           <p> Last Name: {formData.lastName || ''}</p>
-          <p> Address: {formData.address || ''}</p>
+          <p> Address: {formData.adress || ''}</p>
           <p> City: {formData.city || ''}</p>
           <p> Zip Code: {formData.zipCode || ''}</p>
         </div>
