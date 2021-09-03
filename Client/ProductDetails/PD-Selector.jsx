@@ -27,22 +27,22 @@ const Selector = ({ inventory, product }) => {
   return (
     <Container maxWidth="sm">
       <Typography variant="body1" color="black" component="p">
-      <select> Select Size
-        <option default>Please select...</option>
-        {Object.keys(stockObj).map((size, i) => {
-          if (stockObj[size] === 0) {
-            return <option key={i}>{size} - Sold Out</option>;
-          }
-          return (
-            <option key={i}>{size} - only {stockObj[size]} remaining</option>
-          );
-        })}
-      </select>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+        <select> Select Size
+          <option default>Please select...</option>
+          {Object.keys(stockObj).map((size, i) => {
+            if (stockObj[size] === 0) {
+              return <option key={i}>{size} - Sold Out</option>;
+            }
+            return (
+              <option key={i}>{size} - only {stockObj[size]} remaining</option>
+            );
+          })}
+        </select>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </Typography>
       <div className='product-buttons'>
         <span>

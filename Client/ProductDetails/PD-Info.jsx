@@ -16,13 +16,17 @@ const Info = ({ name, price, description, ratings }) => {
           {name}
         </Typography>
         <Typography variant="body1" color="black" component="p">
-        <h4>${price} USD</h4>
-      <h5>{description}</h5>
+        ${price} USD
+        <br/>
+        <span style={{ flexDirection: 'row', width: '50%' }}>
+        {description}
+        </span>
+
         </Typography>
 
-        <Typography alignItems='' variant="body1" color="black" component="p">
-        <h4>{avgRating}</h4>
-        <Rating style={{color: '#5E2EBA', paddingLeft: '5%'}} name="half-rating-read" defaultValue={avgRating} precision={0.25} readOnly />
+        <Typography variant="body1" color="black" component="p">
+        {avgRating}
+        <Rating style={{color: '#5E2EBA', paddingLeft: '5%', position: 'relative'}} name="half-rating-read" defaultValue={avgRating} precision={0.25} readOnly />
         </Typography>
     </Container>
   );
