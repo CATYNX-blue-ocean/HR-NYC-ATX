@@ -35,13 +35,16 @@ const ProductsCarousel = function (props) {
       <Link to="/categories">
         <h4 className="see-all-link">See All</h4>
       </Link>
-      <Carousel itemsToShow={3} pagination={false} >
-        {productCategories.map((item) => {
-          return (
-            <CategoryCardProducts key={item._id}
-              photo={item.image} name={item.category} description={item.description} />
-          );
-        })}
+      <Carousel
+        ref={carouselRef}
+        onPrevStart={onPrevStart}
+        onNextStart={onNextStart}
+        disableArrowsOnEnd={false}
+        itemsToShow={3}
+        pagination={false}
+      >
+        {productCategories.map((item) => <CategoryCardProducts key={item._id}
+          photo={item.image} name={item.category} description={item.description} />)}
       </Carousel>
     </div>
   );
