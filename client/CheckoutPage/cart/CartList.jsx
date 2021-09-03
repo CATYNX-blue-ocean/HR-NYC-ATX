@@ -19,6 +19,10 @@ const CartList = () => {
   const cart = useDataStore((state) => state.cart);
   const itemsPrice = useDataStore((state) => state.itemsPrice);
   const setItemsPrice = useDataStore((state) => state.setItemsPrice);
+  const removeFromCart = useDataStore((state) => state.removeFromCart);
+  // const [cartUpdate, toggleCartUpdate] = useState(false);
+
+  // useEffect(() => {}, [cartUpdate]);
 
   let total = 0;
   cart.map((product) => (total += Number(product.price)));
@@ -106,7 +110,13 @@ const CartList = () => {
                 </Grid>
 
                 <Grid container item xs={12} justifyContent="flex-end">
-                  <Delete />
+                  <Delete id={product.id} onClick={(e) => {
+                    const id = e.target.parentElement.id;
+                    removeFromCart(id);
+                    console.log(cart, 'list');
+                    // toggleCartUpdate(!cartUpdate);
+                    // console.log(cartUpdate);
+                  }}/>
                 </Grid>
               </Grid>
             </Card>

@@ -133,12 +133,13 @@ const NavBar = () => {
               <LocationOnIcon />
             </div>
             <InputBase
-              placeholder={userCity}
+              disabled={true}
+              value={userCity}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              // inputProps={{ 'aria-label': 'search' }}
             />
           </div>
           <div className={classes.grow} />
