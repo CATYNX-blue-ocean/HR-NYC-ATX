@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from '@material-ui/core';
 import Carousel from 'react-elastic-carousel';
 import ItemCardFeature from './LP-ItemCardFeature.jsx';
 import useStore from '../zustandStore.js';
@@ -16,6 +17,7 @@ const FeatureCarousel = function () {
   let resetTimeout;
 
   return (
+
     <div className="landing-page-feature-carousel">
       <Carousel
         itemsToShow={1}
@@ -40,6 +42,7 @@ const FeatureCarousel = function () {
           photo={item} />)}
       </Carousel>
     </div>
+
   );
 
 

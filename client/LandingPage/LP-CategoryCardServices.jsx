@@ -8,6 +8,7 @@ import useDataStore from '../zustandStore.js';
 const CategoryCardServices = function (props) {
 
   const classes = useStyles();
+
   const setProductCategory = useDataStore((state) => state.setProductCategory);
 
   const handleServiceCategoryClick = function (e) {
