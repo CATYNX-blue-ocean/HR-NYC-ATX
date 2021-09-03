@@ -22,9 +22,7 @@ const CategoryCardServices = function (props) {
       id={props.key}
       name={props.name}
       onClick={(e) => { handleServiceCategoryClick(e); }}
-      className={classes.root}
-      style={{ height: '30vh' }}
-    >
+      className={classes.root}>
       {props.photo ? (
         <CardMedia
           className={classes.media}
@@ -32,7 +30,7 @@ const CategoryCardServices = function (props) {
       ) : (
         <CircularProgress />
       )}
-      <CardContent >
+      <CardContent>
         <Typography variant="h6" color="textSecondary" component="p" style={{ fontWeight: 'bold', color: 'black' }}>
           {props.name}
         </Typography>

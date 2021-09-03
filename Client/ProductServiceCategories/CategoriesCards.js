@@ -28,7 +28,7 @@ const CategoriesCards = (props) => {
             {props.categoryTypes.map((categories, i) => (
               <Typography key={i} variant="body2" color="textSecondary" component="p" variant="h5">
                 <BrowserRouter>
-                  <Link to={`/category/${ categories.category }`} style={{ textDecoration: 'none' }}>
+                  <Link to={`/category/${ categories.category }`}>
                     {categories.category}
                   </Link>
                 </BrowserRouter>

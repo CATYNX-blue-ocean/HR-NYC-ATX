@@ -25,20 +25,18 @@ const ServicesCarousel = function (props) {
 
 
   return (
-    <div className="landing-page-category-carousel">
-      <h2 className="category-headline">Services</h2>
-      <Link to="/categories">
-        <h4 className="see-all-link">See All</h4>
-      </Link>
-      <Carousel itemsToShow={3} pagination={false}>
-        {servicesCategories.map((item) => {
-          return (
-            <Link style={{textDecoration: 'none'}} to="/categories">
-              <CategoryCardServices key={item._id}
-                photo={item.image} name={item.category} description={item.description} />
-            </Link>
-          );
-        })}
+    <Container>
+      <Typography helvetica="true" variant="h5">
+        Services
+      </Typography>
+      <Typography helvetica="true" variant="caption">
+        <Link to="/categories">
+            See more...
+        </Link>
+      </Typography>
+      <Carousel itemsToShow={3} pagination={false} renderArrow={myArrow}>
+        {servicesCategories.map((item) => <CategoryCardServices key={item._id}
+          photo={item.image} name={item.category} description={item.description} />)}
       </Carousel>
     </Container>
   );

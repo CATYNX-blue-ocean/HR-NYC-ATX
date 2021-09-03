@@ -37,7 +37,7 @@ const LandingPage = function () {
 
   return (
     <>
-      <Grid container direction="column" maxWidth="xl">
+      <Grid container direction="column">
         <Grid item >
           <FeatureCarousel />
         </Grid>

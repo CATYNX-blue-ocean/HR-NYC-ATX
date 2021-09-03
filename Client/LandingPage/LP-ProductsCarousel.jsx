@@ -45,20 +45,18 @@ const ProductsCarousel = function (props) {
   };
 
   return (
-    <div className="landing-page-category-carousel">
-      <h2 className="category-headline">Products</h2>
-      <Link to="/categories">
-        <h4 className="see-all-link">See All</h4>
-      </Link>
-      <Carousel itemsToShow={3} pagination={false} >
-        {productCategories.map((item) => {
-          return (
-            <Link style={{ textDecoration: 'none' }} to={'/products-page/' + item.category}>
-              <CategoryCardProducts key={item._id}
-                photo={item.image} name={item.category} description={item.description} />
-            </Link>
-          );
-        })}
+    <Container>
+      <Typography helvetica="true" variant="h5">
+        Products
+      </Typography>
+      <Typography helvetica="true" variant="caption">
+        <Link to="/categories">
+          See more...
+        </Link>
+      </Typography>
+      <Carousel itemsToShow={3} pagination={false} renderArrow={myArrow}>
+        {productCategories.map((item) => <CategoryCardProducts key={item._id}
+          photo={item.image} name={item.category} description={item.description} />)}
       </Carousel>
     </Container>
   );

@@ -22,8 +22,7 @@ const CategoryCardProducts = function (props) {
       id={props.key}
       name={props.name}
       onClick={(e) => { handleProductCategoryClick(e); }}
-      className={classes.root}
-      style={{ height: '30vh' }}>
+      className={classes.root}>
       {props.photo ? (
         <CardMedia
           className={classes.media}
