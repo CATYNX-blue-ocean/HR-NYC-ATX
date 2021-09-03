@@ -7,6 +7,10 @@
   position: absolute; */
 }
 
+.font {
+  font-family: 'Roboto', sans-serif;
+}
+
 /* html {
   height: 100%;
 } */
@@ -24,25 +28,31 @@ body {
   width: 50%;
 }
 #sign-in-greeting {
-  padding-left: 120px;
+  text-align: center;
 }
 #sign-in-email {
-  margin-left: 75px;
+  text-align: center;
 }
 #sign-in-password {
-  margin-left: 75px;
+  text-align: center;
 }
 #sign-in-seller-toggle {
-  margin-left: 100px;
+  text-align: center;
 }
 #sign-in-button {
-  margin-left: 120px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
 }
 #sign-in-divider {
-  margin-left: 155px;
+  text-align: center;
+  padding: 2px;
+  margin: 5px;
 }
 #sign-up-button {
-  margin-left: 118px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Sign Up Modal */
