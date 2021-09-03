@@ -11,6 +11,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import validator from 'validator';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    width: 416,
+    margin: 'auto',
+  },
+});
 
 const SignUp = () => {
   const [show, setShow] = useState(true);
@@ -31,6 +39,8 @@ const SignUp = () => {
   const [signInError, setSignInError] = useState(false);
   const [accountExists, setAccountExists] = useState(false);
   const [accountCreated, setAccountCreated] = useState(false);
+
+  const classes = useStyles();
 
   let close = (event) => {
     history.goBack();
@@ -168,7 +178,7 @@ const SignUp = () => {
       onClose={close}
       id='sign-up-modal'
     >
-      <Card>
+      <Card className={classes.root}>
         <Grid
           container
           spacing={3}

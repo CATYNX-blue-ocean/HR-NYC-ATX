@@ -58,7 +58,7 @@ body {
 /* Sign Up Modal */
 
 #sign-up-modal {
-  margin: 5% 0 0 5%;
+  margin: 5% 0 0 0;
   /* width: 30%; */
 }
 #sign-up-header {

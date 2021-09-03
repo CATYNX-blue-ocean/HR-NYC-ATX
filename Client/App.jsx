@@ -56,11 +56,11 @@ const App = () => {
               </Route>
 
               <Route exact path="/checkout">
-                <h2>Hello Checkout</h2>
+                <Checkout />
               </Route>
 
               <Route exact path="/categories">
-                <h2>Hello categories</h2>
+                <ProdServCategories />
               </Route>
 
               <Route exact path="/products-page/:type">
