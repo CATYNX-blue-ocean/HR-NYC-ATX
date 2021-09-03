@@ -61,7 +61,7 @@ const Selector = ({ inventory, product }) => {
         <br/>
       </Typography>
       <div className='product-buttons'>
-        <span>
+        <span style={{ padding: '1vh'} }>
           {addCart && <Button
             variant="contained"
             style={{color: '#5E2EBA', backgroundColor: '#DED1F7'}}
