@@ -95,7 +95,6 @@ const NavBar = () => {
               style={{ textDecoration: 'none' }}
               onClick={refreshPage}
             >
-              {/* Odds 'n' Ends */}
               <img src={logo} />
             </Link>
           </Typography>
