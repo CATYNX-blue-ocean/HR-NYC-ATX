@@ -4,11 +4,15 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 const Info = ({ name, price, description, ratings }) => {
+
+  if (!ratings.length) {
+    ratings = [3, 3, 4, 5, 5];
+  }
   let total = 0;
   for (let i = 0; i < ratings.length; i++) {
     total += ratings[i];
   }
-  var avgRating = (total / ratings.length).toFixed(2);
+  var avgRating = (total / ratings.length).toFixed(1);
   var avgRating = Number(avgRating);
 
   return (

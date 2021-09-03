@@ -1,15 +1,16 @@
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   root: {
     width: '100%',
     height: 150,
     marginBottom: '20px',
-    position: 'relative'
+    position: 'relative',
+    padding: '10px',
   },
   media: {
     height: '100px',
-    width: '150px'
+    width: '150px',
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -19,6 +20,6 @@ export default makeStyles((theme) => ({
   },
   quantity: {
     height: '30px',
-    width: '60px'
-  }
+    width: '60px',
+  },
 }));
