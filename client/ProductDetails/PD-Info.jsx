@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 const Info = ({ name, price, description, ratings }) => {
 
   if (!ratings.length) {
-    ratings = [4, 4, 5, 5, 5];
+    ratings = [3, 3, 4, 5, 5];
   }
   let total = 0;
   for (let i = 0; i < ratings.length; i++) {
@@ -28,8 +28,8 @@ const Info = ({ name, price, description, ratings }) => {
         </span>
       </Typography>
       <Typography variant="body1" color="black" component="p">
-        {avgRating}
-        <Rating style={{color: '#5E2EBA', paddingLeft: '5%', position: 'relative'}} name="half-rating-read" defaultValue={avgRating} precision={0.25} readOnly />
+        {avgRating.toString().length === 1 ? (avgRating + 1) + '.0' : (avgRating + 1)}
+        <Rating style={{color: '#5E2EBA', paddingLeft: '5%', position: 'relative'}} name="half-rating-read" defaultValue={avgRating + 1} precision={0.25} readOnly />
       </Typography>
     </Container>
   );
