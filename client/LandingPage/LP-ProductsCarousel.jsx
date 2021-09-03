@@ -12,10 +12,6 @@ const ProductsCarousel = function (props) {
   const setProductCategory = useDataStore((state) => state.setProductCategory);
   const productCategories = useDataStore((state) => state.productCategories);
 
-  const handleSeeAllProductCategoryClick = function () {
-    console.log('I was clicked on See All Product Categories');
-  };
-
   const carouselRef = React.useRef(null);
   const onNextStart = (currentItem, nextItem) => {
     if (currentItem.index === nextItem.index) {
