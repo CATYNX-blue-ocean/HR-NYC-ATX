@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 const Images = ({ images}) => {
   const [currentImg, setCurrentImg] = useState(images[0]);
@@ -12,8 +14,10 @@ const Images = ({ images}) => {
   };
 
   return (
-    <div>
-      <div className="main-image">
+      <Container maxWidth="sm">
+        {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
+       */}
+      <div className="main-image" style={{marginTop: '5%'}}>
         <img src={currentImg} style={{margin: '10px'}}/>
       </div>
       <div className='thumb-images'>
@@ -25,7 +29,7 @@ const Images = ({ images}) => {
           );
         })}
       </div>
-    </div>
+      </Container>
   );
 };
 
