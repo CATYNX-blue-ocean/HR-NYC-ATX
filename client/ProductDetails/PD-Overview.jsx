@@ -20,7 +20,7 @@ const Overview = (props) => {
         price={currentProduct.price}
         ratings={currentProduct.ratings}
       />
-      <Selector inventory={currentProduct.inventory} />
+      <Selector inventory={currentProduct.inventory} product={currentProduct}/>
     </div>
   );
 };
