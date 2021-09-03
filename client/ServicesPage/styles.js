@@ -36,7 +36,7 @@ export default makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     width: '30%',
-    height: '30%'
+    height: '60%'
   },
   modalRoot: {
     '& .MuiTextField-root': {
@@ -47,6 +47,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    height: '10%'
   },
   buttonSubmit: {
     marginBottom: 10,

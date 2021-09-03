@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import {
   AppBar,
@@ -19,7 +19,7 @@ import useStyles from './styles.js';
 import axios from 'axios';
 import useDataStore from '../zustandStore.js';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import logo from './logo.png';
+import logo from './logo2.png';
 
 const NavBar = () => {
   const classes = useStyles();
@@ -36,6 +36,10 @@ const NavBar = () => {
 
   const resetProductData = useDataStore((state) => state.resetProductData);
   const resetServiceData = useDataStore((state) => state.resetServiceData);
+
+  // useEffect(() => {
+
+  // }, [cart]);
 
   const handleSearchSubmit = (e, keyword, type) => {
     e.preventDefault();
@@ -133,12 +137,13 @@ const NavBar = () => {
               <LocationOnIcon />
             </div>
             <InputBase
-              placeholder={userCity}
+              disabled={true}
+              value={userCity}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              // inputProps={{ 'aria-label': 'search' }}
             />
           </div>
           <div className={classes.grow} />
