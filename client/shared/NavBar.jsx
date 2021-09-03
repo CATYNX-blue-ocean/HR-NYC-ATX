@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { AppBar, Badge, IconButton, InputBase, Toolbar, Typography } from '@material-ui/core';
 //icons won't let you destructure, leave them listed below as-is
@@ -28,6 +28,10 @@ const NavBar = () => {
 
   const resetProductData = useDataStore((state) => state.resetProductData);
   const resetServiceData = useDataStore((state) => state.resetServiceData);
+
+  // useEffect(() => {
+
+  // }, [cart]);
 
   const handleSearchSubmit = (e, keyword, type) => {
     e.preventDefault();
