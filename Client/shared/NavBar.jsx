@@ -45,6 +45,7 @@ const NavBar = () => {
             resetServiceData(result.data);
             setIsService(true);
           } else {
+            console.log('ISPRODUCT', isProduct);
             resetProductData(result.data);
             setIsProduct(true);
           }
@@ -63,13 +64,19 @@ const NavBar = () => {
       console.error(err);
     });
 
+  const refreshPage = () => {
+    setTimeout(()=>{
+      window.location.reload(false);
+    }, 250);
+    console.log('page to reload');
+  };
 
   return (
     <div className={classes.grow}>
       <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none', color: 'black' }}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="" style={{ textDecoration: 'none', fontSize: '1.5vw', fontFamily: 'Comfortaa, cursive' }}>
+            <Link to="" style={{ textDecoration: 'none', fontSize: '1.5vw', fontFamily: 'Comfortaa, cursive' }} onClick={refreshPage}>
               Odds 'n' Ends
             </Link>
           </Typography>

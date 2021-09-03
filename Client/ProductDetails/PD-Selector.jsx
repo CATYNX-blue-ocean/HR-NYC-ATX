@@ -8,10 +8,12 @@ const Selector = ({ inventory, product }) => {
   const [addCart, setAddCart] = useState(true);
   const [isRedirect, setIsRedirect] = useState(false);
   const addToCart = useDataStore((state) => state.addToCart);
+  const cart = useDataStore((state) => state.cart);
 
   const handleAddCart = () => {
     setAddCart(false);
-    addToCart(product);
+    cart.push(product);
+    addToCart(cart);
   };
   //const history = useHistory();
   const handleBuyNow = () => {
@@ -41,7 +43,7 @@ const Selector = ({ inventory, product }) => {
           <button onClick={handleBuyNow}>BUY NOW</button>
         </span>
       </div>
-      {isRedirect && <Redirect to={{ pathname: '/products', }}/>}
+      {isRedirect && <Redirect to={{ pathname: '/cart', }}/>}
     </div>
   );
 };
