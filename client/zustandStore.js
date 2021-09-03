@@ -72,8 +72,7 @@ const useDataStore = create((set) => ({
     set((state) => {
       return { itemsPrice: price };
     });
-  }
-
+  },
 }));
 
 export default useDataStore;
