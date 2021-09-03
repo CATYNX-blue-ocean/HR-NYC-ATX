@@ -29,8 +29,14 @@ const Selector = ({ inventory, product }) => {
     addToCart(cart);
   };
   //const history = useHistory();
-  const handleBuyNow = () => {
+  const viewCart = () => {
     //history.push('/cart');
+    setIsRedirect(true);
+  };
+
+  const handleBuyNow = () => {
+    cart.push(product);
+    addToCart(cart);
     setIsRedirect(true);
   };
 
@@ -66,7 +72,7 @@ const Selector = ({ inventory, product }) => {
             variant="contained"
             style={{color: '#5E2EBA', backgroundColor: '#DED1F7'}}
             startIcon={<ShoppingBasketIcon />}
-            onClick={handleBuyNow}
+            onClick={viewCart}
           >VIEW CART
           </Button>}
         </span>
@@ -76,10 +82,10 @@ const Selector = ({ inventory, product }) => {
             variant="contained"
             style={{color: '#5E2EBA', backgroundColor: '#DED1F7'}}
             startIcon={<ShoppingBasketIcon />}
-          >
-            <Link to="/checkout" style={{ textDecoration: 'none' }}>
+          > BUY NOW
+            {/* <Link to="/cart" style={{ textDecoration: 'none' }}>
               BUY NOW
-            </Link>
+            </Link> */}
           </Button>
         </span>
       </div>

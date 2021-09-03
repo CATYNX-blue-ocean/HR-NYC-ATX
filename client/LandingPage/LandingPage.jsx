@@ -13,6 +13,8 @@ const LandingPage = function () {
   const setCategoryInformation = useDataStore((state) => state.setCategoryInformation);
   const productCategories = useDataStore((state) => state.productCategories);
   const servicesCategories = useDataStore((state) => state.servicesCategories);
+  const resetProductData = useDataStore((state) => state.resetProductData);
+  const resetServiceData = useDataStore((state) => state.resetServiceData);
 
   useEffect(() => {
     axios.get('http://localhost:3000/landing')
@@ -34,6 +36,25 @@ const LandingPage = function () {
       });
   }, []);
 
+  useEffect(() => {
+    axios.get('http://localhost:3000/products')
+      .then((results) => {
+        resetProductData(results.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/services')
+      .then((results) => {
+        resetServiceData(results.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <>

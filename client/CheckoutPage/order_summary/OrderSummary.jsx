@@ -28,7 +28,7 @@ const OrderSummary = () => {
   const itemsPrice = useDataStore((state) => state.itemsPrice);
   const classes = useStyles();
 
-  console.log(cart);
+  // console.log(cart);
   // let itemsPrice = 0;
   // cart.map((item) => {
   //   itemsPrice += Number(item.price);

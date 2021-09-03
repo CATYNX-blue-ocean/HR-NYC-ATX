@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
-import { AppBar, Badge, IconButton, InputBase, Toolbar, Typography } from '@material-ui/core';
+import {
+  AppBar,
+  Badge,
+  IconButton,
+  InputBase,
+  Toolbar,
+  Typography,
+  Radio,
+} from '@material-ui/core';
+
 //icons won't let you destructure, leave them listed below as-is
 import SearchIcon from '@material-ui/icons/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -8,7 +17,6 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import useStyles from './styles.js';
 import axios from 'axios';
-import Radio from '@material-ui/core/Radio';
 import useDataStore from '../zustandStore.js';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import logo from './logo.png';
@@ -33,7 +41,8 @@ const NavBar = () => {
     e.preventDefault();
     console.log('KEY WORD ', keyword);
     console.log('SEARCH TYPE ', type);
-    axios.get(`/${type}/search/?keyword=${keyword}`)
+    axios
+      .get(`/${type}/search/?keyword=${keyword}`)
       .then((result) => {
         //[OPTION1]update state for Product Container===========
         console.log('SEARCH RESULT ', typeof result.data);
@@ -55,18 +64,20 @@ const NavBar = () => {
       .catch((err) => {
         console.error(err);
       });
+    document.getElementById('searchForm').reset();
   };
 
-  axios.get('http://ip-api.com/json')
+  axios
+    .get('http://ip-api.com/json')
     .then((results) => {
-      setUserCity((results.data.city));
+      setUserCity(results.data.city);
     })
     .catch((err) => {
       console.error(err);
     });
 
   const refreshPage = () => {
-    setTimeout(()=>{
+    setTimeout(() => {
       window.location.reload(false);
     }, 250);
     console.log('page to reload');
@@ -74,20 +85,27 @@ const NavBar = () => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none', color: 'black' }}>
+      <AppBar
+        position="static"
+        style={{ background: 'transparent', boxShadow: 'none', color: 'black' }}
+      >
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="" style={{ textDecoration: 'none' }} onClick={refreshPage}>
-              {/* Odds 'n' Ends */}<img src={logo}/>
+            <Link
+              to=""
+              style={{ textDecoration: 'none' }}
+              onClick={refreshPage}
+            >
+              <img src={logo} />
             </Link>
           </Typography>
-          <div className={classes.search}
-            style={{ width: '45%' }}
-          >
+          <div className={classes.search} style={{ width: '35%' }}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <form onSubmit={(e) => handleSearchSubmit(e, searchInput, searchType)}>
+
+            <form id='searchForm'onSubmit={(e) => handleSearchSubmit(e, searchInput, searchType)}>
+
               <InputBase
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Search…"
@@ -97,53 +115,68 @@ const NavBar = () => {
                 }}
                 inputProps={{ 'aria-label': 'search' }}
               />
-              <div onChange={(e) => setSearchType(e.target.value)}>
-                <input type="radio" value="product" defaultChecked name="type" /> Product
-                <input type="radio" value="service" name="type" /> Service
-              </div>
             </form>
           </div>
-          <div className={classes.search}
-            style={{ width: '15%' }}
-          >
+          <div onChange={(e) => setSearchType(e.target.value)}>
+            <input type="radio" value="product" defaultChecked name="type" />{' '}
+            Product
+            <input
+              type="radio"
+              value="service"
+              name="type"
+              styles={{ backgroundColor: '#5E2EBA' }}
+            />{' '}
+            Service
+          </div>
+          <div className={classes.search} style={{ width: '15%' }}>
             <div className={classes.searchIcon}>
               <LocationOnIcon />
             </div>
             <InputBase
-              placeholder={userCity}
+              disabled={true}
+              value={userCity}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              // inputProps={{ 'aria-label': 'search' }}
             />
           </div>
           <div className={classes.grow} />
-          <div
-            style={{ marginRight: '5%' }}
-          >
+          <div style={{ marginRight: '5%' }}>
             <Typography variant="h6" noWrap>
-              {userName ? `Hello, ${userName}` :
+              {userName ? (
+                `Hello, ${userName}`
+              ) : (
                 <Link to="/sign-in" style={{ textDecoration: 'none' }}>
-                Sign in
+                  Sign in
                 </Link>
-              }
+              )}
             </Typography>
           </div>
-          <IconButton style={{ marginRight: '5%' }} aria-label="show new notifications" color="inherit">
+          <IconButton
+            style={{ marginRight: '5%' }}
+            aria-label="show new notifications"
+            color="inherit"
+          >
             <Badge badgeContent={cartNumber} color="secondary">
-              <Link to="/cart"><ShoppingCartOutlinedIcon /></Link>
+              <Link to="/cart">
+                <ShoppingCartOutlinedIcon />
+              </Link>
             </Badge>
           </IconButton>
         </Toolbar>
       </AppBar>
-      {isProduct && <Redirect to={{ pathname: '/products', }} />}
-      {isService && <Redirect to={{ pathname: '/services', }} />}
-      {isAlert &&
-        <div><Alert severity="warning" onClose={() => setIsAlert(false)}>
-          <AlertTitle>Oops</AlertTitle>
-          <strong>{message}</strong>
-        </Alert></div>}
+      {isProduct && <Redirect to={{ pathname: '/products' }} />}
+      {isService && <Redirect to={{ pathname: '/services' }} />}
+      {isAlert && (
+        <div>
+          <Alert severity="warning" onClose={() => setIsAlert(false)}>
+            <AlertTitle>Oops</AlertTitle>
+            <strong>{message}</strong>
+          </Alert>
+        </div>
+      )}
     </div>
   );
 };

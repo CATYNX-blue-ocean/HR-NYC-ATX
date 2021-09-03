@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CartList from './CartList.jsx';
 import OrderSummary from '../order_summary/OrderSummary.jsx';
 import Grid from '@material-ui/core/Grid';
@@ -31,9 +31,8 @@ const Cart = () => {
               padding: '0px',
             }}
           >
-            <CartList />
+            <CartList cart={cart}/>
           </Grid>
-
           <Grid
             item
             xs={5}
@@ -44,7 +43,7 @@ const Cart = () => {
               padding: '0px',
             }}
           >
-            <OrderSummary />
+            <OrderSummary cart={cart}/>
           </Grid>
         </Grid>
       }
