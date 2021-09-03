@@ -186,6 +186,7 @@ const searchForProducts = (key, CB) => {
     });
 };
 
+//The query of the SELLERS database
 const searchForServices = (key, CB) => {
   Sellers.find({ 'services.serviceCategory': { $regex: key, $options: 'i' } })
     .populate({ path: 'services' })
@@ -198,6 +199,22 @@ const searchForServices = (key, CB) => {
       CB(null, data);
     });
 };
+
+//The query of the SERVICES database - this gets all results then check for match on the server side. I had to do this because of upper/lower case
+const searchServices = async (service, cb) => {
+  await db
+    .collection('serviceListings')
+    .find({})
+    .toArray(function (err, result) {
+      if (err) {
+        return err;
+      }
+      cb(null, result);
+    });
+};
+
+
+
 
 const catFind = async (name) => {
   return await Categories.find({});
@@ -215,6 +232,8 @@ const saveNewOrder = (orderInfo) => {
   return newOrder.save();
 };
 
+
+
 module.exports = {
   getSellerLogin,
   getServiceCategory,
@@ -230,6 +249,7 @@ module.exports = {
   getProductList,
   catFind,
   saveNewOrder,
+  searchServices,
 };
 
 //buyer = 'undefined undefined';
@@ -237,3 +257,5 @@ module.exports = {
 //orders = empty;
 //repos =
 //seller = 'Joe String'
+
+// searchServices()

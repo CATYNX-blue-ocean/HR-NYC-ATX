@@ -14,8 +14,8 @@ const Images = ({ images}) => {
   };
 
   return (
-      <Container maxWidth="sm">
-        {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
+    <Container maxWidth="sm">
+      {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
        */}
       <div className="main-image" style={{marginTop: '5%'}}>
         <img src={currentImg} style={{margin: '10px'}}/>
@@ -29,7 +29,7 @@ const Images = ({ images}) => {
           );
         })}
       </div>
-      </Container>
+    </Container>
   );
 };
 

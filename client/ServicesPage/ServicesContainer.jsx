@@ -11,12 +11,16 @@ const ServicesContainer = ({ }) => {
   const classes = useStyles();
 
   const services = useDataStore((state) => state.serviceData);
-
+  const currentServiceCategory = useDataStore((state) => state.currentServiceCategory);
+  let pathName = window.location.pathname;
+  pathName = pathName.split('/');
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(9);
 
   const [sortedServices, setSortedServices] = useState(services);
   const [servicesPhotos, setServicesPhotos] = useState([]);
+
+  console.log(services);
 
   //change sorting of products
   const sortServices = (parameter) => {
@@ -65,9 +69,26 @@ const ServicesContainer = ({ }) => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   let totalPosts;
   let currentPosts;
+  let newServices = [];
   if (services) {
     totalPosts = services.length;
     currentPosts = services.slice(indexOfFirstPost, indexOfLastPost);
+  }
+
+  if (services) {
+    if (pathName[1] === 'services-by-category') {
+      for (var i = 0; i < services[0].length; i++) {
+        //console.log(services[0][i].serviceCategory.toLowerCase(), currentServiceCategory);
+        if (services[0][i].serviceCategory.toLowerCase() === currentServiceCategory.toLowerCase()) {
+          newServices.push(services[0][i]);
+        }
+      }
+      totalPosts = newServices.length;
+      currentPosts = newServices.slice(indexOfFirstPost, indexOfLastPost);
+    } else {
+      totalPosts = services.length;
+      currentPosts = services.slice(indexOfFirstPost, indexOfLastPost);
+    }
   }
 
   const numberOfPages = Math.ceil(totalPosts / postsPerPage);
