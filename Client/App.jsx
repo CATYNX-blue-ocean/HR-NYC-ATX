@@ -44,7 +44,7 @@ const App = () => {
 
               <Route exact path="/cart">
                 <h2>Hello Shopping Cart</h2>
-                <Cart />
+                {/* <Cart /> */}
               </Route>
 
               <Route path="/product-details">
@@ -71,9 +71,9 @@ const App = () => {
                 <OrderConfirmationPage />
               </Route>
 
-              <Route exact path="/services">
+              {/* <Route exact path="/services">
                 <ServicesContainer />
-              </Route>
+              </Route> */}
 
               <Route exact path="/">
                 <LandingPage />
