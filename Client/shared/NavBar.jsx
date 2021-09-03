@@ -69,7 +69,7 @@ const NavBar = () => {
       <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none', color: 'black' }}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="" style={{ textDecoration: 'none' }}>
+            <Link to="" style={{ textDecoration: 'none', fontSize: '1.5vw', fontFamily: 'Comfortaa, cursive' }}>
               Odds 'n' Ends
             </Link>
           </Typography>
