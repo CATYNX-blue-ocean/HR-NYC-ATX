@@ -17,28 +17,29 @@ const CategoryCardServices = function (props) {
   };
 
   return (
-
-    <Card
-      id={props.key}
-      name={props.name}
-      onClick={(e) => { handleServiceCategoryClick(e); }}
-      className={classes.root}>
-      {props.photo ? (
-        <CardMedia
-          className={classes.media}
-          image={props.photo} />
-      ) : (
-        <CircularProgress />
-      )}
-      <CardContent>
-        <Typography variant="h6" color="textSecondary" component="p" style={{ fontWeight: 'bold', color: 'black' }}>
-          {props.name}
-        </Typography>
-        <Typography variant="caption" color="textSecondary" component="p">
-          {props.description.length > 105 ? props.description.slice(0, 105) + '...' : props.description}
-        </Typography>
-      </CardContent>
-    </Card>
+    <Link style={{ textDecoration: 'none' }} to="/categories">
+      <Card
+        id={props.key}
+        name={props.name}
+        onClick={(e) => { handleServiceCategoryClick(e); }}
+        className={classes.root}>
+        {props.photo ? (
+          <CardMedia
+            className={classes.media}
+            image={props.photo} />
+        ) : (
+          <CircularProgress />
+        )}
+        <CardContent>
+          <Typography variant="h6" color="textSecondary" component="p" style={{ fontWeight: 'bold', color: 'black' }}>
+            {props.name}
+          </Typography>
+          <Typography variant="caption" color="textSecondary" component="p">
+            {props.description.length > 105 ? props.description.slice(0, 105) + '...' : props.description}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Link>
 
   );
 };

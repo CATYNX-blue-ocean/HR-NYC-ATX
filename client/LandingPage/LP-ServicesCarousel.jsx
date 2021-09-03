@@ -19,10 +19,9 @@ const ServicesCarousel = function (props) {
       <Carousel itemsToShow={3} pagination={false}>
         {servicesCategories.map((item) => {
           return (
-            <Link style={{textDecoration: 'none'}} to="/categories">
-              <CategoryCardServices key={item._id}
-                photo={item.image} name={item.category} description={item.description} />
-            </Link>
+            <CategoryCardServices key={item._id}
+              photo={item.image} name={item.category} description={item.description} />
+
           );
         })}
       </Carousel>

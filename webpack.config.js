@@ -1,5 +1,5 @@
 var path = require('path');
-var SRC_DIR = path.join(__dirname, '/Client');
+var SRC_DIR = path.join(__dirname, '/client');
 var DIST_DIR = path.join(__dirname, '/dist');
 
 module.exports = {
