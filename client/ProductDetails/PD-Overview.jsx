@@ -5,8 +5,6 @@ import Selector from './PD-Selector.jsx';
 import { useLocation } from 'react-router-dom';
 import useDataStore from '../zustandStore.js';
 
-
-
 const Overview = (props) => {
 
   const currentProduct = useDataStore((state) => state.currentProduct);
