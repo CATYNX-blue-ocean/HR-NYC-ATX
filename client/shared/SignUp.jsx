@@ -50,8 +50,6 @@ const SignUp = () => {
   const [accountExists, setAccountExists] = useState(false);
   const [accountCreated, setAccountCreated] = useState(false);
 
-  const classes = useStyles();
-
   let close = (event) => {
     history.goBack();
   };
