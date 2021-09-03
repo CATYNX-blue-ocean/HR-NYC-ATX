@@ -55,6 +55,7 @@ const NavBar = () => {
       .catch((err) => {
         console.error(err);
       });
+    document.getElementById('searchForm').reset();
   };
 
   axios.get('http://ip-api.com/json')
@@ -87,7 +88,7 @@ const NavBar = () => {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <form onSubmit={(e) => handleSearchSubmit(e, searchInput, searchType)}>
+            <form id='searchForm'onSubmit={(e) => handleSearchSubmit(e, searchInput, searchType)}>
               <InputBase
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Search…"
