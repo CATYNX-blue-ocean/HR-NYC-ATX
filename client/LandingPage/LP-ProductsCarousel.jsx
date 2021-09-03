@@ -12,10 +12,6 @@ const ProductsCarousel = function (props) {
   const setProductCategory = useDataStore((state) => state.setProductCategory);
   const productCategories = useDataStore((state) => state.productCategories);
 
-  const handleSeeAllProductCategoryClick = function () {
-    console.log('I was clicked on See All Product Categories');
-  };
-
   const carouselRef = React.useRef(null);
   const onNextStart = (currentItem, nextItem) => {
     if (currentItem.index === nextItem.index) {
@@ -35,15 +31,16 @@ const ProductsCarousel = function (props) {
       <Link to="/categories">
         <h4 className="see-all-link">See All</h4>
       </Link>
-      <Carousel itemsToShow={3} pagination={false} >
-        {productCategories.map((item) => {
-          return (
-            <Link style={{ textDecoration: 'none' }} to={'/products-page/' + item.category}>
-              <CategoryCardProducts key={item._id}
-                photo={item.image} name={item.category} description={item.description} />
-            </Link>
-          );
-        })}
+      <Carousel
+        ref={carouselRef}
+        onPrevStart={onPrevStart}
+        onNextStart={onNextStart}
+        disableArrowsOnEnd={false}
+        itemsToShow={3}
+        pagination={false}
+      >
+        {productCategories.map((item) => <CategoryCardProducts key={item._id}
+          photo={item.image} name={item.category} description={item.description} />)}
       </Carousel>
     </div>
   );

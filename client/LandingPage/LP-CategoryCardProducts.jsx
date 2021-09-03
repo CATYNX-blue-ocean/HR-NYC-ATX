@@ -14,32 +14,33 @@ const CategoryCardProducts = function (props) {
     console.log('this click from Product Category Card');
     console.log(e);
     console.log(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
+    setProductCategory(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
   };
 
   return (
-
-    <Card
-      id={props.key}
-      name={props.name}
-      onClick={(e) => { handleProductCategoryClick(e); }}
-      className={classes.root}>
-      {props.photo ? (
-        <CardMedia
-          className={classes.media}
-          image={props.photo} />
-      ) : (
-        <CircularProgress />
-      )}
-      <CardContent>
-        <Typography variant="h6" color="textSecondary" component="p" style={{ fontWeight: 'bold', color: 'black' }}>
-          {props.name}
-        </Typography>
-        <Typography variant="caption" color="textSecondary" component="p">
-          {props.description.length > 50 ? props.description.slice(0, 50) + '...' : props.description}
-        </Typography>
-      </CardContent>
-    </Card>
-
+    <Link style={{ textDecoration: 'none' }} to="/products-by-category">
+      <Card
+        id={props.key}
+        name={props.name}
+        onClick={(e) => { handleProductCategoryClick(e); }}
+        className={classes.root}>
+        {props.photo ? (
+          <CardMedia
+            className={classes.media}
+            image={props.photo} />
+        ) : (
+          <CircularProgress />
+        )}
+        <CardContent>
+          <Typography variant="h6" color="textSecondary" component="p" style={{ fontWeight: 'bold', color: 'black' }}>
+            {props.name}
+          </Typography>
+          <Typography variant="caption" color="textSecondary" component="p">
+            {props.description.length > 50 ? props.description.slice(0, 50) + '...' : props.description}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
 

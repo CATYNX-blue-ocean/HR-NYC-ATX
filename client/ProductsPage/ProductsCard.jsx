@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useStyles from './styles.js';
 import { Card, CardHeader, CardMedia, CardContent, CardActions, CardActionArea, Typography, IconButton, Modal, Backdrop, Fade, CircularProgress } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
-import useDataStore from './tempZustand.js';
+import useDataStore from '../zustandStore.js';
 import { Link, Redirect } from 'react-router-dom';
 
 
@@ -12,7 +12,6 @@ const ProductsCard = ({ product }) => {
 
   const setCurrentProduct = useDataStore((state) => state.setCurrentProduct);
   const currentProduct = useDataStore((state) => state.currentProduct);
-
 
   let reviewAverage = () => {
     let reviewsData = product.ratings || [1, 2, 3, 4, 5, 4, 3, 2];
