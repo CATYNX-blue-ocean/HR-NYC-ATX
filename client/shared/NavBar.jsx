@@ -78,7 +78,7 @@ const NavBar = () => {
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             <Link to="" style={{ textDecoration: 'none' }} onClick={refreshPage}>
-              {/* Odds 'n' Ends */}<img src={logo}/>
+              <img src={logo}/>
             </Link>
           </Typography>
           <div className={classes.search}
