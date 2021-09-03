@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ShippingInfoForm = (props) => {
   const [values, setValues] = useState({
-    fistName: '',
+    firstName: '',
     lastName: '',
     adress: '',
     city: '',
@@ -39,12 +39,12 @@ const ShippingInfoForm = (props) => {
       <form className={classes.root} noValidate autoComplete="off">
         <div>
           <TextField
-            onChange={set('fistName')}
-            value={values.fistName}
+            onChange={set('firstName')}
+            value={values.firstName}
             required
             id="outlined-required"
-            label="Fist Name"
-            defaultValue="Fist Name"
+            label="First Name"
+            defaultValue="First Name"
             variant="outlined"
             size="small"
           />
@@ -91,7 +91,18 @@ const ShippingInfoForm = (props) => {
             size="small"
           />
         </div>
-        <Button onClick={onSumbit}>Save</Button>
+        <Button
+          variant="contained"
+          style={{
+            backgroundColor: '#5E2EBA',
+            color: 'white',
+            boxSizing: 'border-box',
+            // width: '25%',
+          }}
+          onClick={onSumbit}
+        >
+          Save
+        </Button>
       </form>
     </div>
   );
