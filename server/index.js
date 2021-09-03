@@ -58,6 +58,9 @@ app.get('/category/*', function (req, res) {
 app.get('/categories', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
+app.get('/products-page', function (req, res) {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
 
 app.get('/product-details', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
@@ -188,10 +191,37 @@ app.get('/product/search', (req, res) => {
   });
 });
 
-// user search for services
+// user search for services - ORIGINAL - querying the SELLERS database
+// app.get('/service/search', (req, res) => {
+//   let keyword = req.query.keyword;
+//   database.searchForServices(keyword, (err, result) => {
+//     if (err) {
+//       console.error(err);
+//       res.sendStatus(404);
+//     }
+//     if (!result.length) {
+//       res.json('No matching services for your location.');
+//     } else {
+//       let servicesMatch = [];
+//       result.forEach((seller) => {
+//         seller.services.forEach((service) => {
+//           if (service.serviceCategory.toLowerCase().includes(keyword.toLowerCase())) {
+//             servicesMatch.push(service);
+//           }
+//         });
+//       });
+//       res.status(200).json(servicesMatch);
+//     }
+//   });
+// });
+
+
+
+//user search for services -VERSION 2 - Querying SERVICES database
 app.get('/service/search', (req, res) => {
   let keyword = req.query.keyword;
-  database.searchForServices(keyword, (err, result) => {
+  console.log(keyword);
+  database.searchServices(keyword, (err, result) => {
     if (err) {
       console.error(err);
       res.sendStatus(404);
@@ -201,11 +231,9 @@ app.get('/service/search', (req, res) => {
     } else {
       let servicesMatch = [];
       result.forEach((seller) => {
-        seller.services.forEach((service) => {
-          if (service.serviceCategory.toLowerCase().includes(keyword.toLowerCase())) {
-            servicesMatch.push(service);
-          }
-        });
+        if (seller.serviceCategory.toLowerCase().includes(keyword.toLowerCase())) {
+          servicesMatch.push(seller);
+        }
       });
       res.status(200).json(servicesMatch);
     }

@@ -6,32 +6,26 @@ import useStore from './zustandStore';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import NavBar from './shared/NavBar.jsx';
 import ProductsContainer from './ProductsPage/ProductsContainer.jsx';
-import ServicesContainer from './ServicesPage/ServicesContainer.jsx';
 import SignIn from './shared/SignInModal.jsx';
 import SignUp from './shared/SignUp.jsx';
 import Overview from './ProductDetails/PD-Overview.jsx';
-import Cart from './CheckoutPage/cart/Cart.jsx';
-import OrderConfirmation from './CheckoutPage/OrderConfirmation.jsx';
-import CheckoutPage from './CheckoutPage/CheckoutPage.jsx';
 import exampleData from './ProductDetails/dummies';
 import { Grid } from '@material-ui/core';
+import Checkout from './CheckoutPage/CheckoutPage.jsx';
 import ProdServCategories from './ProductServiceCategories/ProdServCategories.js';
 import OrderConfirmationPage from './CheckoutPage/OrderConfirmation.jsx';
 
 const App = () => {
   // example of consuming state
   const myVariable = useStore((state) => state.exampleStateField);
+  console.log(myVariable);
   const exampleChangeFn = useStore((state) => state.exampleChangeStateFn);
+
   return (
     <>
       <div className="landing-page-main-div font">
         <Router>
-          <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-          >
+          <Grid container direction="column" justifyContent="center" alignItems="center">
             <Grid item width="1">
               <NavBar />
             </Grid>
@@ -49,7 +43,8 @@ const App = () => {
               </Route>
 
               <Route exact path="/cart">
-                <Cart />
+                <h2>Hello Shopping Cart</h2>
+                {/* <Cart /> */}
               </Route>
 
               <Route path="/product-details">
@@ -61,14 +56,14 @@ const App = () => {
               </Route>
 
               <Route exact path="/checkout">
-                <CheckoutPage />
+                <h2>Hello Checkout</h2>
               </Route>
 
               <Route exact path="/categories">
-                <ProdServCategories />
+                <h2>Hello categories</h2>
               </Route>
 
-              <Route exact path="/products">
+              <Route exact path="/products-page/:type">
                 <ProductsContainer />
               </Route>
 
@@ -76,9 +71,9 @@ const App = () => {
                 <OrderConfirmationPage />
               </Route>
 
-              <Route exact path="/services">
+              {/* <Route exact path="/services">
                 <ServicesContainer />
-              </Route>
+              </Route> */}
 
               <Route exact path="/">
                 <LandingPage />
