@@ -14,22 +14,14 @@
 /***************************/
 
 .landing-page-nav-bar {
-  border: solid 1px;
-  border-color: black;
   display: grid;
   grid-template-columns: 1fr 6fr 2fr 1fr 1fr;
 }
 
-.landing-page-logo {
-  border: solid 1px;
-  border-color: black;
-}
 
 .landing-page-search-bar-div {
   display: block;
   margin: auto;
-  border: solid 1px;
-  border-color: black;
 }
 
 .landing-page-search-bar-textbox {
@@ -44,7 +36,6 @@
   background-size: contain;
   padding-left: 40px;
   background-color: #fff;
-  border: 1px solid #000;
   border-radius: 4px;
   box-shadow: none;
   -webkit-appearance: none;
@@ -53,8 +44,6 @@
 .landing-page-location-input-div {
   display: block;
   margin: auto;
-  border: solid 1px;
-  border-color: black;
 }
 
 .landing-page-location-input-textbox {
@@ -67,7 +56,6 @@
   background-size: contain;
   padding-left: 40px;
   background-color: #fff;
-  border: 1px solid #000;
   border-radius: 4px;
   box-shadow: none;
   -webkit-appearance: none;
@@ -76,15 +64,11 @@
 .landing-page-login-link-div {
   display: block;
   margin: auto;
-  border: solid 1px;
-  border-color: black;
 }
 
 .landing-page-cart-link-div {
   display: block;
   margin: auto;
-  border: solid 1px;
-  border-color: black;
 }
 
 /****************************/
@@ -102,16 +86,12 @@
 /******************************/
 
 .landing-page-category-carousel {
-  border: solid 1px;
-  border-color: black;
+  padding: 30px;
   width : 100%;
   height: auto;
 }
 
 .landing-page-category-card {
-  border: solid 1px;
-  border-color: black;
-  /* margin: 20px; */
   width: 300px;
   height: 175px;;
 }
@@ -119,23 +99,16 @@
 /******************************/
 
 .landing-page-feature-carousel {
-  border: solid 1px;
-  border-color: black;
   width: 100%;
   height: 350px;
+  border-radius: 15px;
   overflow: hidden;
   object-fit: contain;
 }
 
 .feature-item-card-container {
-  border: solid 1px;
-  border-color: black;
   height: auto;
   width: 100%;
-  /* background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  overflow: hidden; */
   object-fit: contain;
 }
 
