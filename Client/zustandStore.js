@@ -44,8 +44,10 @@ const useDataStore = create((set) => ({
   setCurrentProduct: (id) =>
     set((state) => {
       let current;
+      console.log(id);
       state.productData.map((product) => {
         if (product.id === Number(id)) {
+          console.log(product.id);
           current = product;
         }
       });
