@@ -25,12 +25,12 @@ const ServicesCarousel = function (props) {
 
 
   return (
-    <Container>
+    <Container style={{ height: '40vh' }}>
       <Typography helvetica="true" variant="h5">
         Services
       </Typography>
       <Typography helvetica="true" variant="caption">
-        <Link to="/categories">
+        <Link to="/categories" style={{ textDecoration: 'none' }}>
             See more...
         </Link>
       </Typography>

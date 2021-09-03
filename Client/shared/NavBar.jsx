@@ -116,7 +116,7 @@ const NavBar = () => {
           >
             <Typography variant="h6" noWrap>
               {userName ? `Hello, ${userName}` :
-                <Link to="/sign-in" style={{ textDecoration: 'none' }}>
+                <Link to="/sign-in" style={{ textDecoration: 'none', fontSize: '1.5vw', fontFamily: 'Comfortaa, cursive' }}>
                 Sign in
                 </Link>
               }
