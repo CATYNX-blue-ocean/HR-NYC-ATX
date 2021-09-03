@@ -9,26 +9,35 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Link, BrowserRouter } from 'react-router-dom';
 
-
 const CategoriesCards = (props) => {
   return (
-    <Grid item style={ { width: '40%'} }>
-      <Card style={ { height: '100%' } }>
+    <Grid item style={{ width: '40%' }}>
+      <Card style={{ height: '100%' }}>
         <CardActionArea>
           <CardMedia
             component="img"
             alt="ProductOrService"
             height="160"
-            image={props.categoryName === 'Products' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv6o9PPkVCRB6GPp0EfTV774kZBDnXVdiBIw&usqp=CAU' : 'https://www.oshatrainingbootcamp.com/wp-content/uploads/2019/06/services.png' }
+            image={
+              props.categoryName === 'Products'
+                ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv6o9PPkVCRB6GPp0EfTV774kZBDnXVdiBIw&usqp=CAU'
+                : 'https://www.oshatrainingbootcamp.com/wp-content/uploads/2019/06/services.png'
+            }
           />
           <CardContent>
             <Typography helvetica="true" variant="h3" component="h2">
               {props.categoryName}
             </Typography>
             {props.categoryTypes.map((categories, i) => (
-              <Typography key={i} variant="body2" color="textSecondary" component="p" variant="h5">
+              <Typography
+                key={i}
+                variant="body2"
+                color="textSecondary"
+                component="p"
+                variant="h5"
+              >
                 <BrowserRouter>
-                  <Link to={`/category/${ categories.category }`}>
+                  <Link to={`/category/${categories.category}`}>
                     {categories.category}
                   </Link>
                 </BrowserRouter>

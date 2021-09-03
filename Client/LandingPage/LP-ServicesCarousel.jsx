@@ -9,13 +9,12 @@ import CategoryCardServices from './LP-CategoryCardServices.jsx';
 import exampleData from '../../exampleData.js';
 import useDataStore from '../zustandStore.js';
 
-
 const ServicesCarousel = function (props) {
-
   const servicesCategories = useDataStore((state) => state.servicesCategories);
 
   const myArrow = ({ type, onClick, isEdge }) => {
-    const pointer = type === consts.PREV ? <ArrowBackIosIcon/> : <ArrowForwardIosIcon/>;
+    const pointer =
+      type === consts.PREV ? <ArrowBackIosIcon /> : <ArrowForwardIosIcon />;
     return (
       <Button onClick={onClick} disabled={isEdge}>
         {pointer}
@@ -23,24 +22,26 @@ const ServicesCarousel = function (props) {
     );
   };
 
-
   return (
-    <Container>
+    <Container style={{ height: '40vh', padding: '3vh' }}>
       <Typography helvetica="true" variant="h5">
         Services
       </Typography>
       <Typography helvetica="true" variant="caption">
-        <Link to="/categories">
-            See more...
-        </Link>
+        <Link to="/categories">See more...</Link>
       </Typography>
       <Carousel itemsToShow={3} pagination={false} renderArrow={myArrow}>
-        {servicesCategories.map((item) => <CategoryCardServices key={item._id}
-          photo={item.image} name={item.category} description={item.description} />)}
+        {servicesCategories.map((item) => (
+          <CategoryCardServices
+            key={item._id}
+            photo={item.image}
+            name={item.category}
+            description={item.description}
+          />
+        ))}
       </Carousel>
     </Container>
   );
-
 };
 
 export default ServicesCarousel;
