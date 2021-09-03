@@ -14,22 +14,14 @@
 /***************************/
 
 .landing-page-nav-bar {
-  border: solid 1px;
-  border-color: black;
   display: grid;
   grid-template-columns: 1fr 6fr 2fr 1fr 1fr;
 }
 
-.landing-page-logo {
-  border: solid 1px;
-  border-color: black;
-}
 
 .landing-page-search-bar-div {
   display: block;
   margin: auto;
-  border: solid 1px;
-  border-color: black;
 }
 
 .landing-page-search-bar-textbox {
@@ -44,7 +36,6 @@
   background-size: contain;
   padding-left: 40px;
   background-color: #fff;
-  border: 1px solid #000;
   border-radius: 4px;
   box-shadow: none;
   -webkit-appearance: none;
@@ -53,8 +44,6 @@
 .landing-page-location-input-div {
   display: block;
   margin: auto;
-  border: solid 1px;
-  border-color: black;
 }
 
 .landing-page-location-input-textbox {
