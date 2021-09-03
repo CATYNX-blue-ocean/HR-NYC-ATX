@@ -12,10 +12,31 @@ import MenuItem from '@material-ui/core/MenuItem';
 import validator from 'validator';
 import axios from 'axios';
 import useDataStore from '../zustandStore';
-import {
-  Link,
-  useHistory
-} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    width: 416,
+    margin: 'auto',
+  },
+});
+const CssTextField = withStyles({
+  root: {
+    width: '80%',
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#DED1F7',
+      },
+      '&:hover fieldset': {
+        borderColor: '#5E2EBA',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '5E2EBA',
+      },
+    },
+  },
+})(TextField);
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -28,35 +49,40 @@ const SignIn = () => {
   const setUsername = useDataStore((state) => state.setUserName);
   let username = useDataStore((state) => state.userName);
   let [name, setName] = useState('');
-
-
+  const classes = useStyles();
   let close = (event) => {
     history.goBack();
   };
 
   let onSignInSubmit = () => {
     if (isSeller) {
-      axios.get(`/sellersignin?sellerEmail=${email}`)
-        .then((res) => {
-          if (res.data === 'User Not Found.' || res.data === 'There was an error with your request, Please try again or contact an administrator.') {
-            setLoginError(true);
-          } else {
-            setLoginError(false);
-            setUsername(res.data.sellerName);
-            close();
-          }
-        });
+      axios.get(`/sellersignin?sellerEmail=${email}`).then((res) => {
+        if (
+          res.data === 'User Not Found.' ||
+          res.data ===
+            'There was an error with your request, Please try again or contact an administrator.'
+        ) {
+          setLoginError(true);
+        } else {
+          setLoginError(false);
+          setUsername(res.data.sellerName);
+          close();
+        }
+      });
     } else {
-      axios.get(`/buyersignin?buyerEmail=${email}`)
-        .then((res) => {
-          if (res.data === 'User Not Found.' || res.data === 'There was an error with your request, Please try again or contact an administrator.') {
-            setLoginError(true);
-          } else {
-            setLoginError(false);
-            setUsername(res.data[0].buyerName);
-            close();
-          }
-        });
+      axios.get(`/buyersignin?buyerEmail=${email}`).then((res) => {
+        if (
+          res.data === 'User Not Found.' ||
+          res.data ===
+            'There was an error with your request, Please try again or contact an administrator.'
+        ) {
+          setLoginError(true);
+        } else {
+          setLoginError(false);
+          setUsername(res.data[0].buyerName);
+          close();
+        }
+      });
     }
   };
 
@@ -76,7 +102,7 @@ const SignIn = () => {
     let passLengthValid = false;
     let passCharsValid = false;
     if (password !== '') {
-      passLengthValid = !validator.isLength(password, {min: 8, max: 14});
+      passLengthValid = !validator.isLength(password, { min: 8, max: 14 });
     }
     if (password !== '') {
       passCharsValid = !validator.isAlphanumeric(password);
@@ -93,81 +119,104 @@ const SignIn = () => {
   };
 
   return (
-    <Modal
-      open={true}
-      onClose={close}
-      id='sign-in-modal'
-    >
-      <Card>
+    <Modal open={true} onClose={close} id="sign-in-modal" className="font">
+      <Card className={classes.root}>
         <Grid
           container
           spacing={1}
-          style={{backgroundColor: '#fff', paddingLeft: 150 + 'px'}}
-          // direction="row"
-          alignItems="center"
+          style={{ backgroundColor: '#fff', margin: 'auto' }}
         >
           <Grid item xs={12}>
-            <h2 id='sign-in-greeting'>
-              Sign In
-            </h2>
-            <p>
-              Please sign in in order to post a product or a service. <br /> You are one step away from joining your community.
+            <h2 id="sign-in-greeting">Sign In</h2>
+            <p style={{ textAlign: 'center' }}>
+              Please sign in in order to post a product or a service. <br /> You
+              are one step away from joining your community.
             </p>
           </Grid>
-          <Grid item xs={12} id='sign-in-email'>
-            <TextField
+          <Grid item xs={12} id="sign-in-email">
+            <CssTextField
+              variant="outlined"
+              id="custom-css-outlined-input"
               required
-              type='email' label='email'
-              onChange={(event) => { handleSetEmail(event); }}
+              type="email"
+              label="email"
+              onChange={(event) => {
+                handleSetEmail(event);
+              }}
               error={emailError}
             />
           </Grid>
-          <Grid item xs={12} id='sign-in-password'>
-            <TextField
+          <Grid item xs={12} id="sign-in-password">
+            <CssTextField
+              variant="outlined"
+              id="custom-css-outlined-input"
               required
-              className='sign-in-textfield'
-              type='password'
-              label='password'
-              onChange={(event) => { handleSetPassword(event); }}
+              className="sign-in-textfield"
+              type="password"
+              label="password"
+              onChange={(event) => {
+                handleSetPassword(event);
+              }}
               error={passwordError}
             />
           </Grid>
-          <Grid item xs={12} id='sign-in-seller-toggle'>
+          <Grid item xs={12} id="sign-in-seller-toggle">
             <FormControl>
               <InputLabel>Buyer or Seller?</InputLabel>
               <Select
-                defaultValue='buyer'
-                style={{width: 125 + 'px'}}
-                onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}
+                defaultValue="buyer"
+                style={{ width: 125 + 'px' }}
+                onChange={(event) => {
+                  setIsSeller(event.target.value === 'buyer' ? false : true);
+                }}
               >
-                <MenuItem value='buyer'>Buyer</MenuItem>
-                <MenuItem value='seller'>Seller</MenuItem>
+                <MenuItem value="buyer">Buyer</MenuItem>
+                <MenuItem value="seller">Seller</MenuItem>
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={12}>
             <Button
-              variant='contained'
+              variant="contained"
               onClick={onSignInSubmit}
-              style={{backgroundColor: '#5E2EBA', color: 'white'}}
-              id='sign-in-button'
+              style={{
+                backgroundColor: '#5E2EBA',
+                color: 'white',
+                boxSizing: 'border-box',
+                width: '60%',
+              }}
+              id="sign-in-button"
             >
               Sign In
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <p id='sign-in-divider'>
-              or
-            </p>
+            <p id="sign-in-divider">or</p>
             <Link to="/sign-up">
-              <Button id ='sign-up-button' variant='contained' style={{backgroundColor: '#DED1F7'}}>Sign Up</Button>
+              <Button
+                id="sign-up-button"
+                variant="contained"
+                style={{
+                  backgroundColor: '#DED1F7',
+                  boxSizing: 'border-box',
+                  width: '60%',
+                  textAlign: 'center',
+                }}
+              >
+                Sign Up
+              </Button>
             </Link>
           </Grid>
           <Grid item xs={12}>
-            {loginError ? <p style={{color: 'red'}}>There was an error signing into your account. Please check your account details and try again!</p> : null}
+            {loginError ? (
+              <p style={{ color: 'red' }}>
+                There was an error signing into your account. Please check your
+                account details and try again!
+              </p>
+            ) : null}
           </Grid>
         </Grid>
-      </Card >
+      </Card>
     </Modal>
   );
 };

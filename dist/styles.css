@@ -53,13 +53,21 @@ body {
   text-align: center;
   display: block;
   margin: 0 auto;
+  padding: 5px;
 }
 
 /* Sign Up Modal */
 
 #sign-up-modal {
+<<<<<<< HEAD
   margin: 5% 0 0 0;
   /* width: 30%; */
+=======
+  display: block;
+  margin: 0 auto;
+  width: 40%;
+  margin-top: 10%;
+>>>>>>> bfa6ce9cbae844e22e4622637b608a43469faad1
 }
 #sign-up-header {
   text-align: center;
@@ -71,8 +79,13 @@ body {
   text-align: center;
 }
 #sign-up-name {
+<<<<<<< HEAD
   display: inline-block;
   text-align: center;
+=======
+  display: flex;
+  flex-direction: row;
+>>>>>>> bfa6ce9cbae844e22e4622637b608a43469faad1
 }
 #sign-up-phoneNumber,
 #sign-up-zipCode {
@@ -83,4 +96,9 @@ body {
 }
 #sign-up-modal-button {
   text-align: center;
+<<<<<<< HEAD
+=======
+  display: block;
+  margin: 0 auto;
+>>>>>>> bfa6ce9cbae844e22e4622637b608a43469faad1
 }
