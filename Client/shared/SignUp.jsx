@@ -11,6 +11,24 @@ import MenuItem from '@material-ui/core/MenuItem';
 import validator from 'validator';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+
+const CssTextField = withStyles({
+  root: {
+    width: '80%',
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#DED1F7',
+      },
+      '&:hover fieldset': {
+        borderColor: '#5E2EBA',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '5E2EBA',
+      },
+    },
+  },
+})(TextField);
 
 const SignUp = () => {
   const [show, setShow] = useState(true);
@@ -37,7 +55,10 @@ const SignUp = () => {
   };
 
   let checkResponse = (res) => {
-    if (res.data === 'There was an error with your request, Please try again or contact an administrator.') {
+    if (
+      res.data ===
+      'There was an error with your request, Please try again or contact an administrator.'
+    ) {
       setSignInError(true);
     } else if (res.data === 'Account Exists. Please log in.') {
       setAccountExists(true);
@@ -58,12 +79,11 @@ const SignUp = () => {
         createdAt: new Date(),
         orders: [],
         products: [],
-        services: []
+        services: [],
       };
-      axios.post('/sellersignup', userInfo)
-        .then((res) => {
-          checkResponse(res);
-        });
+      axios.post('/sellersignup', userInfo).then((res) => {
+        checkResponse(res);
+      });
     } else {
       let userInfo = {
         buyerName: firstName + ' ' + lastName,
@@ -71,12 +91,11 @@ const SignUp = () => {
         buyerEmail: email,
         buyerPhone: phoneNumber,
         buyerAddress: zipCode,
-        orders: []
+        orders: [],
       };
-      axios.post('/buyersignup', userInfo)
-        .then((res) => {
-          checkResponse(res);
-        });
+      axios.post('/buyersignup', userInfo).then((res) => {
+        checkResponse(res);
+      });
     }
   };
 
@@ -109,7 +128,7 @@ const SignUp = () => {
     let passLengthValid = false;
     let passCharsValid = false;
     if (password !== '') {
-      passLengthValid = !validator.isLength(password, {min: 8, max: 14});
+      passLengthValid = !validator.isLength(password, { min: 8, max: 14 });
       console.log(passLengthValid);
     }
     if (password !== '') {
@@ -163,107 +182,140 @@ const SignUp = () => {
   };
 
   return (
-    <Modal
-      open={show}
-      onClose={close}
-      id='sign-up-modal'
-    >
+    <Modal open={show} onClose={close} id="sign-up-modal" className="font">
       <Card>
         <Grid
           container
           spacing={3}
-          style={{backgroundColor: '#fff', padding: 20 + 'px'}}
-          direction='column'
+          style={{ backgroundColor: '#fff' }}
+          direction="column"
         >
           <Grid item xs={12}>
-            <h2 id='sign-up-header'>
-              Sign Up
-            </h2>
+            <h2 id="sign-up-header">Sign Up</h2>
           </Grid>
-          <Grid item xs={12} id='sign-up-email'>
-            <TextField
+          <Grid item xs={12} id="sign-up-email">
+            <CssTextField
+              variant="outlined"
+              id="custom-css-outlined-input"
               required
-
-              type='email'
-              label='Email'
-              onChange={(event) => { handleSetEmail(event); }}
+              type="email"
+              label="Email"
+              onChange={(event) => {
+                handleSetEmail(event);
+              }}
               error={emailError}
             />
           </Grid>
-          <Grid item xs={12} id='sign-up-password'>
-            <TextField
+          <Grid item xs={12} id="sign-up-password">
+            <CssTextField
+              variant="outlined"
+              id="custom-css-outlined-input"
               required
-              type='password'
-              size='medium'
-              label='Password'
-              helperText='Must be between 8-14 alphanumeric characters'
-              onChange={(event) => { handleSetPassword(event); }}
+              type="password"
+              size="medium"
+              label="Password"
+              helperText="Must be between 8-14 alphanumeric characters"
+              onChange={(event) => {
+                handleSetPassword(event);
+              }}
               error={passwordError}
             />
           </Grid>
-          <Grid item xs={12} id='sign-up-name'>
-            <TextField
-              required
-              label='First Name'
-              onChange={(event) => { handleFirstNameChange(event); }}
-              error={firstNameError}
-            />
-            <TextField
-              required
-              id='sign-up-lastName'
-              label='Last Name'
-              onChange={(event) => { handleLastNameChange(event); }}
-              error={lastNameError}
-            />
+          <Grid item xs={12} id="sign-up-name">
+            <Grid item xs={6} style={{ marginLeft: '10%' }}>
+              <CssTextField
+                variant="outlined"
+                id="custom-css-outlined-input"
+                required
+                label="First Name"
+                onChange={(event) => {
+                  handleFirstNameChange(event);
+                }}
+                error={firstNameError}
+              />
+            </Grid>
+            <Grid item xs={6} style={{ marginRight: '1%' }}>
+              <CssTextField
+                variant="outlined"
+                id="custom-css-outlined-input"
+                required
+                id="sign-up-lastName"
+                label="Last Name"
+                onChange={(event) => {
+                  handleLastNameChange(event);
+                }}
+                error={lastNameError}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12} id='sign-up-phoneNumber'>
-            <TextField
+          <Grid item xs={12} id="sign-up-phoneNumber">
+            <CssTextField
+              variant="outlined"
+              id="custom-css-outlined-input"
               required
-              type='tel'
-
-              label='Phone Number'
-              onChange={(event) => { handleSetPhoneNumber(event); }}
+              type="tel"
+              label="Phone Number"
+              onChange={(event) => {
+                handleSetPhoneNumber(event);
+              }}
               error={phoneError}
             />
           </Grid>
-          <Grid item xs={12} id='sign-up-zipCode'>
-            <TextField
+          <Grid item xs={12} id="sign-up-zipCode">
+            <CssTextField
+              variant="outlined"
+              id="custom-css-outlined-input"
               required
-              label='Zip Code'
-              onChange={(event) => { handleZipCodeChange(event); }}
+              label="Zip Code"
+              onChange={(event) => {
+                handleZipCodeChange(event);
+              }}
               error={zipCodeError}
             />
           </Grid>
-          <Grid item xs={12} id='sign-up-seller-toggle'>
+          <Grid item xs={12} id="sign-up-seller-toggle">
             <FormControl>
-              <InputLabel style={{paddingBottom: 10 + 'px'}}>Buyer or Seller?</InputLabel>
+              <InputLabel style={{ paddingBottom: 10 + 'px' }}>
+                Buyer or Seller?
+              </InputLabel>
               <Select
-
-                defaultValue='buyer'
-                style={{width: 125 + 'px'}}
-                onChange={(event) => { setIsSeller(event.target.value === 'buyer' ? false : true); }}
+                defaultValue="buyer"
+                style={{ width: 125 + 'px' }}
+                onChange={(event) => {
+                  setIsSeller(event.target.value === 'buyer' ? false : true);
+                }}
               >
-                <MenuItem value='buyer'>Buyer</MenuItem>
-                <MenuItem value='seller'>Seller</MenuItem>
+                <MenuItem value="buyer">Buyer</MenuItem>
+                <MenuItem value="seller">Seller</MenuItem>
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            {
-              signInError ?
-                <p style={{color: 'red'}}>There was an error creating your account. Please check the account details and try again!</p> :
-                accountExists ?
-                  <p style={{color: 'red'}}>The email you used is associated with an account. Please sign in!</p> :
-                  accountCreated ?
-                    <p>Account created. Please sign in!</p> :
-                    null
-            }
+            {signInError ? (
+              <p style={{ color: 'red' }}>
+                There was an error creating your account. Please check the
+                account details and try again!
+              </p>
+            ) : accountExists ? (
+              <p style={{ color: 'red' }}>
+                The email you used is associated with an account. Please sign
+                in!
+              </p>
+            ) : accountCreated ? (
+              <p>Account created. Please sign in!</p>
+            ) : null}
           </Grid>
-          <Grid item xs={12} id='sign-up-modal-button'>
+          <Grid item xs={12} id="sign-up-modal-button">
             <Button
-              style={{backgroundColor: '#5E2EBA', color: 'white'}}
-              variant='contained'
-              onClick={() => { onSignUpSubmit(); }}
+              style={{
+                backgroundColor: '#5E2EBA',
+                color: 'white',
+                margin: '10px',
+              }}
+              variant="contained"
+              onClick={() => {
+                onSignUpSubmit();
+              }}
             >
               Sign Up
             </Button>
