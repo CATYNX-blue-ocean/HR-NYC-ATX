@@ -10,7 +10,7 @@ const useDataStore = create((set) => ({
   currentProductCategory: exampleData.productListings[0].productCategory,
   currentServiceCategory: exampleData.serviceListings[0].serviceCategory,
   userName: null,
-  cart: [exampleData.productListings[0], exampleData.productListings[1]],
+  cart: [],
   isCheckout: false,
   itemsPrice: 0,
 
@@ -72,8 +72,7 @@ const useDataStore = create((set) => ({
     set((state) => {
       return { itemsPrice: price };
     });
-  }
-
+  },
 }));
 
 export default useDataStore;

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   root: {
     width: '90%',
-    height: 200,
+    height: '200px',
     marginBottom: '20px',
     position: 'relative'
   },

@@ -12,8 +12,11 @@ export default makeStyles((theme) => ({
   },
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    borderColor: 'black',
+    // borderRadius: theme.shape.borderRadius,
+    border: '1px solid #DED1F7',
+    boxSizing: 'border-box',
+    borderRadius: '6px',
+
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
       backgroundColor: '#DED1F7',
@@ -47,5 +50,5 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       width: '20ch',
     },
-  }
+  },
 }));

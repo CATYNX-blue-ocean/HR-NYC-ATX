@@ -22,6 +22,7 @@ const CategoryCardServices = function (props) {
       <Card
         id={props.key}
         name={props.name}
+        style={{height: '30vh', width: '35vh'}}
         onClick={(e) => { handleServiceCategoryClick(e); }}
         className={classes.root}>
         {props.photo ? (
