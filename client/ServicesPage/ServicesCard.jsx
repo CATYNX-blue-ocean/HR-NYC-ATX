@@ -75,9 +75,9 @@ const ServicesCard = ({ service }) => {
         <Typography align='right' variant="body1" color="textSecondary" component="p" style={{paddingLeft: '5%', display: 'inline-block', fontWeight: 'bold', color: 'black', left: '5%', paddingRight: '15%'}}>
 				Average Review
         </Typography>
-        <Rating style={{color: '#5E2EBA', top: '1%', paddingRight: '5%'}} name="read-only" value={reviewAverage()} readOnly precision={0.25}/>
+        <Rating style={{color: '#5E2EBA', top: '1%', paddingRight: '5%'}} name="read-only" value={reviewAverage() + 1} readOnly precision={0.25}/>
         <Typography variant="body1" color="textSecondary" component="p" style={{textAlign: 'right', fontWeight: 'bold', color: 'black', display: 'inline', position: 'relative', top: '0%'}}>
-          {reviewAverage().toString().length === 1 ? reviewAverage() + '.0' : reviewAverage()}
+          {(reviewAverage() + 1).toString().length === 1 ? reviewAverage() + '.0' : (reviewAverage() + 1)}
         </Typography>
       </>
       <br/>
