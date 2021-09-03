@@ -11,6 +11,7 @@ import axios from 'axios';
 import Radio from '@material-ui/core/Radio';
 import useDataStore from '../zustandStore.js';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import logo from './logo.png';
 
 const NavBar = () => {
   const classes = useStyles();
@@ -77,7 +78,7 @@ const NavBar = () => {
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             <Link to="" style={{ textDecoration: 'none' }} onClick={refreshPage}>
-              Odds 'n' Ends
+              {/* Odds 'n' Ends */}<img src={logo}/>
             </Link>
           </Typography>
           <div className={classes.search}
