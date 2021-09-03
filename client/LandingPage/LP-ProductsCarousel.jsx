@@ -11,7 +11,6 @@ import exampleData from "../../exampleData.js";
 import useDataStore from "../zustandStore.js";
 
 const ProductsCarousel = function (props) {
-  const setProductCategory = useDataStore((state) => state.setProductCategory);
   const productCategories = useDataStore((state) => state.productCategories);
 
   const carouselRef = React.useRef(null);
@@ -39,34 +38,36 @@ const ProductsCarousel = function (props) {
   };
 
   return (
-    <div className="landing-page-category-carousel">
-      <Typography helvetica="true" variant="h5">
+    <Container style={{padding: '20px'}}>
+      <div className="landing-page-category-carousel">
+        <Typography helvetica="true" variant="h5">
         Products
-      </Typography>
-      <Link to="/categories">
-        <Typography helvetica="true" variant="caption">
-        See more...
         </Typography>
-      </Link>
-      <Carousel
-        ref={carouselRef}
-        onPrevStart={onPrevStart}
-        onNextStart={onNextStart}
-        disableArrowsOnEnd={false}
-        itemsToShow={3}
-        pagination={false}
-        renderArrow={myArrow}
-      >
-        {productCategories.map((item) => (
-          <CategoryCardProducts
-            key={item._id}
-            photo={item.image}
-            name={item.category}
-            description={item.description}
-          />
-        ))}
-      </Carousel>
-    </div>
+        <Link to="/categories">
+          <Typography helvetica="true" variant="caption">
+        See more...
+          </Typography>
+        </Link>
+        <Carousel
+          ref={carouselRef}
+          onPrevStart={onPrevStart}
+          onNextStart={onNextStart}
+          disableArrowsOnEnd={false}
+          itemsToShow={3}
+          pagination={false}
+          renderArrow={myArrow}
+        >
+          {productCategories.map((item) => (
+            <CategoryCardProducts
+              key={item._id}
+              photo={item.image}
+              name={item.category}
+              description={item.description}
+            />
+          ))}
+        </Carousel>
+      </div>
+    </Container>
   );
 };
 

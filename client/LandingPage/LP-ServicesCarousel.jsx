@@ -9,8 +9,10 @@ import CategoryCardServices from "./LP-CategoryCardServices.jsx";
 import exampleData from "../../exampleData.js";
 import useDataStore from "../zustandStore.js";
 
+
 const ServicesCarousel = function (props) {
   const servicesCategories = useDataStore((state) => state.servicesCategories);
+
   const carouselRef = React.useRef(null);
   const onNextStart = (currentItem, nextItem) => {
     if (currentItem.index === nextItem.index) {
@@ -36,36 +38,38 @@ const ServicesCarousel = function (props) {
   };
 
   return (
-    <div className="landing-page-category-carousel">
-      <Typography helvetica="true" variant="h5">
+    <Container style={{padding: '20px'}}>
+      <div className="landing-page-category-carousel">
+        <Typography helvetica="true" variant="h5">
         Services
-      </Typography>
-      <Link to="/categories">
-        <Typography helvetica="true" variant="caption">
-          See more...
         </Typography>
-      </Link>
-      <Carousel
-        ref={carouselRef}
-        onPrevStart={onPrevStart}
-        onNextStart={onNextStart}
-        disableArrowsOnEnd={false}
-        itemsToShow={3}
-        pagination={false}
-        renderArrow={myArrow}
-      >
-        {servicesCategories.map((item) => {
-          return (
-            <CategoryCardServices
-              key={item._id}
-              photo={item.image}
-              name={item.category}
-              description={item.description}
-            />
-          );
-        })}
-      </Carousel>
-    </div>
+        <Link to="/categories">
+          <Typography helvetica="true" variant="caption">
+          See more...
+          </Typography>
+        </Link>
+        <Carousel
+          ref={carouselRef}
+          onPrevStart={onPrevStart}
+          onNextStart={onNextStart}
+          disableArrowsOnEnd={false}
+          itemsToShow={3}
+          pagination={false}
+          renderArrow={myArrow}
+        >
+          {servicesCategories.map((item) => {
+            return (
+              <CategoryCardServices
+                key={item._id}
+                photo={item.image}
+                name={item.category}
+                description={item.description}
+              />
+            );
+          })}
+        </Carousel>
+      </div>
+    </Container>
   );
 };
 

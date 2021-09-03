@@ -8,14 +8,10 @@ import useDataStore from '../zustandStore.js';
 const CategoryCardProducts = function (props) {
 
   const classes = useStyles();
-
   const setProductCategory = useDataStore((state) => state.setProductCategory);
 
-  const handleProductCategoryClick = function (e) {
-    console.log('this click from Product Category Card');
-    console.log(e);
-    console.log(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
-    setProductCategory(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
+  const handleServiceCategoryClick = function (e) {
+    setServiceCategory(e.target.nextElementSibling.children[0].childNodes[0].wholeText);
   };
 
   return (
@@ -23,7 +19,8 @@ const CategoryCardProducts = function (props) {
       <Card
         id={props.key}
         name={props.name}
-        onClick={(e) => { handleProductCategoryClick(e); }}
+        style={{height: '30vh', width: '35vh'}}
+        onClick={(e) => { handleServiceCategoryClick(e); }}
         className={classes.root}>
         {props.photo ? (
           <CardMedia
@@ -42,6 +39,7 @@ const CategoryCardProducts = function (props) {
         </CardContent>
       </Card>
     </Link>
+
   );
 };
 

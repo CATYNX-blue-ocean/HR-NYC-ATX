@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dbInfo = require('../client/config');
+const dbInfo = require('../config');
 mongoose.connect(`mongodb://${dbInfo.dbInfo}`);
 
 const db = mongoose.connection;
