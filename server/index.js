@@ -226,7 +226,6 @@ app.get('/product/search', (req, res) => {
 //user search for services -VERSION 2 - Querying SERVICES database
 app.get('/service/search', (req, res) => {
   let keyword = req.query.keyword;
-  console.log(keyword);
   database.searchServices(keyword, (err, result) => {
     if (err) {
       console.error(err);

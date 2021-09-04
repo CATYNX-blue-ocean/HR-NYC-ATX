@@ -49,9 +49,7 @@ const NavBar = () => {
       .get(`/${type}/search/?keyword=${keyword}`)
       .then((result) => {
         //[OPTION1]update state for Product Container===========
-        console.log('SEARCH RESULT ', typeof result.data);
         if (typeof result.data === 'string') {
-          //alert(result.data);
           setMessage(result.data);
           setIsAlert(true);
         } else {
