@@ -181,7 +181,6 @@ const searchForProducts = (key, CB) => {
         console.log('ERR IN DB ', err);
         CB(err);
       }
-      console.log('SUCCESS IN DB ', data);
       CB(null, data);
     });
 };
@@ -195,7 +194,6 @@ const searchForServices = (key, CB) => {
         console.log('ERR IN DB ', err);
         CB(err);
       }
-      console.log('SUCCESS IN DB ', data);
       CB(null, data);
     });
 };
@@ -252,10 +250,3 @@ module.exports = {
   searchServices,
 };
 
-//buyer = 'undefined undefined';
-//category = 'Plumbing'; //type service
-//orders = empty;
-//repos =
-//seller = 'Joe String'
-
-// searchServices()

@@ -24,13 +24,13 @@ const Selector = ({ inventory, product }) => {
   const cart = useDataStore((state) => state.cart);
 
   const handleAddCart = () => {
+    //after click addToCart, replace it with button VIEW IN CART
     setAddCart(false);
     cart.push(product);
     addToCart(cart);
   };
-  //const history = useHistory();
+
   const viewCart = () => {
-    //history.push('/cart');
     setIsRedirect(true);
   };
 
@@ -83,9 +83,6 @@ const Selector = ({ inventory, product }) => {
             style={{color: '#5E2EBA', backgroundColor: '#DED1F7'}}
             startIcon={<ShoppingBasketIcon />}
           > BUY NOW
-            {/* <Link to="/cart" style={{ textDecoration: 'none' }}>
-              BUY NOW
-            </Link> */}
           </Button>
         </span>
       </div>
