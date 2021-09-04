@@ -39,7 +39,7 @@
 An C2C e-commerce web application to support local market and community.
 
 ![image](https://user-images.githubusercontent.com/81717356/132099139-0ec1c6c8-30f0-4ee2-9805-5be5eae45d68.png)
-![image](https://user-images.githubusercontent.com/81717356/132099158-129a06ca-f91b-427f-8bf1-4895d40cee91.png)
+![Screen Shot 2021-09-04 at 10 00 41 AM](https://user-images.githubusercontent.com/81717356/132099282-1a2e6851-7b8e-47c8-9473-ea730cefd9a9.png)
 ****
 
 ## Frontend: React
