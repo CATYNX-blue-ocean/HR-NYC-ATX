@@ -32,3 +32,19 @@
   `git push origin <branchname: branchname>`
  e)Pull request end of feature development (Architect or PM code  review before approval)
   (be sure to select the correct branchname that is getting merged into DEV, not MAIN)
+  
+  
+  
+# Odds 'n' Ends web application
+An C2C e-commerce web application to support local market and community.
+
+![image](https://user-images.githubusercontent.com/81717356/132099139-0ec1c6c8-30f0-4ee2-9805-5be5eae45d68.png)
+![image](https://user-images.githubusercontent.com/81717356/132099158-129a06ca-f91b-427f-8bf1-4895d40cee91.png)
+****
+
+## Frontend: React
+
+## Server: Express
+
+## Database: MongoDB
+
