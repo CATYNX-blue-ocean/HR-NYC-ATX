@@ -33,13 +33,13 @@ const ProductsContainer = ({ }) => {
   let currentPosts;
   var newProducts = [];
 
-  console.log(products);
+
   if (products) {
     if (pathName[1] === 'products-by-category') {
       for (var i = 0; i < products.length; i++) {
         if (products[i].productCategory.toLowerCase() === currentProductCategory.toLowerCase()) {
           newProducts.push(products[i]);
-          console.log(newProducts);
+
         }
       }
       totalPosts = newProducts.length;

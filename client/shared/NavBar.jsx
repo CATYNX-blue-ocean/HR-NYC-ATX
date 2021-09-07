@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import {
   AppBar,
@@ -19,7 +19,7 @@ import useStyles from './styles.js';
 import axios from 'axios';
 import useDataStore from '../zustandStore.js';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import logo from './logo.png';
+import logo from './logo2.png';
 
 const NavBar = () => {
   const classes = useStyles();
@@ -37,6 +37,10 @@ const NavBar = () => {
   const resetProductData = useDataStore((state) => state.resetProductData);
   const resetServiceData = useDataStore((state) => state.resetServiceData);
 
+  // useEffect(() => {
+
+  // }, [cart]);
+
   const handleSearchSubmit = (e, keyword, type) => {
     e.preventDefault();
     console.log('KEY WORD ', keyword);
@@ -45,9 +49,7 @@ const NavBar = () => {
       .get(`/${type}/search/?keyword=${keyword}`)
       .then((result) => {
         //[OPTION1]update state for Product Container===========
-        console.log('SEARCH RESULT ', typeof result.data);
         if (typeof result.data === 'string') {
-          //alert(result.data);
           setMessage(result.data);
           setIsAlert(true);
         } else {

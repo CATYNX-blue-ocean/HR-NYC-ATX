@@ -8,18 +8,16 @@ import EmptyCart from '../EmptyCart.jsx';
 import useStyles from '../styles.js';
 
 const Cart = () => {
-
   const classes = useStyles();
   const cart = useDataStore((state) => state.cart);
 
   return (
-
     <Container>
       <Grid>
         <h2>Your Cart</h2>
       </Grid>
 
-      {cart.length > 0 &&
+      {cart.length > 0 && (
         <Grid container spacing={2}>
           <Grid
             item
@@ -29,6 +27,7 @@ const Cart = () => {
               boxSizing: 'border-box',
               borderRadius: '4px',
               padding: '0px',
+              background: '#FFFFFF',
             }}
           >
             <CartList cart={cart}/>
@@ -37,21 +36,15 @@ const Cart = () => {
             item
             xs={5}
             style={{
-              border: '1px solid #5E2EBA',
-              boxSizing: 'border-box',
-              borderRadius: '4px',
               padding: '0px',
             }}
           >
             <OrderSummary cart={cart}/>
           </Grid>
         </Grid>
-      }
-      {!cart.length &&
-        <EmptyCart />
-      }
+      )}
+      {!cart.length && <EmptyCart />}
     </Container>
-
   );
 };
 
