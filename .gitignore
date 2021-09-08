@@ -3,4 +3,4 @@ config.js
 dist/bundle.js
 Client/LandingPage/dummyData.js
 package-lock.json
-
+.DS_Store
