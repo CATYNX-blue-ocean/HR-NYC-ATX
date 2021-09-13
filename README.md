@@ -12,8 +12,8 @@
 - [Overview](#Overview)
 - [Technologies Used](#Technologies-Used)
 - [Planning](#Planning)
-- [Frontend Features](#Frontend)
-- [Server Routes](#Server)
+- [Frontend Features](#Frontend-Features)
+- [Server Routes](#Server-Routes)
 - [Database](#Database)
 - [Workflow](#Workflow)
 - [Challenges and Learning](#Challenges-and-Learning)
@@ -41,7 +41,7 @@
 
 - We utilized **Figma** to create a wire frame of the user interface.
 
-  ![Wire Diagram](dist/static/assets/figma.png 'Wire Diagram')
+  ![Wire Diagram](dist/static/assets/Figma1.png 'Wire Diagram')
 
 ### Architecture Planning
 
